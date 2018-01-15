@@ -11,7 +11,6 @@
     "src"
   ],
   "main": "./src/index.js",
-  "bin": "./src/bin/puppet-strings.js",
   "repository": "splayd/puppet-strings",
   "scripts": {
     "test": "standard -v --fix && flow && ava",
