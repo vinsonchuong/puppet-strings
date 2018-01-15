@@ -16,7 +16,9 @@
     "test": "standard -v --fix && flow && ava",
     "prepack": "build-esm"
   },
-  "dependencies": {},
+  "dependencies": {
+    "puppeteer": "^1.0.0"
+  },
   "devDependencies": {
     "ava": "^0.24.0",
     "babel-preset-diff": "^1.0.3",
