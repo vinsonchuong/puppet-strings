@@ -1,0 +1,9 @@
+[ignore]
+
+[include]
+
+[libs]
+
+[options]
+module.name_mapper='^puppet-strings$' -> '<PROJECT_ROOT>'
+module.name_mapper='^puppet-strings\/\(.*\)$' -> '<PROJECT_ROOT>/\1'

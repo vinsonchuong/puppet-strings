@@ -1,0 +1,41 @@
+{
+  "name": "puppet-strings",
+  "version": "0.0.0",
+  "description": "An awesome package",
+  "keywords": [],
+  "homepage": "https://github.com/splayd/puppet-strings",
+  "bugs": "https://github.com/splayd/puppet-strings/issues",
+  "license": "MIT",
+  "author": "Vinson Chuong <vinsonchuong@gmail.com>",
+  "files": [
+    "src"
+  ],
+  "main": "./src/index.js",
+  "bin": "./src/bin/puppet-strings.js",
+  "repository": "splayd/puppet-strings",
+  "scripts": {
+    "test": "standard -v --fix && flow && ava",
+    "prepack": "build-esm"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.24.0",
+    "babel-preset-diff": "^1.0.3",
+    "babel-register": "^6.26.0",
+    "build-esm": "^3.1.0",
+    "flow-bin": "^0.63.1",
+    "standard-esnext": "^4.0.3"
+  },
+  "babel": {
+    "presets": [
+      "diff"
+    ]
+  },
+  "ava": {
+    "concurrency": 8,
+    "babel": "inherit",
+    "require": [
+      "babel-register"
+    ]
+  }
+}
