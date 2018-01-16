@@ -25,7 +25,7 @@ export default async function(
       const metadata = await page.evaluate(
         elementHandle => ({
           attributes: Array.from(elementHandle.attributes).reduce(
-            (memo, attr) => ({ ...memo, [attr.name]: attr.value }),
+            (memo, attr) => Object.assign(memo, { [attr.name]: attr.value }),
             {}
           ),
           innerText: elementHandle.innerText,

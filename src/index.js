@@ -34,3 +34,5 @@ export { default as openTab } from './open-tab'
 export { default as closeTab } from './close-tab'
 
 export { default as findElement } from './find-element'
+
+export { default as clickElement } from './click-element'
