@@ -1,7 +1,7 @@
 {
   "name": "puppet-strings",
   "version": "0.0.0",
-  "description": "An awesome package",
+  "description": "A better interface for common browser automation workflows",
   "keywords": [],
   "homepage": "https://github.com/splayd/puppet-strings",
   "bugs": "https://github.com/splayd/puppet-strings/issues",
