@@ -36,3 +36,4 @@ export { default as closeTab } from './close-tab'
 export { default as findElement } from './find-element'
 
 export { default as clickElement } from './click-element'
+export { default as fillInElement } from './fill-in-element'
