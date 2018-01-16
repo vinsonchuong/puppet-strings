@@ -1,9 +1,12 @@
 /* @flow */
 import test from 'ava'
-import { openBrowser, closeBrowser, openTab, closeTab } from 'puppet-strings'
+import { withBrowser } from './helpers'
+import { openTab, closeTab } from 'puppet-strings'
+
+withBrowser()
 
 test('opening and closing tabs', async t => {
-  const browser = await openBrowser()
+  const { browser } = global
   t.is((await browser.puppeteer.browser.pages()).length, 0)
 
   const tab1 = await openTab(browser, 'http://example.com')
@@ -15,6 +18,4 @@ test('opening and closing tabs', async t => {
 
   await closeTab(tab2)
   t.is((await browser.puppeteer.browser.pages()).length, 0)
-
-  await closeBrowser(browser)
 })
