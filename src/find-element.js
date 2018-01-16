@@ -22,7 +22,20 @@ export default async function(
     const elementHandle = elementHandles[0]
 
     if (elementHandle) {
+      const metadata = await page.evaluate(
+        elementHandle => ({
+          attributes: Array.from(elementHandle.attributes).reduce(
+            (memo, attr) => ({ ...memo, [attr.name]: attr.value }),
+            {}
+          ),
+          innerText: elementHandle.innerText,
+          outerHTML: elementHandle.outerHTML
+        }),
+        elementHandle
+      )
+
       return {
+        ...metadata,
         puppeteer: { browser, page, elementHandle }
       }
     }
