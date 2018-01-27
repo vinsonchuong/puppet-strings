@@ -13,7 +13,8 @@ export type Tab = {
   puppeteer: {
     browser: PuppeteerBrowser,
     page: PuppeteerPage
-  }
+  },
+  console: Array<{ type: string, message: string }>
 }
 
 export type Element = {
