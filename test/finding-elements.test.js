@@ -116,7 +116,7 @@ test('failing to find an element after 5 seconds', async t => {
     <script>
       setTimeout(() => {
         document.body.innerHTML = '<p>Hello World!</p>'
-      }, 6000)
+      }, 10000)
     </script>
   `
   )
