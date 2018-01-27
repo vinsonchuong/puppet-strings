@@ -7,16 +7,25 @@ export default async function(
 ): Promise<Tab> {
   const page = await browser.newPage()
 
-  const console = []
-  page.on('console', consoleMessage =>
-    console.push({
+  const consoleMessages = []
+  page.on('console', consoleMessage => {
+    consoleMessages.push({
       type: consoleMessage.type(),
       message: consoleMessage.text()
     })
-  )
+  })
+
+  const errors = []
+  page.on('pageerror', error => {
+    errors.push(error.message)
+  })
 
   await page.goto(url, {
     waitUntil: ['load', 'domcontentloaded', 'networkidle0']
   })
-  return { puppeteer: { browser, page }, console }
+  return {
+    puppeteer: { browser, page },
+    console: consoleMessages,
+    errors
+  }
 }

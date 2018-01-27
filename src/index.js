@@ -14,7 +14,8 @@ export type Tab = {
     browser: PuppeteerBrowser,
     page: PuppeteerPage
   },
-  console: Array<{ type: string, message: string }>
+  console: Array<{ type: string, message: string }>,
+  errors: Array<string>
 }
 
 export type Element = {
