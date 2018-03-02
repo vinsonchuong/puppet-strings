@@ -931,6 +931,12 @@ babel-plugin-transform-regenerator@^6.22.0:
   dependencies:
     regenerator-transform "^0.10.0"
 
+babel-plugin-transform-runtime@^6.23.0:
+  version "6.23.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-runtime/-/babel-plugin-transform-runtime-6.23.0.tgz#88490d446502ea9b8e7efb0fe09ec4d99479b1ee"
+  dependencies:
+    babel-runtime "^6.22.0"
+
 babel-plugin-transform-strict-mode@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-strict-mode/-/babel-plugin-transform-strict-mode-6.24.1.tgz#d5faf7aa578a65bbe591cf5edae04a0c67020758"
@@ -938,18 +944,20 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-preset-diff@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/babel-preset-diff/-/babel-preset-diff-1.0.3.tgz#d4ce49ece27b1959aa86dc05d5e91add7f9ae903"
+babel-preset-diff@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-diff/-/babel-preset-diff-2.0.0.tgz#dcdaf091ae3456e3d955168d03b870709cc595c2"
   dependencies:
     babel-plugin-package-name-import "^1.0.3"
     babel-plugin-symlink-import "^0.0.3"
-    babel-preset-env "^1.6.0"
+    babel-plugin-transform-runtime "^6.23.0"
+    babel-preset-env "^1.6.1"
     babel-preset-flow "^6.23.0"
     babel-preset-stage-0 "^6.24.1"
+    babel-runtime "^6.26.0"
     interop-require "^1.0.0"
 
-babel-preset-env@^1.6.0:
+babel-preset-env@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.6.1.tgz#a18b564cc9b9afdf4aae57ae3c1b0d99188e6f48"
   dependencies:
@@ -2080,9 +2088,9 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flow-bin@^0.64.0:
-  version "0.64.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.64.0.tgz#ddd3fb3b183ab1ab35a5d5dec9caf5ebbcded167"
+flow-bin@^0.66.0:
+  version "0.66.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.66.0.tgz#a96dde7015dc3343fd552a7b4963c02be705ca26"
 
 fn-name@^2.0.0:
   version "2.0.1"
@@ -3473,9 +3481,9 @@ punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
 
-puppeteer@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-1.0.0.tgz#20f3bb6ad6c6778b4d1fb750e808a29fec0a88a4"
+puppeteer@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-1.1.1.tgz#adbf25e49f5ef03443c10ab8e09a954ca0c7bfee"
   dependencies:
     debug "^2.6.8"
     extract-zip "^1.6.5"
