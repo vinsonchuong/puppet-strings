@@ -39,7 +39,7 @@ test('failing to find an element', async t => {
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)
-  await t.throws(findElement(tab, 'p'))
+  await t.throws(findElement(tab, 'p'), 'Could not find element')
 })
 
 test('finding an element containing text', async t => {
@@ -77,7 +77,7 @@ test('failing to find an element containing text', async t => {
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)
-  await t.throws(findElement(tab, 'p', 'Other Stuff'))
+  await t.throws(findElement(tab, 'p', 'Other Stuff'), 'Could not find element')
 })
 
 test('waiting for an element to appear', async t => {
@@ -122,5 +122,5 @@ test('failing to find an element after 5 seconds', async t => {
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)
-  await t.throws(findElement(tab, 'p'))
+  await t.throws(findElement(tab, 'p'), 'Could not find element')
 })

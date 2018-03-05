@@ -944,9 +944,9 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-preset-diff@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-diff/-/babel-preset-diff-2.0.0.tgz#dcdaf091ae3456e3d955168d03b870709cc595c2"
+babel-preset-diff@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-diff/-/babel-preset-diff-2.1.0.tgz#e569badabf1f3d9de8a1143821cbddea41307f1e"
   dependencies:
     babel-plugin-package-name-import "^1.0.3"
     babel-plugin-symlink-import "^0.0.3"

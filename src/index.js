@@ -34,6 +34,7 @@ export { default as closeBrowser } from './close-browser'
 
 export { default as openTab } from './open-tab'
 export { default as closeTab } from './close-tab'
+export { default as evalInTab } from './eval-in-tab'
 
 export { default as findElement } from './find-element'
 

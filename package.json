@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "ava": "^0.25.0",
-    "babel-preset-diff": "^2.0.0",
+    "babel-preset-diff": "^2.1.0",
     "babel-register": "^6.26.0",
     "build-esm": "^3.1.0",
     "flow-bin": "^0.66.0",

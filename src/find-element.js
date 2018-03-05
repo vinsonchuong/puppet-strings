@@ -1,12 +1,15 @@
 /* @flow */
 import type { Tab, Element } from 'puppet-strings'
+import { evalInTab } from 'puppet-strings'
 import cssToXPath from 'css-to-xpath'
 
 export default async function(
-  { puppeteer: { browser, page } }: Tab,
+  tab: Tab,
   selector: string,
   text: ?string
 ): Promise<Element> {
+  const { puppeteer: { browser, page } } = tab
+
   const xpath =
     typeof text === 'string'
       ? cssToXPath
@@ -15,39 +18,34 @@ export default async function(
           .toXPath()
       : cssToXPath(selector)
 
-  const startTime = new Date()
+  try {
+    const elementHandle = await page.waitForXPath(xpath, {
+      visible: true,
+      timeout: 5000
+    })
 
-  while (new Date() - startTime < 5000) {
-    const elementHandles = await page.$x(xpath)
-    const elementHandle = elementHandles[0]
-
-    if (elementHandle) {
-      const metadata = await page.evaluate(
-        elementHandle => ({
-          attributes: Array.from(elementHandle.attributes).reduce(
-            (memo, attr) => Object.assign(memo, { [attr.name]: attr.value }),
-            {}
-          ),
-          innerText: elementHandle.innerText,
-          outerHTML: elementHandle.outerHTML
-        }),
-        elementHandle
-      )
+    const metadata = await evalInTab(
+      tab,
+      [elementHandle],
+      `
+      const [elementHandle] = arguments
 
       return {
-        ...metadata,
-        puppeteer: { browser, page, elementHandle }
+        attributes: Array.from(elementHandle.attributes).reduce(
+          (memo, attr) => Object.assign(memo, { [attr.name]: attr.value }),
+          {}
+        ),
+        innerText: elementHandle.innerText,
+        outerHTML: elementHandle.outerHTML
       }
+      `
+    )
+
+    return {
+      ...metadata,
+      puppeteer: { browser, page, elementHandle }
     }
-
-    await sleep(100)
+  } catch (error) {
+    throw new Error('Could not find element')
   }
-
-  throw new Error('Could not find element')
-}
-
-function sleep(ms: number): Promise<void> {
-  return new Promise(resolve => {
-    setTimeout(resolve, ms)
-  })
 }
