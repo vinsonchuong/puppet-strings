@@ -13,7 +13,9 @@ export async function runInContainer({
   const docker = new Docker()
 
   try {
-    await docker.pull(image)
+    const stream = await docker.pull(image)
+    stream.setEncoding('utf8')
+    stream.on('data', console.log)
   } catch (error) {
     console.log('=======')
     console.log(error)
