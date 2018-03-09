@@ -9,7 +9,7 @@ node_js:
   - lts/*
 before_install:
   - export DISPLAY=:99.0
-  - sudo /etc/init.d/xvfb start
+  - sudo sh -e '/etc/init.d/xvfb start'
 cache: yarn
 deploy:
   provider: npm
