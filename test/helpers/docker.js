@@ -12,15 +12,10 @@ export async function runInContainer({
 }): Promise<string> {
   const docker = new Docker()
 
-  try {
-    const stream = await docker.pull(image)
-    stream.setEncoding('utf8')
-    stream.on('data', console.log)
-  } catch (error) {
-    console.log('=======')
-    console.log(error)
-    console.log('=======')
-  }
+  const stream = await docker.pull(image)
+  await new Promise(resolve => {
+    docker.modem.followProgress(stream, resolve)
+  })
 
   const container = await docker.createContainer({
     Image: image,
