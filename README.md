@@ -45,5 +45,5 @@ a Docker image that includes the latest `Current` version of Node.js and all of
 the libraries needed to run Chrome.
 
 If you need to maintain a custom Dockerfile for your project, see our 
-[Dockerfile](https://hub.docker.com/r/splayd/javascript/~/dockerfile/) for clues
-on how to install the needed GUI libraries.
+[Dockerfile](https://github.com/splayd/docker/blob/master/images/javascript/Dockerfile)
+for clues on how to install the needed GUI libraries.
