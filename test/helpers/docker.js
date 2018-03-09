@@ -12,12 +12,9 @@ export async function runInContainer({
 }): Promise<string> {
   const docker = new Docker()
 
-  const stream = await docker.pull(image)
-  await new Promise(resolve => {
-    docker.modem.followProgress(stream, resolve)
-  })
+  await pullImage(docker, image)
 
-  const container = await docker.createContainer({
+  const container = await createContainer(docker, {
     Image: image,
     Cmd: command,
     WorkingDir: '/root',
@@ -26,6 +23,28 @@ export async function runInContainer({
     }
   })
 
+  const output = await startContainer(container)
+  await removeContainer(container)
+
+  return output
+}
+
+async function pullImage(docker, image) {
+  const stream = await docker.pull(image)
+  await new Promise(resolve => {
+    docker.modem.followProgress(stream, resolve)
+  })
+}
+
+function createContainer(docker, config) {
+  return docker.createContainer(config)
+}
+
+function removeContainer(container) {
+  return container.remove()
+}
+
+async function startContainer(container) {
   const stream = await container.attach({
     stream: true,
     stdout: true,
@@ -40,7 +59,6 @@ export async function runInContainer({
 
   await container.start()
   await container.wait()
-  await container.remove()
 
   return output
 }
