@@ -7,10 +7,7 @@
   "bugs": "https://github.com/splayd/puppet-strings/issues",
   "license": "MIT",
   "author": "Vinson Chuong <vinsonchuong@gmail.com>",
-  "files": [
-    "src"
-  ],
-  "main": "./src/index.js",
+  "main": "./index.js",
   "repository": "splayd/puppet-strings",
   "scripts": {
     "test": "standard -v --fix && flow && ava",
@@ -22,11 +19,14 @@
   },
   "devDependencies": {
     "ava": "^0.25.0",
-    "babel-preset-diff": "^2.1.0",
+    "babel-preset-diff": "^2.2.0",
     "babel-register": "^6.26.0",
     "build-esm": "^3.1.0",
+    "dedent": "^0.7.0",
+    "dockerode": "^2.5.4",
     "flow-bin": "^0.66.0",
     "fs-extra": "^5.0.0",
+    "ps-list": "^4.0.0",
     "standard-esnext": "^4.0.3",
     "tempy": "^0.2.1"
   },
@@ -37,6 +37,10 @@
   },
   "ava": {
     "concurrency": 8,
+    "files": [
+      "**/*.test.js",
+      "**/test.js"
+    ],
     "babel": "inherit",
     "require": [
       "babel-register"

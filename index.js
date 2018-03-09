@@ -29,14 +29,14 @@ export type Element = {
   }
 }
 
-export { default as openBrowser } from './open-browser'
-export { default as closeBrowser } from './close-browser'
+export { default as openBrowser } from './actions/open-browser'
+export { default as closeBrowser } from './actions/close-browser'
 
-export { default as openTab } from './open-tab'
-export { default as closeTab } from './close-tab'
-export { default as evalInTab } from './eval-in-tab'
+export { default as openTab } from './actions/open-tab'
+export { default as closeTab } from './actions/close-tab'
+export { default as evalInTab } from './actions/eval-in-tab'
 
-export { default as findElement } from './find-element'
+export { default as findElement } from './actions/find-element'
 
-export { default as clickElement } from './click-element'
-export { default as fillInElement } from './fill-in-element'
+export { default as clickElement } from './actions/click-element'
+export { default as fillInElement } from './actions/fill-in-element'

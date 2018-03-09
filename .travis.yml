@@ -1,8 +1,12 @@
 group: travis_latest
+services:
+  - docker
 addons:
   chrome: stable
 language: node_js
-node_js: node
+node_js:
+  - node
+  - lts/*
 cache: yarn
 deploy:
   provider: npm
