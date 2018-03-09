@@ -14,4 +14,4 @@ run()
 ```
 
 ## Parameters
-* `browser` ([Browser](../../interface/README.md#browser))
+* `browser` ([Browser](../../interface#browser-object))
