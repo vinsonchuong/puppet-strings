@@ -1,33 +1,7 @@
 /* @flow */
-import type PuppeteerBrowser from 'puppeteer/lib/Browser'
-import type PuppeteerPage from 'puppeteer/lib/Page'
-import type PuppeteerElementHandle from 'puppeteer/lib/ElementHandle'
-
-export type Browser = {
-  puppeteer: {
-    browser: PuppeteerBrowser
-  }
-}
-
-export type Tab = {
-  puppeteer: {
-    browser: PuppeteerBrowser,
-    page: PuppeteerPage
-  },
-  console: Array<{ type: string, message: string }>,
-  errors: Array<string>
-}
-
-export type Element = {
-  attributes: { [string]: string },
-  innerText: string,
-  outerHTML: string,
-  puppeteer: {
-    browser: PuppeteerBrowser,
-    page: PuppeteerPage,
-    elementHandle: PuppeteerElementHandle
-  }
-}
+export type { Browser } from './interface/browser'
+export type { Tab } from './interface/tab'
+export type { Element } from './interface/element'
 
 export { default as openBrowser } from './actions/open-browser'
 export { default as closeBrowser } from './actions/close-browser'
