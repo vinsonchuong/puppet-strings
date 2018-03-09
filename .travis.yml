@@ -7,9 +7,6 @@ language: node_js
 node_js:
   - node
   - lts/*
-before_install:
-  - docker pull node:latest
-  - docker pull splayd/javascript
 cache: yarn
 deploy:
   provider: npm

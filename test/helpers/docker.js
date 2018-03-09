@@ -12,7 +12,13 @@ export async function runInContainer({
 }): Promise<string> {
   const docker = new Docker()
 
-  await docker.pull(image)
+  try {
+    await docker.pull(image)
+  } catch (error) {
+    console.log('=======')
+    console.log(error)
+    console.log('=======')
+  }
 
   const container = await docker.createContainer({
     Image: image,
