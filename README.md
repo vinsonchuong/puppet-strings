@@ -77,17 +77,17 @@ for clues on how to install the needed GUI libraries.
 
 ### API
 
-#### Browser
+#### [`Browser`](interface#browser-object)
 * [`openBrowser`](actions/open-browser): Starts a new instance of Chrome
 * [`closeBrowser`](actions/close-browser): Closes the given Chrome browser
 
-#### Tab
+#### [`Tab`](interface#tab-object)
 * [`openTab`](actions/open-tab)
 * [`closeTab`](actions/close-tab)
 * [`waitForNavigation`](actions/wait-for-navigation)
 * [`evalInTab`](actions/eval-in-tab)
 * [`findElement`](actions/find-element)
 
-#### Element
+#### [`Element`](interface#element-object)
 * [`clickElement`](actions/click-element)
 * [`fillInElement`](actions/fill-in-element)
