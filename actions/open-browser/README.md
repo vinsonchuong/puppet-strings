@@ -1,5 +1,5 @@
 # `openBrowser([options])`
-Starts a new instance of Chrome.
+Starts a new instance of Chrome
 
 ## Example
 ```js

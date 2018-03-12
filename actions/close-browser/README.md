@@ -1,5 +1,5 @@
 # `closeBrowser(browser)`
-Closes the given Chrome browser.
+Closes the given Chrome browser
 
 ## Example
 ```js
