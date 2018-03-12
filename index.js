@@ -8,6 +8,7 @@ export { default as closeBrowser } from './actions/close-browser'
 
 export { default as openTab } from './actions/open-tab'
 export { default as closeTab } from './actions/close-tab'
+export { default as waitForNavigation } from './actions/wait-for-navigation'
 export { default as evalInTab } from './actions/eval-in-tab'
 
 export { default as findElement } from './actions/find-element'

@@ -3,6 +3,33 @@
 
 A better interface for common browser automation workflows
 
+## Example
+```js
+import {
+  openBrowser, closeBrowser, openTab, waitForNavigation,
+  findElement, fillInElement, clickElement, evalInTab
+} from 'puppet-strings'
+
+async function run() {
+  const browser = await openBrowser()
+  const tab = await openTab(browser, 'https://google.com/ncr')
+
+  const searchInput = await findElement(tab, '[name="q"]')
+  await fillInElement(searchInput, 'Node.js')
+
+  const searchButton = await findElement(tab, `input[value="I'm Feeling Lucky"]`)
+  await clickElement(searchButton)
+  await waitForNavigation(tab)
+
+  const title = await evalInTab(tab, [], 'return document.title')
+  console.log(title)
+
+  await closeBrowser(browser)
+}
+
+run()
+```
+
 ## Usage
 
 ### Installation
