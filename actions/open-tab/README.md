@@ -1,5 +1,5 @@
 # `openTab(browser, url)`
-Opens a url in a new tab
+Opens a url in a new tab and waits for it to fully load
 
 ## Example
 ```js
