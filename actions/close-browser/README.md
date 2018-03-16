@@ -1,5 +1,5 @@
 # `closeBrowser(browser)`
-Closes the given Chrome browser
+Closes a browser
 
 ## Example
 ```js
@@ -15,3 +15,11 @@ run()
 
 ## Parameters
 * `browser` ([Browser](../../interface#browser-object))
+
+## Returns
+* `promise` (Promise<void>)
+
+## Details
+Once a browser instance is started, it will continue running until passed to
+`closeBrowser`. It is important to close unused browser instances as Chrome can
+use a lot of memory.

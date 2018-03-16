@@ -76,10 +76,15 @@ If you need to maintain a custom Dockerfile for your project, see our
 for clues on how to install the needed GUI libraries.
 
 ### API
+`puppet-strings` provides an [interface](interface) consisting of three nouns
+(browser, tab, and element) and actions that take one of them as first argument.
+Each action returns a promise that is resolved when the action is finished.
+
+Here are the actions `puppet-strings` provides:
 
 #### [`Browser`](interface#browser-object)
 * [`openBrowser`](actions/open-browser): Starts a new instance of Chrome
-* [`closeBrowser`](actions/close-browser): Closes the given Chrome browser
+* [`closeBrowser`](actions/close-browser): Closes a browser
 
 #### [`Tab`](interface#tab-object)
 * [`openTab`](actions/open-tab)
@@ -91,3 +96,15 @@ for clues on how to install the needed GUI libraries.
 #### [`Element`](interface#element-object)
 * [`clickElement`](actions/click-element)
 * [`fillInElement`](actions/fill-in-element)
+
+### Extension
+`puppet-strings` is designed to be open for extension but closed for
+modification.
+
+You can create new actions that take a [`Browser`](interface#browser-object),
+[`Tab`](interface#tab-object), or [`Element`](interface#element-object) as
+argument. Your new actions can reuse other actions and interact directly with
+the underlying Puppeteer objects.
+
+If your project needs to modify an action provided by `puppet-strings`, you can
+duplicate that action and maintain your modifications as part of your project.
