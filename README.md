@@ -90,7 +90,7 @@ Here are the actions `puppet-strings` provides:
 * [`openTab`](actions/open-tab): Opens a url in a new tab and waits for it to
   fully load
 * [`closeTab`](actions/close-tab): Closes a tab
-* [`waitForNavigation`](actions/wait-for-navigation)
+* [`waitForNavigation`](actions/wait-for-navigation): Waits for a page load to complete
 * [`evalInTab`](actions/eval-in-tab)
 * [`findElement`](actions/find-element)
 
