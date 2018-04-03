@@ -1,6 +1,8 @@
 # puppet-strings
 [![Build Status](https://travis-ci.org/splayd/puppet-strings.svg?branch=master)](https://travis-ci.org/splayd/puppet-strings)
 [![NSP Status](https://nodesecurity.io/orgs/vinsonchuong/projects/4f857d37-b9cf-4c54-a335-b8a2b1c1157f/badge)](https://nodesecurity.io/orgs/vinsonchuong/projects/4f857d37-b9cf-4c54-a335-b8a2b1c1157f)
+[![dependencies Status](https://david-dm.org/splayd/puppet-strings/status.svg)](https://david-dm.org/splayd/puppet-strings)
+[![devDependencies Status](https://david-dm.org/splayd/puppet-strings/dev-status.svg)](https://david-dm.org/splayd/puppet-strings?type=dev)
 
 A better interface for common browser automation workflows
 
