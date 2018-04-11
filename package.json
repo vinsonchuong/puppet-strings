@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "css-to-xpath": "^0.1.0",
-    "puppeteer": "^1.1.1"
+    "puppeteer": "^1.2.0"
   },
   "devDependencies": {
     "ava": "^0.25.0",
@@ -24,7 +24,7 @@
     "build-esm": "^3.1.0",
     "dedent": "^0.7.0",
     "dockerode": "^2.5.4",
-    "flow-bin": "^0.66.0",
+    "flow-bin": "^0.69.0",
     "fs-extra": "^5.0.0",
     "ps-list": "^4.0.0",
     "standard-esnext": "^4.0.3",
