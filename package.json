@@ -27,6 +27,7 @@
     "flow-bin": "^0.69.0",
     "fs-extra": "^5.0.0",
     "ps-list": "^4.0.0",
+    "semantic-release": "^15.1.6",
     "standard-esnext": "^4.0.3",
     "tempy": "^0.2.1"
   },

@@ -1,27 +1,25 @@
 group: travis_latest
 services:
-  - docker
+- docker
 addons:
   chrome: stable
+env:
+  global:
+    secure: jg6DKbZjkMYVy6k9MSCVQwW75+bDpcIW5jXbi4nGVq4sUBLGDj20SWkmEb82E1o16RdH8tDZqs30drLHUzHaqr+Nw7YfK9D/BwMRQYZyPJOUJEPRLMkBr71AMcLM0ksMQzM+Ut8mzW2wDFolxZ/ns8CJ4MVrItCeSoagxM2x911VwT3taxBwwg8NisMNnuiK33+EXC+s5KeGhr5cafVZcKNwP3BLzaTpBBV1lgDsWuBY51iKQb4LtNJgrwhdgTXoY7qOPROoj8zswAyOydCl68VDwQfpnvAlhtwcvD1adwcvvuIB2zEj+pXeeiOQWMVjg7pZD+KxJxNVmKyJ5ua705LZN9ln81SzswlIOrPgI93vz+xE3dX5CIifqsDXtkz9ROdQ12KTNRMQqx0heo/ydhxF6LIZ3qi6MBaaR6pT6FiLAqoPToV4NdrFCCYmM8f5hZZTUa+NFQtIZvCv0CaaOrvTdPJHp6H1hEk7ezI3HMfUgs/Ga4USdJNkSEvuKZWmhCOvkCMnD26RxIq49iMllBURBvnP4xO25PMaHgGxwXAv0U8AyQC7kmlwkSA3wQC7doR+0M6zeH2kzubNWDhMTyaG5ZPfbWtHm5u5DpBrzDEljLODeKz7ZxAfYPkfNXi2pnCwyhRBaazgqUH8XXyrY0d19xiagR0WgconlSDdJoM=
 language: node_js
 node_js:
-  - node
-  - lts/*
+- node
+- lts/*
 before_install:
-  - export DISPLAY=:99.0
-  - Xvfb :99 -screen 0 1280x800x24 &>/dev/null &
+- export DISPLAY=:99.0
+- Xvfb :99 -screen 0 1280x800x24 &>/dev/null &
 cache: yarn
 jobs:
   include:
-    - stage: release
-      node_js: node
-      script: skip
-      deploy:
-        provider: npm
-        skip_cleanup: true
-        on:
-          tags: true
-        email:
-          secure: jhCVXIOqkYKDDL6vsz7wSNzqJ/aFes2liVj9tPisx1KZe3f0bZQC3hQCTi/uzHEzHnMELgPM2EMLjqyAvHXt62UtnyQK6iQbCjXLcuYE/8SUO+WFFngdrZK2k/QtroYZK3ak7BCUOw5neXKBjzPetpRMg5kMvPTU5HjLqFcXhBPHvr5BPrdMZgObs8YltBx8YEE32qiD+HKjwbozIdgwYcsP6K6wEY1s2CAiBqZqRk1Be6dFGtZVkd8TxwM19PXwatzt+rpOcBHQPf4u8tUlg1wrQD1YiWFPxGg2yhn5R2zvPWmFuHNT4GOCNSHb+iPXWS8JLuDqSIWwQC9qVUdneKwXoF1LzcX6xb2dIvt7IjqLRZC+j0kjLo/+ZZwIJhfj1iL9b9zRWiGxoRctT5P2+vK94XeCDqg6+M7G170wab4EKx60H9r/ghxMaA04IrtvibN1BVMATHlG8FPt++VBVZzdDJdxAKxAue+XXBqbFRlYCMl/XVLk0/5/KNe22zEKn/RG5fyzJ2W7CVjnQmBUC4vsA7urIeC3MZUtxYLOZ2pDvbv8UyW2anLdvKLrTQrJF07u7Mt1R5RmdsJF/3PJK6MbeD3UCYZr+dmvWzP5A7rFszbZXpJWZMY9Axms/35j0GkeN7HcqqIiBzK5+RwZ2M0kDFWgdah4EGAmzyOuvgA=
-        api_key:
-          secure: fy6k7KCcbC4beh2/ZF8G7hHlh+e7EH7huhsvb4upQU7FxFa4EDPKmeDK2PdU7VDdWts7q737wzMQDsWwjLfFzMbJMF/dEE7lrMZI7urSk1/gCmhYGJq1nQr/joscHXiBlQALmjFw2X6NQ/l7K9X7YHoJkfQ2Cf/oqyvonsI25I5hXSLeBtJ90DkoE8E8v4kmnmQrSo84mbs+uYK4b9SDDHS1uhZ9YYcrFG5m801xUf6xfudldvIOsZLZsrc5CIORqQQTN+/X9AiUMqsDJBk9LUf7X6dw7IimqW+62DFLgbFh/CpvVDugjz3z3YFYarO5Uaw78yWZGgb8/ljjonUyDSnS9i14wKDIHL9iZX4xDFakgvs5+DqhmIyAE4vK8rWNT9d4FWyV2SIibw52wbrTO0kEWdAA4AxhHbwyX+dLPb3srW9edEFvRUBQfYMrrRBsPBvo1/dvvswG4zRSPkdXK27sGuM0IDwZjXfiwwFpqIiT0Jv8+zLI/k6Afiw8Q+soPt+JmAAayMG//2X5Z3Eba0OgfMIKzs8DibXJ0I/p9eLhs5GwoGlVNKUfW8l48WtXKqsp+8TWrz1AmVjkRBeJzrDHpQL4W5/f02vu1GaLt3v5M6KM4WYR1jOFKcbGKBoB8Nnole3ftIk0o2rcGVijggXYm1tXLplV/sw7CY7T2Mc=
+  - stage: release
+    node_js: node
+    script: skip
+    deploy:
+      provider: script
+      skip_cleanup: true
+      script: yarn semantic-release
