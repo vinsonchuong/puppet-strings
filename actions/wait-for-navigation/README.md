@@ -12,7 +12,7 @@ async function run() {
   const tab = await openTab(browser, 'https://npmjs.com')
 
   const lodashLink = await findElement(tab, 'a', 'lodash')
-  await clickElement(lodashLink)
+  clickElement(lodashLink)
 
   await waitForNavigation(tab)
 }

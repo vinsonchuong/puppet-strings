@@ -44,8 +44,7 @@ test('waiting for a page load to complete', async t => {
   const tab = await openTab(browser, `file://${indexPath}`)
 
   const link = await findElement(tab, 'a', 'other.html')
-  await clickElement(link)
-
+  clickElement(link)
   await waitForNavigation(tab)
 
   t.is(await evalInTab(tab, [], 'return document.title'), 'other.html')
