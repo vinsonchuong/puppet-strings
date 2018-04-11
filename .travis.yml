@@ -13,7 +13,7 @@ before_install:
 cache: yarn
 jobs:
   include:
-    - stage: npm release
+    - stage: release
       node_js: node
       deploy:
         provider: npm
