@@ -1,6 +1,10 @@
 /* @flow */
 import test from 'ava'
-import { withBrowser, withDirectory, writeFile } from './helpers'
+import {
+  withBrowser,
+  withDirectory,
+  writeFile
+} from 'puppet-strings/test/helpers'
 import { openTab, findElement } from 'puppet-strings'
 
 withBrowser()
