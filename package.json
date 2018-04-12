@@ -11,6 +11,7 @@
   "repository": "splayd/puppet-strings",
   "scripts": {
     "test": "standard -v --fix && flow && ava",
+    "release": "semantic-release",
     "prepack": "build-esm"
   },
   "dependencies": {

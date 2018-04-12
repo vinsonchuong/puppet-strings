@@ -1,25 +1,37 @@
 group: travis_latest
-services:
-- docker
-addons:
-  chrome: stable
-env:
-  global:
-    secure: jg6DKbZjkMYVy6k9MSCVQwW75+bDpcIW5jXbi4nGVq4sUBLGDj20SWkmEb82E1o16RdH8tDZqs30drLHUzHaqr+Nw7YfK9D/BwMRQYZyPJOUJEPRLMkBr71AMcLM0ksMQzM+Ut8mzW2wDFolxZ/ns8CJ4MVrItCeSoagxM2x911VwT3taxBwwg8NisMNnuiK33+EXC+s5KeGhr5cafVZcKNwP3BLzaTpBBV1lgDsWuBY51iKQb4LtNJgrwhdgTXoY7qOPROoj8zswAyOydCl68VDwQfpnvAlhtwcvD1adwcvvuIB2zEj+pXeeiOQWMVjg7pZD+KxJxNVmKyJ5ua705LZN9ln81SzswlIOrPgI93vz+xE3dX5CIifqsDXtkz9ROdQ12KTNRMQqx0heo/ydhxF6LIZ3qi6MBaaR6pT6FiLAqoPToV4NdrFCCYmM8f5hZZTUa+NFQtIZvCv0CaaOrvTdPJHp6H1hEk7ezI3HMfUgs/Ga4USdJNkSEvuKZWmhCOvkCMnD26RxIq49iMllBURBvnP4xO25PMaHgGxwXAv0U8AyQC7kmlwkSA3wQC7doR+0M6zeH2kzubNWDhMTyaG5ZPfbWtHm5u5DpBrzDEljLODeKz7ZxAfYPkfNXi2pnCwyhRBaazgqUH8XXyrY0d19xiagR0WgconlSDdJoM=
 language: node_js
-node_js:
-- node
-- lts/*
-before_install:
-- export DISPLAY=:99.0
-- Xvfb :99 -screen 0 1280x800x24 &>/dev/null &
+node_js: node
 cache: yarn
+
+templates:
+  with_docker: &with_docker
+    services:
+      - docker
+
+  with_chrome: &with_chrome
+    addons:
+      chrome: stable
+    before_install:
+      - export DISPLAY=:99.0
+      - Xvfb :99 -screen 0 1280x800x24 &>/dev/null &
+
 jobs:
   include:
+  - stage: test
+    <<: *with_docker
+    <<: *with_chrome
+
+  - stage: test
+    <<: *with_docker
+    <<: *with_chrome
+    node_js: lts/*
+
   - stage: release
-    node_js: node
+    env:
+      global:
+        secure: jg6DKbZjkMYVy6k9MSCVQwW75+bDpcIW5jXbi4nGVq4sUBLGDj20SWkmEb82E1o16RdH8tDZqs30drLHUzHaqr+Nw7YfK9D/BwMRQYZyPJOUJEPRLMkBr71AMcLM0ksMQzM+Ut8mzW2wDFolxZ/ns8CJ4MVrItCeSoagxM2x911VwT3taxBwwg8NisMNnuiK33+EXC+s5KeGhr5cafVZcKNwP3BLzaTpBBV1lgDsWuBY51iKQb4LtNJgrwhdgTXoY7qOPROoj8zswAyOydCl68VDwQfpnvAlhtwcvD1adwcvvuIB2zEj+pXeeiOQWMVjg7pZD+KxJxNVmKyJ5ua705LZN9ln81SzswlIOrPgI93vz+xE3dX5CIifqsDXtkz9ROdQ12KTNRMQqx0heo/ydhxF6LIZ3qi6MBaaR6pT6FiLAqoPToV4NdrFCCYmM8f5hZZTUa+NFQtIZvCv0CaaOrvTdPJHp6H1hEk7ezI3HMfUgs/Ga4USdJNkSEvuKZWmhCOvkCMnD26RxIq49iMllBURBvnP4xO25PMaHgGxwXAv0U8AyQC7kmlwkSA3wQC7doR+0M6zeH2kzubNWDhMTyaG5ZPfbWtHm5u5DpBrzDEljLODeKz7ZxAfYPkfNXi2pnCwyhRBaazgqUH8XXyrY0d19xiagR0WgconlSDdJoM=
     script: skip
     deploy:
       provider: script
       skip_cleanup: true
-      script: yarn semantic-release
+      script: yarn release
