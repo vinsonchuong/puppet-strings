@@ -100,7 +100,7 @@ Here are the actions `puppet-strings` provides:
 * [`findElement`](actions/find-element): Find a DOM element on the page by CSS selector
 
 #### [`Element`](interface#element-object)
-* [`clickElement`](actions/click-element)
+* [`clickElement`](actions/click-element): Click on a DOM element
 * [`fillInElement`](actions/fill-in-element)
 
 ### Extension
