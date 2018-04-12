@@ -1,5 +1,5 @@
 # `clickElement(element)`
-Click on a DOM element
+Click on an element
 
 ## Example
 ```js
