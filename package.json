@@ -38,7 +38,7 @@
     ]
   },
   "ava": {
-    "concurrency": 8,
+    "concurrency": 4,
     "files": [
       "**/*.test.js",
       "**/test.js"
