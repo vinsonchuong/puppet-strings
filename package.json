@@ -24,11 +24,11 @@
     "babel-register": "^6.26.0",
     "build-esm": "^3.1.0",
     "dedent": "^0.7.0",
-    "dockerode": "^2.5.4",
+    "dockerode": "^2.5.5",
     "flow-bin": "^0.69.0",
     "fs-extra": "^5.0.0",
     "ps-list": "^4.0.0",
-    "semantic-release": "^15.1.6",
+    "semantic-release": "^15.1.7",
     "standard-esnext": "^4.0.3",
     "tempy": "^0.2.1"
   },
