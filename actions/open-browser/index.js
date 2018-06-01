@@ -2,8 +2,8 @@
 import type { Browser } from 'puppet-strings'
 import puppeteer from 'puppeteer'
 
-type Options = {
-  headless: boolean
+type Options = void | {
+  headless?: boolean
 }
 
 const defaultFlags = [
@@ -17,11 +17,9 @@ const defaultFlags = [
   '--mute-audio'
 ]
 
-export default async function({ headless = true }: Options = {}): Promise<
-  Browser
-> {
+export default async function(options: Options): Promise<Browser> {
   let flags = defaultFlags
-  if (headless) {
+  if (!options || !('headless' in options) || options.headless) {
     flags = [...flags, '--headless']
   }
 
