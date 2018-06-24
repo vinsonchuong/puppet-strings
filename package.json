@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "css-to-xpath": "^0.1.0",
-    "puppeteer": "^1.4.0"
+    "puppeteer": "^1.5.0"
   },
   "devDependencies": {
     "ava": "^0.25.0",
-    "babel-preset-diff": "^3.0.0",
+    "babel-preset-diff": "^4.0.0",
     "babel-register": "^6.26.0",
     "build-esm": "^3.2.0",
     "dedent": "^0.7.0",
@@ -28,7 +28,7 @@
     "flow-bin": "0.69.0",
     "fs-extra": "^6.0.1",
     "ps-list": "^4.1.0",
-    "semantic-release": "^15.5.0",
+    "semantic-release": "^15.6.0",
     "standard-esnext": "^4.0.3",
     "tempy": "^0.2.1"
   },
