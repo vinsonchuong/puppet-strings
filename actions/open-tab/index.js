@@ -20,9 +20,15 @@ export default async function(
     errors.push(error.message)
   })
 
-  await page.goto(url, {
-    waitUntil: ['load', 'domcontentloaded', 'networkidle0']
-  })
+  try {
+    await page.goto(url, {
+      waitUntil: ['load', 'domcontentloaded', 'networkidle0'],
+      timeout: 5000
+    })
+  } catch (error) {
+    throw new Error(`Failed to open tab: ${error.message}`)
+  }
+
   return {
     puppeteer: { browser, page },
     console: consoleMessages,

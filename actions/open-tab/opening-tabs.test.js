@@ -5,6 +5,7 @@ import {
   withDirectory,
   writeFile
 } from 'puppet-strings/test/helpers'
+import * as http from 'http'
 import { openTab } from 'puppet-strings'
 
 withDirectory()
@@ -74,4 +75,30 @@ test('collecting uncaught exceptions', async t => {
 
   t.is(tab.errors.length, 1)
   t.regex(tab.errors[0], /Error: Hello/)
+})
+
+test('failing to navigate due to a connection refused', async t => {
+  const { browser } = t.context
+
+  try {
+    await openTab(browser, 'http://127.0.0.1:65500')
+  } catch (error) {
+    t.regex(error.message, /Failed to open tab/)
+    t.regex(error.message, /net::ERR_CONNECTION_REFUSED/)
+  }
+})
+
+test('failing to navigate due to the server not responding', async t => {
+  const { browser } = t.context
+  const server = http.createServer((request, response) => {})
+  server.listen(10000)
+
+  try {
+    await openTab(browser, 'http://127.0.0.1:10000')
+  } catch (error) {
+    t.regex(error.message, /Failed to open tab/)
+    t.regex(error.message, /Navigation Timeout/)
+  } finally {
+    server.close()
+  }
 })
