@@ -32,6 +32,21 @@ test('opening tabs', async t => {
   t.is((await browser.puppeteer.browser.pages()).length, 2)
 })
 
+test('allowing the navigation timeout to be set', async t => {
+  const { browser } = t.context
+  const server = http.createServer((request, response) => {})
+  server.listen(10001)
+
+  try {
+    await openTab(browser, 'http://127.0.0.1:10001', { timeout: 1000 })
+  } catch (error) {
+    t.regex(error.message, /Navigation Timeout/)
+    t.regex(error.message, /1000ms/)
+  } finally {
+    server.close()
+  }
+})
+
 test('collecting console messages', async t => {
   const { browser, directory } = t.context
 
