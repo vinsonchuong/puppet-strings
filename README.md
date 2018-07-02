@@ -92,6 +92,7 @@ Here are the actions `puppet-strings` provides:
 * [`closeBrowser`](actions/close-browser): Closes a browser
 
 #### [`Tab`](interface#tab-object)
+* [`getTabs`](actions/get-tabs): Gets the list of currently open tabs
 * [`openTab`](actions/open-tab): Opens a url in a new tab and waits for it to
   fully load
 * [`closeTab`](actions/close-tab): Closes a tab

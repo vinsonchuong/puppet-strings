@@ -6,6 +6,7 @@ export type { Element } from './interface/element'
 export { default as openBrowser } from './actions/open-browser'
 export { default as closeBrowser } from './actions/close-browser'
 
+export { default as getTabs } from './actions/get-tabs'
 export { default as openTab } from './actions/open-tab'
 export { default as closeTab } from './actions/close-tab'
 export { default as waitForNavigation } from './actions/wait-for-navigation'

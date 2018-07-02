@@ -1,5 +1,6 @@
 /* @flow */
 import type { Browser, Tab } from 'puppet-strings'
+import { makeTab } from 'puppet-strings/wrappers'
 
 type Options = {
   timeout?: number
@@ -11,19 +12,7 @@ export default async function(
   options: Options = {}
 ): Promise<Tab> {
   const page = await browser.newPage()
-
-  const consoleMessages = []
-  page.on('console', consoleMessage => {
-    consoleMessages.push({
-      type: consoleMessage.type(),
-      message: consoleMessage.text()
-    })
-  })
-
-  const errors = []
-  page.on('pageerror', error => {
-    errors.push(error.message)
-  })
+  const tab = makeTab(browser, page)
 
   try {
     await page.goto(url, {
@@ -34,9 +23,5 @@ export default async function(
     throw new Error(`Failed to open tab: ${error.message}`)
   }
 
-  return {
-    puppeteer: { browser, page },
-    console: consoleMessages,
-    errors
-  }
+  return tab
 }
