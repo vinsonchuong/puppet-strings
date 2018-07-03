@@ -89,6 +89,7 @@ Here are the actions `puppet-strings` provides:
 
 #### [`Browser`](interface#browser-object)
 * [`openBrowser`](actions/open-browser): Starts a new instance of Chrome
+* [`openElectron`](actions/open-electron): Starts an Electron application
 * [`closeBrowser`](actions/close-browser): Closes a browser
 
 #### [`Tab`](interface#tab-object)

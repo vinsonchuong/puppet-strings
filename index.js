@@ -4,6 +4,7 @@ export type { Tab } from './interface/tab'
 export type { Element } from './interface/element'
 
 export { default as openBrowser } from './actions/open-browser'
+export { default as openElectron } from './actions/open-electron'
 export { default as closeBrowser } from './actions/close-browser'
 
 export { default as getTabs } from './actions/get-tabs'
