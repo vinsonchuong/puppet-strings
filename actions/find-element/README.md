@@ -21,7 +21,7 @@ run()
 * `text` (string?): Optional text content to search for
 
 ## Returns
-* `element` ([Element](../../interface#element-object))
+* `element` ([Promise<Element>](../../interface#element-object))
 
 ## Details
 `findElement` returns the first element that matches the CSS `selector` and
