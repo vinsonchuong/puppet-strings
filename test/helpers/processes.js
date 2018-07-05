@@ -6,7 +6,9 @@ import psList from 'ps-list'
 
 export const run = promisify(childProcess.exec)
 
-export async function findProcess(childProcess: ChildProcess) {
+export async function findProcess(arg: ChildProcess | number) {
+  const pid = typeof arg === 'number' ? arg : arg.pid
+
   const runningProcesses = await psList()
-  return runningProcesses.find(({ pid }) => pid === childProcess.pid)
+  return runningProcesses.find(runningProcess => pid === runningProcess.pid)
 }
