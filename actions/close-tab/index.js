@@ -1,6 +1,8 @@
 /* @flow */
-import type { Tab } from 'puppet-strings'
+import { branchOnTab } from 'puppet-strings'
 
-export default async function({ puppeteer: { page } }: Tab): Promise<void> {
-  await page.close()
-}
+export default branchOnTab({
+  async puppeteer({ puppeteer: { page } }) {
+    await page.close()
+  }
+})

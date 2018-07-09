@@ -1,8 +1,10 @@
 /* @flow */
-import type { Tab } from 'puppet-strings'
+import { branchOnTab } from 'puppet-strings'
 
-export default async function({ puppeteer: { page } }: Tab): Promise<void> {
-  await page.waitForNavigation({
-    waitUntil: ['load', 'domcontentloaded', 'networkidle0']
-  })
-}
+export default branchOnTab({
+  async puppeteer({ puppeteer: { page } }) {
+    await page.waitForNavigation({
+      waitUntil: ['load', 'domcontentloaded', 'networkidle0']
+    })
+  }
+})

@@ -1,10 +1,9 @@
 /* @flow */
-import type { Element } from 'puppet-strings'
+import { branchOnElement } from 'puppet-strings'
 
-export default async function(
-  { puppeteer: { page, elementHandle } }: Element,
-  text: string
-): Promise<void> {
-  await elementHandle.type(text)
-  await page.evaluate(elementHandle => elementHandle.blur(), elementHandle)
-}
+export default branchOnElement({
+  async puppeteer({ puppeteer: { page, elementHandle } }, text: string) {
+    await elementHandle.type(text)
+    await page.evaluate(elementHandle => elementHandle.blur(), elementHandle)
+  }
+})

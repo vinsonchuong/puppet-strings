@@ -1,7 +1,17 @@
 /* @flow */
-export type { Browser } from './interface/browser'
-export type { Tab } from './interface/tab'
-export type { Element } from './interface/element'
+export type {
+  Browser,
+  BrowserWithPuppeteer,
+  BrowserWithSelenium
+} from './interface/browser'
+export type { Tab, TabWithPuppeteer, TabWithSelenium } from './interface/tab'
+export type {
+  Element,
+  ElementWithPuppeteer,
+  ElementWithSelenium
+} from './interface/element'
+
+export * from './branching'
 
 export { default as openBrowser } from './actions/open-browser'
 export { default as openFirefox } from './actions/open-firefox'

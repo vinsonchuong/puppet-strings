@@ -1,10 +1,11 @@
 /* @flow */
-import type { Browser, Tab } from 'puppet-strings'
+import type { Tab } from 'puppet-strings'
+import { branchOnBrowser } from 'puppet-strings'
 import { makeTab } from 'puppet-strings/wrappers'
 
-export default async function({
-  puppeteer: { browser }
-}: Browser): Promise<Array<Tab>> {
-  const pages = await browser.pages()
-  return pages.map(page => makeTab(browser, page))
-}
+export default branchOnBrowser({
+  async puppeteer({ puppeteer: { browser } }): Promise<Array<Tab>> {
+    const pages = await browser.pages()
+    return pages.map(page => makeTab(browser, page))
+  }
+})

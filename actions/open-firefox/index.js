@@ -1,13 +1,7 @@
 /* @flow */
-import type { WebDriver } from 'selenium-webdriver'
+import type { Browser } from 'puppet-strings'
 import { Builder } from 'selenium-webdriver'
 import { Options as FirefoxOptions } from 'selenium-webdriver/firefox'
-
-type Browser = {
-  selenium: {
-    browser: WebDriver
-  }
-}
 
 type Options = {
   headless?: boolean
@@ -20,12 +14,10 @@ export default async function(options: Options = {}): Promise<Browser> {
     firefoxOptions.headless()
   }
 
-  const browser = await new Builder()
+  const webDriver = await new Builder()
     .forBrowser('firefox')
     .setFirefoxOptions(firefoxOptions)
     .build()
 
-  return {
-    selenium: { browser }
-  }
+  return { selenium: { webDriver } }
 }

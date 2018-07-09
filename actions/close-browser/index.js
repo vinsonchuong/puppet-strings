@@ -1,8 +1,12 @@
 /* @flow */
-import type { Browser } from 'puppet-strings'
+import { branchOnBrowser } from 'puppet-strings'
 
-export default async function({
-  puppeteer: { browser }
-}: Browser): Promise<void> {
-  await browser.close()
-}
+export default branchOnBrowser({
+  async puppeteer({ puppeteer: { browser } }) {
+    await browser.close()
+  },
+
+  async selenium({ selenium: { webDriver } }) {
+    await webDriver.quit()
+  }
+})
