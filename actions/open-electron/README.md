@@ -36,3 +36,7 @@ attempt to open a GUI window, even in environments that don't support it, like
 Docker containers and most CI services. For running in these environments,
 ensure that Xvfb is installed. `openElectron` will start Xvfb automatically if
 necessary.
+
+Use [`closeBrowser`](../close-browser) to gracefully end Electron processes that
+are no longer needed. Otherwise, when the Node.js process that calls
+`openElectron` ends, Electron will be killed with `SIGKILL`.

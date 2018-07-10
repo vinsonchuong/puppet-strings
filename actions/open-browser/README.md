@@ -38,3 +38,10 @@ Docker containers are usually not attached to a display, and they usually
 restrict the types of allowed system calls. `puppet-strings` adapts Chrome to
 be able to run despite these restrictions by enabling headless mode as well as
 disabling Chrome's process sandbox.
+
+### Process Management
+Use [`closeBrowser`](../close-browser) to gracefully end browser processes that
+are no longer needed.
+
+Otherwise, when the Node.js process that calls `openBrowser` ends, Chrome will
+be killed with `SIGKILL`.

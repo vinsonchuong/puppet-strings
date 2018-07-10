@@ -19,5 +19,21 @@ export default async function(options: Options = {}): Promise<Browser> {
     .setFirefoxOptions(firefoxOptions)
     .build()
 
+  const capabilities = await webDriver.getCapabilities()
+  const pid = capabilities.get('moz:processID')
+
+  process.once('exit', () => {
+    process.kill(pid, 'SIGKILL')
+  })
+  process.once('SIGINT', () => {
+    process.kill(pid, 'SIGKILL')
+  })
+  process.once('SIGTERM', () => {
+    process.kill(pid, 'SIGKILL')
+  })
+  process.once('SIGHUP', () => {
+    process.kill(pid, 'SIGKILL')
+  })
+
   return { selenium: { webDriver } }
 }

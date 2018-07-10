@@ -33,3 +33,10 @@ Browser automation is commonly used for running automated tests for web
 applications. Now that most CI services execute builds within Docker
 containers, it has become important for browser automation tools to be able to
 run within the limited environment of a Docker container.
+
+### Process Management
+Use [`closeBrowser`](../close-browser) to gracefully end browser processes that
+are no longer needed.
+
+Otherwise, when the Node.js process that calls `openFirefox` ends, Firefox will
+be killed with `SIGKILL`.
