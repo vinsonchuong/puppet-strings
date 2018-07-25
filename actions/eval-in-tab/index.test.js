@@ -8,7 +8,7 @@ import {
 import { openTab, evalInTab } from 'puppet-strings'
 
 withDirectory()
-withBrowser()
+withBrowser({ perTest: true })
 
 test('executing code within the browser', async t => {
   const { browser } = global

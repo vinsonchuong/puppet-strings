@@ -2,7 +2,11 @@
 import test from 'ava'
 import { openBrowser, closeBrowser } from 'puppet-strings'
 
-export default function({ perTest = false }: { perTest: boolean } = {}): void {
+type Config = {
+  perTest: boolean
+}
+
+export default function({ perTest }: Config): void {
   if (perTest) {
     test.beforeEach(async t => {
       t.context.browser = await openBrowser()

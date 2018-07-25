@@ -7,7 +7,7 @@ import {
 } from 'puppet-strings/test/helpers'
 import { openTab, findElement, clickElement } from 'puppet-strings'
 
-withBrowser()
+withBrowser({ perTest: true })
 withDirectory()
 
 test('clicking an element', async t => {
