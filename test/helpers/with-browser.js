@@ -1,15 +1,20 @@
 /* @flow */
 import test from 'ava'
-import { openBrowser, closeBrowser } from 'puppet-strings'
+import { openBrowser, openFirefox, closeBrowser } from 'puppet-strings'
 
 type Config = {
-  perTest: boolean
+  perTest: boolean,
+  type: 'chrome' | 'firefox'
 }
 
-export default function({ perTest }: Config): void {
+export default function({ perTest, type }: Config): void {
   if (perTest) {
     test.beforeEach(async t => {
-      t.context.browser = await openBrowser()
+      if (type === 'chrome') {
+        t.context.browser = await openBrowser()
+      } else if (type === 'firefox') {
+        t.context.browser = await openFirefox()
+      }
     })
 
     test.afterEach.always(async t => {
@@ -17,7 +22,11 @@ export default function({ perTest }: Config): void {
     })
   } else {
     test.before(async t => {
-      global.browser = await openBrowser()
+      if (type === 'chrome') {
+        global.browser = await openBrowser()
+      } else if (type === 'firefox') {
+        global.browser = await openFirefox()
+      }
     })
 
     test.after.always(async t => {

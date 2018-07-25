@@ -14,7 +14,7 @@ import {
 } from 'puppet-strings'
 
 withDirectory()
-withBrowser({ perTest: true })
+withBrowser({ perTest: false, type: 'chrome' })
 
 test('waiting for a page load to complete', async t => {
   const { browser } = global

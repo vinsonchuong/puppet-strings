@@ -8,7 +8,7 @@ import {
 import { openTab, closeTab } from 'puppet-strings'
 
 withDirectory()
-withBrowser({ perTest: true })
+withBrowser({ perTest: true, type: 'chrome' })
 
 test('closing tabs', async t => {
   const { browser, directory } = t.context

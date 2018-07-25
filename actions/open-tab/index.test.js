@@ -9,7 +9,7 @@ import * as http from 'http'
 import { openTab } from 'puppet-strings'
 
 withDirectory()
-withBrowser({ perTest: true })
+withBrowser({ perTest: true, type: 'chrome' })
 
 test('opening tabs', async t => {
   const { browser, directory } = t.context
