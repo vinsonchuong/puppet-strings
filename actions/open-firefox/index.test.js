@@ -1,6 +1,6 @@
 /* @flow */
 import test from 'ava'
-import { findProcess } from 'puppet-strings/test/helpers'
+import { waitForProcess } from 'puppet-strings/test/helpers'
 import { openFirefox, branchOnBrowser } from 'puppet-strings'
 
 test('starting Firefox headlessly by default', async t => {
@@ -9,7 +9,7 @@ test('starting Firefox headlessly by default', async t => {
   await branchOnBrowser({
     async selenium({ selenium: { webDriver } }) {
       const capabilities = await webDriver.getCapabilities()
-      const { cmd } = await findProcess(capabilities.get('moz:processID'))
+      const { cmd } = await waitForProcess(capabilities.get('moz:processID'))
       t.true(cmd.includes('-headless'))
 
       await webDriver.quit()
@@ -23,7 +23,7 @@ test('starting Firefox headfully', async t => {
   await branchOnBrowser({
     async selenium({ selenium: { webDriver } }) {
       const capabilities = await webDriver.getCapabilities()
-      const { cmd } = await findProcess(capabilities.get('moz:processID'))
+      const { cmd } = await waitForProcess(capabilities.get('moz:processID'))
       t.false(cmd.includes('-headless'))
 
       await webDriver.quit()

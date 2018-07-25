@@ -1,6 +1,6 @@
 /* @flow */
 import test from 'ava'
-import { findProcess } from 'puppet-strings/test/helpers'
+import { findProcess, waitForProcess } from 'puppet-strings/test/helpers'
 import {
   openBrowser,
   openFirefox,
@@ -14,7 +14,7 @@ test('closing a Puppeteer browser', async t => {
   await branchOnBrowser({
     async puppeteer(browser) {
       const { puppeteer: { browser: puppeteerBrowser } } = browser
-      t.truthy(await findProcess(puppeteerBrowser.process()))
+      t.truthy(await waitForProcess(puppeteerBrowser.process()))
       await closeBrowser(browser)
       t.falsy(await findProcess(puppeteerBrowser.process()))
     }
@@ -29,7 +29,7 @@ test('closing a Selenium browser', async t => {
       const capabilities = await browser.selenium.webDriver.getCapabilities()
       const pid = capabilities.get('moz:processID')
 
-      t.truthy(await findProcess(pid))
+      t.truthy(await waitForProcess(pid))
       await closeBrowser(browser)
       t.falsy(await findProcess(pid))
     }
