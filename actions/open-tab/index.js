@@ -26,5 +26,11 @@ export default branchOnBrowser({
     }
 
     return tab
+  },
+
+  async selenium() {
+    throw new Error(
+      'Selenium only supports controlling one tab at a time. Use getTabs to access the currently open tab.'
+    )
   }
 })

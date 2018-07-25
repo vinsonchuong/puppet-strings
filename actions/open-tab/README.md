@@ -36,6 +36,7 @@ request for `500ms`. Note that WebSocket connections are ignored. By default,
 `openTab` will wait at most 5 seconds and then throw an error. Set a custom
 timeout by passing in the `timeout` option.
 
-All console messages emitted by the tab are captured in the tab's `console`
-property. Also, all uncaught exceptions are captured in the tab's `error`
-property.
+Note that browsers controlled using Selenium (Firefox, Electron 1, and
+Electron 2) cannot automate more than one tab at a time. `puppet-strings` does
+not support opening new tabs for these browsers. Use [`getTabs`](../get-tabs)
+instead get a reference to the currently focused tab.

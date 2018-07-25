@@ -7,5 +7,15 @@ export default branchOnBrowser({
   async puppeteer({ puppeteer: { browser } }): Promise<Array<Tab>> {
     const pages = await browser.pages()
     return pages.map(page => makeTab(browser, page))
+  },
+
+  async selenium({ selenium: { webDriver } }): Promise<Array<Tab>> {
+    return [
+      {
+        console: [],
+        errors: [],
+        selenium: { webDriver }
+      }
+    ]
   }
 })
