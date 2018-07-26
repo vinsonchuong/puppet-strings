@@ -24,3 +24,6 @@ run()
 After a tab is closed, the corresponding [Tab](../../interface#tab-object)
 object will no longer be valid. Subsequent actions on that tab will cause
 exceptions.
+
+For browsers controlled using Selenium, since only one tab can be controlled
+at a time, closing tabs is not supported.
