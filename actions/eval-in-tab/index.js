@@ -13,5 +13,17 @@ export default branchOnTab({
     } catch (error) {
       throw new Error(`Failed to evaluate code in tab: ${error.message}`)
     }
+  },
+
+  async selenium(
+    { selenium: { webDriver } },
+    args: Array<any>,
+    functionBody: string
+  ) {
+    try {
+      return await webDriver.executeScript(functionBody, ...args)
+    } catch (error) {
+      throw new Error(`Failed to evaluate code in tab: ${error.message}`)
+    }
   }
 })

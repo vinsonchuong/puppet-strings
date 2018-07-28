@@ -26,10 +26,10 @@ test('allowing the navigation timeout to be set', async t => {
   const tab = tabs[0]
 
   const server = http.createServer((request, response) => {})
-  server.listen(10101)
+  server.listen(10102)
 
   try {
-    await navigate(tab, 'http://127.0.0.1:10101', { timeout: 1000 })
+    await navigate(tab, 'http://127.0.0.1:10102', { timeout: 1000 })
   } catch (error) {
     t.regex(error.message, /Timeout/)
     t.regex(error.message, /1000ms/)
