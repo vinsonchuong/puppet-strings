@@ -98,6 +98,7 @@ Here are the actions `puppet-strings` provides:
 * [`openTab`](actions/open-tab): Opens a url in a new tab and waits for it to
   fully load
 * [`closeTab`](actions/close-tab): Closes a tab
+* [`navigate`](actions/navigate): Navigates a tab to a new URL
 * [`waitForNavigation`](actions/wait-for-navigation): Waits for a page load to complete
 * [`evalInTab`](actions/eval-in-tab): Evaluates code within a tab and returns the result
 * [`findElement`](actions/find-element): Find a DOM element on the page by CSS selector

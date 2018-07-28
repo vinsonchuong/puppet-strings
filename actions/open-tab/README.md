@@ -1,4 +1,4 @@
-# `openTab(browser, url)`
+# `openTab(browser, url, options)`
 Opens a url in a new tab and waits for it to fully load
 
 ## Example

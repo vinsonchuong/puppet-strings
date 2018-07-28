@@ -7,6 +7,8 @@ export default branchOnTab({
   },
 
   async selenium() {
-    throw new Error('Selenium only supports controlling one tab at a time. Closing the current tab is not supported.')
+    throw new Error(
+      'Selenium only supports controlling one tab at a time. Closing the current tab is not supported.'
+    )
   }
 })
