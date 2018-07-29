@@ -10,7 +10,7 @@ import { openTab, findElement, fillInElement } from 'puppet-strings'
 withBrowser({ perTest: false, type: 'chrome' })
 withDirectory()
 
-test('clicking an element', async t => {
+test('filling in an element', async t => {
   const { browser } = global
   const { directory } = t.context
 
