@@ -13,7 +13,7 @@ export type {
 
 export * from './branching'
 
-export { default as openBrowser } from './actions/open-browser'
+export { default as openChrome } from './actions/open-chrome'
 export { default as openFirefox } from './actions/open-firefox'
 export { default as openElectron } from './actions/open-electron'
 export { default as closeBrowser } from './actions/close-browser'

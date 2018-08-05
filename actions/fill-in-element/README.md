@@ -3,10 +3,10 @@ Type text into an element
 
 ## Example
 ```js
-import { openBrowser, openTab, findElement, fillInElement } from 'puppet-strings'
+import { openChrome, openTab, findElement, fillInElement } from 'puppet-strings'
 
 async function run() {
-  const browser = await openBrowser()
+  const browser = await openChrome()
   const tab = await openTab(browser, 'https://www.npmjs.com/')
 
   const searchBox = await findElement(tab, '[placeholder="Search packages"]')

@@ -3,10 +3,10 @@ Gets the list of currently open tabs
 
 ## Example
 ```js
-import { openBrowser, openTab, getTabs } from 'puppet-strings'
+import { openChrome, openTab, getTabs } from 'puppet-strings'
 
 async function run() {
-  const browser = await openBrowser()
+  const browser = await openChrome()
 
   await openTab(browser, 'http://example.com')
   await openTab(browser, 'http://google.com')

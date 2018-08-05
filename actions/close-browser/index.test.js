@@ -2,14 +2,14 @@
 import test from 'ava'
 import { findProcess, waitForProcess } from 'puppet-strings/test/helpers'
 import {
-  openBrowser,
+  openChrome,
   openFirefox,
   closeBrowser,
   branchOnBrowser
 } from 'puppet-strings'
 
 test('closing a Puppeteer browser', async t => {
-  const browser = await openBrowser()
+  const browser = await openChrome()
 
   await branchOnBrowser({
     async puppeteer(browser) {

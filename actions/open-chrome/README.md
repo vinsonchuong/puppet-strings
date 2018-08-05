@@ -1,13 +1,13 @@
-# `openBrowser([options])`
+# `openChrome([options])`
 Starts a new instance of Chrome
 
 ## Example
 ```js
-import { openBrowser } from 'puppet-strings'
+import { openChrome } from 'puppet-strings'
 
 async function run() {
-  const headlessBrowser = await openBrowser()
-  const headfulBrowser = await openBrowser({ headless: false })
+  const headlessBrowser = await openChrome()
+  const headfulBrowser = await openChrome({ headless: false })
 }
 
 run()
@@ -43,5 +43,5 @@ disabling Chrome's process sandbox.
 Use [`closeBrowser`](../close-browser) to gracefully end browser processes that
 are no longer needed.
 
-Otherwise, when the Node.js process that calls `openBrowser` ends, Chrome will
+Otherwise, when the Node.js process that calls `openChrome` ends, Chrome will
 be killed with `SIGKILL`.

@@ -1,10 +1,10 @@
 /* @flow */
 import test from 'ava'
 import { waitForProcess } from 'puppet-strings/test/helpers'
-import { openBrowser, branchOnBrowser } from 'puppet-strings'
+import { openChrome, branchOnBrowser } from 'puppet-strings'
 
 test('starting headless by default', async t => {
-  const browser = await openBrowser()
+  const browser = await openChrome()
 
   await branchOnBrowser({
     async puppeteer({ puppeteer: { browser } }) {
@@ -17,7 +17,7 @@ test('starting headless by default', async t => {
 })
 
 test('starting with 0 tabs open', async t => {
-  const browser = await openBrowser()
+  const browser = await openChrome()
 
   await branchOnBrowser({
     async puppeteer({ puppeteer: { browser } }) {
@@ -28,7 +28,7 @@ test('starting with 0 tabs open', async t => {
 })
 
 test('starting Chrome headlessly', async t => {
-  const browser = await openBrowser({ headless: true })
+  const browser = await openChrome({ headless: true })
 
   await branchOnBrowser({
     async puppeteer({ puppeteer: { browser } }) {
@@ -41,7 +41,7 @@ test('starting Chrome headlessly', async t => {
 })
 
 test('starting Chrome headfully', async t => {
-  const browser = await openBrowser({ headless: false })
+  const browser = await openChrome({ headless: false })
 
   await branchOnBrowser({
     async puppeteer({ puppeteer: { browser } }) {

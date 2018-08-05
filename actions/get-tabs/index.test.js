@@ -2,7 +2,7 @@
 import test from 'ava'
 import { withDirectory, writeFile } from 'puppet-strings/test/helpers'
 import {
-  openBrowser,
+  openChrome,
   openFirefox,
   closeBrowser,
   openTab,
@@ -14,7 +14,7 @@ withDirectory()
 
 test('listing the currently open tabs for a Puppeteer browser', async t => {
   const { directory } = t.context
-  const browser = await openBrowser()
+  const browser = await openChrome()
 
   const onePath = await writeFile(
     directory,

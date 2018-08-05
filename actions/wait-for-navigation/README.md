@@ -4,11 +4,11 @@ Waits for a page load to complete
 ## Example
 ```js
 import {
-  openBrowser, openTab, findElement, clickElement, waitForNavigation
+  openChrome, openTab, findElement, clickElement, waitForNavigation
 } from 'puppet-strings'
 
 async function run() {
-  const browser = await openBrowser()
+  const browser = await openChrome()
   const tab = await openTab(browser, 'https://npmjs.com')
 
   const lodashLink = await findElement(tab, 'a', 'lodash')

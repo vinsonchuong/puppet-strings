@@ -11,12 +11,12 @@ A better interface for common browser automation workflows
 ## Example
 ```js
 import {
-  openBrowser, closeBrowser, openTab, waitForNavigation,
+  openChrome, closeBrowser, openTab, waitForNavigation,
   findElement, fillInElement, clickElement, evalInTab
 } from 'puppet-strings'
 
 async function run() {
-  const browser = await openBrowser()
+  const browser = await openChrome()
   const tab = await openTab(browser, 'https://google.com/ncr')
 
   const searchInput = await findElement(tab, '[name="q"]')
@@ -88,7 +88,7 @@ Each action returns a promise that is resolved when the action is finished.
 Here are the actions `puppet-strings` provides:
 
 #### [`Browser`](interface#browser-object)
-* [`openBrowser`](actions/open-browser): Starts a new instance of Chrome
+* [`openChrome`](actions/open-chrome): Starts a new instance of Chrome
 * [`openElectron`](actions/open-electron): Starts an Electron application
 * [`openFirefox`](actions/open-firefox): Starts a new instance of Firefox
 * [`closeBrowser`](actions/close-browser): Closes a browser

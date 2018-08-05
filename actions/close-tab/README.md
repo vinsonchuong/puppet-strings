@@ -3,10 +3,10 @@ Closes a tab
 
 ## Example
 ```js
-import { openBrowser, openTab } from 'puppet-strings'
+import { openChrome, openTab } from 'puppet-strings'
 
 async function run() {
-  const browser = await openBrowser()
+  const browser = await openChrome()
   const tab = await openTab(browser, 'http://example.com')
   await closeTab(tab)
 }
