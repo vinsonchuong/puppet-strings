@@ -5,7 +5,10 @@ import * as childProcess from 'child_process'
 import { promisify } from 'util'
 import puppeteer from 'puppeteer'
 
-export default async function(applicationPath: string): Promise<Browser> {
+export default async function(
+  applicationPath: string,
+  options: { flags?: Array<string> } = {}
+): Promise<Browser> {
   const needsXvfb =
     process.platform !== 'win32' &&
     process.platform !== 'darwin' &&
@@ -22,7 +25,7 @@ export default async function(applicationPath: string): Promise<Browser> {
   const browser = await puppeteer.launch({
     executablePath,
     headless: true,
-    args: [applicationPath]
+    args: [...(options.flags || []), applicationPath]
   })
 
   return {

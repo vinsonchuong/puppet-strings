@@ -3,6 +3,7 @@ import type { Browser } from 'puppet-strings'
 import puppeteer from 'puppeteer'
 
 type Options = void | {
+  flags?: Array<string>,
   headless?: boolean
 }
 
@@ -19,6 +20,9 @@ const defaultFlags = [
 
 export default async function(options: Options): Promise<Browser> {
   let flags = defaultFlags
+  if (options && options.flags) {
+    flags = [...flags, ...options.flags]
+  }
   if (!options || !('headless' in options) || options.headless) {
     flags = [...flags, '--headless']
   }

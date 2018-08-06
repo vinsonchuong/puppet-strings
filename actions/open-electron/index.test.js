@@ -56,6 +56,16 @@ test('opening an Electron application', async t => {
   await closeBrowser(electron)
 })
 
+test('passing additional flags to electron', async t => {
+  const { directory } = t.context
+
+  const electron = await openElectron(directory, { flags: ['-d'] })
+  const [browserWindow] = await getTabs(electron)
+  t.truthy(await findElement(browserWindow, '*', 'To run a local app'))
+
+  await closeBrowser(electron)
+})
+
 test('opening an Electron application in Docker', async t => {
   await run('yarn build-esm')
   const output = await runInContainer({

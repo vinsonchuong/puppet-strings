@@ -48,3 +48,15 @@ test('starting Chrome headfully', async t => {
     }
   })(browser)
 })
+
+test('starting Chrome with additional flags', async t => {
+  const browser = await openChrome({ flags: ['--bwsi'] })
+
+  await branchOnBrowser({
+    async puppeteer({ puppeteer: { browser } }) {
+      // $FlowFixMe
+      t.true(browser.process().spawnargs.includes('--bwsi'))
+      await browser.close()
+    }
+  })(browser)
+})

@@ -15,6 +15,7 @@ run()
 
 ## Parameters
 * `options = {}` (object)
+  * `flags = []` (Array<string>): Additional CLI flags to pass to `chromium`
   * `headless = true` (boolean): When `true`, starts Chrome without its GUI.
 
 ## Returns

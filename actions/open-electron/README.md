@@ -1,4 +1,4 @@
-# `openElectron([options])`
+# `openElectron(applicationPath, [options])`
 Starts an Electron application
 
 ## Example
@@ -6,7 +6,7 @@ Starts an Electron application
 import { openElectron } from 'puppet-strings'
 
 async function run() {
-  const electron = await openElectron('.')
+  const electron = await openElectron('.', { flags: ['-r', '@babel/register'] })
   const browserWindows = await getTabs(electron)
 }
 
@@ -16,6 +16,8 @@ run()
 ## Parameters
 * `applicationPath` (string): The path to an Electron application as defined by
   the `electron` CLI
+* `options = {}` (object)
+  * `flags = []` (Array<string>): Additional CLI flags to pass to `electron`
 
 ## Returns
 * `browser` ([Promise<Browser>](../../interface#browser-object))
@@ -25,6 +27,9 @@ The path to an Electron application is usually the path to its root directory,
 one that contains a `package.json`. Many Electron projects have compilation
 tooling that outputs the final JavaScript code into a `dist` directory. In any
 case, `openElectron` can take any path that the `electron` CLI tool can take.
+
+Additional CLI flags can be passed to `electron`, enabling usecases like
+loading `@babel/register`.
 
 Electron behaves very much like an ordinary Chrome browser, with each
 [`BrowserWindow`](https://electronjs.org/docs/api/browser-window) behaving like
