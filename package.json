@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "css-to-xpath": "^0.1.0",
-    "geckodriver": "^1.11.0",
-    "puppeteer": "^1.5.0",
+    "geckodriver": "^1.12.1",
+    "puppeteer": "^1.6.2",
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "devDependencies": {
@@ -27,11 +27,11 @@
     "build-esm": "^3.2.1",
     "dedent": "^0.7.0",
     "dockerode": "^2.5.5",
-    "electron": "^3.0.0-beta.1",
+    "electron": "^3.0.0-beta.4",
     "flow-bin": "0.69.0",
-    "fs-extra": "^6.0.1",
-    "ps-list": "^4.1.0",
-    "semantic-release": "^15.6.3",
+    "fs-extra": "^7.0.0",
+    "ps-list": "^5.0.0",
+    "semantic-release": "^15.9.5",
     "standard-esnext": "^4.0.3",
     "tempy": "^0.2.1"
   },
