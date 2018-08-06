@@ -14,12 +14,17 @@ export async function findProcess(arg: ChildProcess | number) {
   return runningProcesses.find(runningProcess => pid === runningProcess.pid)
 }
 
-export async function waitForProcess(arg: ChildProcess | number) {
+export async function waitForProcess(
+  arg: ChildProcess | number,
+  timeout: number = 5000
+) {
   const foundProcess = await findProcess(arg)
   if (foundProcess) {
     return foundProcess
+  } else if (timeout <= 0) {
+    throw new Error('Timed out waiting for process')
   } else {
-    await sleep(100)
-    return waitForProcess(arg)
+    await sleep(500)
+    return waitForProcess(arg, timeout - 500)
   }
 }
