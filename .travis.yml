@@ -8,20 +8,21 @@ templates:
     services:
       - docker
 
-  with_chrome: &with_chrome
+  with_browsers: &with_browsers
     addons:
       chrome: beta
+      firefox: latest-beta
 
 jobs:
   include:
   - stage: test
     <<: *with_docker
-    <<: *with_chrome
+    <<: *with_browsers
     script: xvfb-run yarn test
 
   - stage: test
     <<: *with_docker
-    <<: *with_chrome
+    <<: *with_browsers
     node_js: lts/*
     script: xvfb-run yarn test
 
