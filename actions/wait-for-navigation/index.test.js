@@ -1,7 +1,7 @@
 /* @flow */
-import test from 'ava'
+import ava from 'ava'
 import {
-  withBrowser,
+  withChrome,
   withDirectory,
   writeFile
 } from 'puppet-strings/test/helpers'
@@ -13,8 +13,8 @@ import {
   waitForNavigation
 } from 'puppet-strings'
 
-withDirectory()
-withBrowser({ perTest: false, type: 'chrome' })
+withChrome()
+const test = withDirectory(ava)
 
 test('waiting for a page load to complete', async t => {
   const { browser } = global

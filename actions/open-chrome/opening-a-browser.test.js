@@ -7,6 +7,7 @@ test('starting headless by default', async t => {
 
   await branchOnBrowser({
     async puppeteer({ puppeteer: { browser } }) {
+      // $FlowFixMe
       t.true(browser.process().spawnargs.includes('--headless'))
       await browser.close()
     }
@@ -29,17 +30,19 @@ test('starting Chrome headlessly', async t => {
 
   await branchOnBrowser({
     async puppeteer({ puppeteer: { browser } }) {
+      // $FlowFixMe
       t.true(browser.process().spawnargs.includes('--headless'))
       await browser.close()
     }
   })(browser)
 })
 
-test.only('starting Chrome headfully', async t => {
+test('starting Chrome headfully', async t => {
   const browser = await openChrome({ headless: false })
 
   await branchOnBrowser({
     async puppeteer({ puppeteer: { browser } }) {
+      // $FlowFixMe
       t.false(browser.process().spawnargs.includes('--headless'))
       await browser.close()
     }

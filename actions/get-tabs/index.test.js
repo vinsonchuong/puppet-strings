@@ -1,5 +1,5 @@
 /* @flow */
-import test from 'ava'
+import ava from 'ava'
 import { withDirectory, writeFile } from 'puppet-strings/test/helpers'
 import {
   openChrome,
@@ -10,7 +10,7 @@ import {
   findElement
 } from 'puppet-strings'
 
-withDirectory()
+const test = withDirectory(ava)
 
 test('listing the currently open tabs for a Puppeteer browser', async t => {
   const { directory } = t.context

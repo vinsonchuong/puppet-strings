@@ -6,7 +6,13 @@ type Options = {
 }
 
 export default branchOnTab({
-  async puppeteer({ puppeteer: { page } }, url: string, options: Options = {}) {
+  async puppeteer(
+    {
+      puppeteer: { page }
+    },
+    url: string,
+    options: Options = {}
+  ) {
     try {
       await page.goto(url, {
         waitUntil: ['load', 'domcontentloaded', 'networkidle0'],
@@ -18,7 +24,9 @@ export default branchOnTab({
   },
 
   async selenium(
-    { selenium: { webDriver } },
+    {
+      selenium: { webDriver }
+    },
     url: string,
     options: Options = {}
   ) {

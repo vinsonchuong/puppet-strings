@@ -11,7 +11,7 @@ export default async function(applicationPath: string): Promise<Browser> {
     process.platform !== 'darwin' &&
     !process.env.DISPLAY
 
-  if (needsXvfb && !await commandExists('xvfb-run')) {
+  if (needsXvfb && !(await commandExists('xvfb-run'))) {
     throw new Error('Xvfb is required for running Electron in this environment')
   }
 

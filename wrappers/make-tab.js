@@ -1,5 +1,5 @@
 /* @flow */
-import type { Browser, Page } from 'puppeteer/lib/Page'
+import type { Browser, Page } from 'puppeteer'
 import type { Tab } from 'puppet-strings'
 
 export default function(browser: Browser, page: Page): Tab {

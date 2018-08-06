@@ -1,15 +1,15 @@
 /* @flow */
-import test from 'ava'
+import ava from 'ava'
 import {
-  withBrowser,
+  withChromePerTest,
   withDirectory,
   writeFile
 } from 'puppet-strings/test/helpers'
 import * as http from 'http'
-import { openTab } from 'puppet-strings'
+import { openTab, branchOnBrowser } from 'puppet-strings'
 
-withDirectory()
-withBrowser({ perTest: true, type: 'chrome' })
+const ava2 = withDirectory(ava)
+const test = withChromePerTest(ava2)
 
 test('opening tabs', async t => {
   const { browser, directory } = t.context
@@ -23,13 +23,17 @@ test('opening tabs', async t => {
     `
   )
 
-  t.is((await browser.puppeteer.browser.pages()).length, 0)
+  await branchOnBrowser({
+    async puppeteer(browser) {
+      t.is((await browser.puppeteer.browser.pages()).length, 0)
 
-  await openTab(browser, `file://${filePath}`)
-  t.is((await browser.puppeteer.browser.pages()).length, 1)
+      await openTab(browser, `file://${filePath}`)
+      t.is((await browser.puppeteer.browser.pages()).length, 1)
 
-  await openTab(browser, `file://${filePath}`)
-  t.is((await browser.puppeteer.browser.pages()).length, 2)
+      await openTab(browser, `file://${filePath}`)
+      t.is((await browser.puppeteer.browser.pages()).length, 2)
+    }
+  })(browser)
 })
 
 test('allowing the navigation timeout to be set', async t => {

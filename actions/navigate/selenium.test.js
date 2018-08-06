@@ -1,10 +1,10 @@
 /* @flow */
-import test from 'ava'
+import ava from 'ava'
 import * as http from 'http'
-import { withBrowser } from 'puppet-strings/test/helpers'
+import { withFirefoxPerTest } from 'puppet-strings/test/helpers'
 import { getTabs, navigate, branchOnTab } from 'puppet-strings'
 
-withBrowser({ perTest: true, type: 'firefox' })
+const test = withFirefoxPerTest(ava)
 
 test('navigating to different URLs', async t => {
   const { browser } = t.context

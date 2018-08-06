@@ -1,14 +1,14 @@
 /* @flow */
-import test from 'ava'
+import ava from 'ava'
 import {
-  withBrowser,
+  withFirefoxPerTest,
   withDirectory,
   writeFile
 } from 'puppet-strings/test/helpers'
 import { getTabs, navigate, evalInTab } from 'puppet-strings'
 
-withDirectory()
-withBrowser({ perTest: true, type: 'firefox' })
+const ava2 = withDirectory(ava)
+const test = withFirefoxPerTest(ava2)
 
 test('executing code within the browser', async t => {
   const { browser, directory } = t.context

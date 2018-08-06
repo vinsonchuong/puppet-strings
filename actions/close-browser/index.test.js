@@ -13,7 +13,9 @@ test('closing a Puppeteer browser', async t => {
 
   await branchOnBrowser({
     async puppeteer(browser) {
-      const { puppeteer: { browser: puppeteerBrowser } } = browser
+      const {
+        puppeteer: { browser: puppeteerBrowser }
+      } = browser
       t.truthy(await waitForProcess(puppeteerBrowser.process()))
       await closeBrowser(browser)
       t.falsy(await findProcess(puppeteerBrowser.process()))

@@ -6,7 +6,9 @@ import cssToXPath from 'css-to-xpath'
 
 export default branchOnTab({
   async puppeteer(tab, selector: string, text: ?string): Promise<Element> {
-    const { puppeteer: { browser, page } } = tab
+    const {
+      puppeteer: { browser, page }
+    } = tab
     const xpath = buildXPath(selector, text)
 
     try {
@@ -25,7 +27,9 @@ export default branchOnTab({
   },
 
   async selenium(tab, selector: string, text: ?string): Promise<Element> {
-    const { selenium: { webDriver } } = tab
+    const {
+      selenium: { webDriver }
+    } = tab
     const xpath = buildXPath(selector, text)
 
     try {

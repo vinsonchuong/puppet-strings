@@ -1,10 +1,10 @@
 /* @flow */
 import test from 'ava'
 import * as http from 'http'
-import { withBrowser } from 'puppet-strings/test/helpers'
+import { withChrome } from 'puppet-strings/test/helpers'
 import { openTab, navigate, findElement } from 'puppet-strings'
 
-withBrowser({ perTest: false, type: 'chrome' })
+withChrome()
 
 test('navigating to different URLs', async t => {
   const { browser } = global

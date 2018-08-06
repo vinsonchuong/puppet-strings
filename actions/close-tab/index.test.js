@@ -1,14 +1,14 @@
 /* @flow */
-import test from 'ava'
+import ava from 'ava'
 import {
-  withBrowser,
+  withChromePerTest,
   withDirectory,
   writeFile
 } from 'puppet-strings/test/helpers'
-import { openTab, closeTab } from 'puppet-strings'
+import { branchOnBrowser, openTab, closeTab } from 'puppet-strings'
 
-withDirectory()
-withBrowser({ perTest: true, type: 'chrome' })
+const ava2 = withDirectory(ava)
+const test = withChromePerTest(ava2)
 
 test('closing tabs', async t => {
   const { browser, directory } = t.context
@@ -22,12 +22,16 @@ test('closing tabs', async t => {
     `
   )
 
-  const tab1 = await openTab(browser, `file://${filePath}`)
-  const tab2 = await openTab(browser, `file://${filePath}`)
+  await branchOnBrowser({
+    async puppeteer(browser) {
+      const tab1 = await openTab(browser, `file://${filePath}`)
+      const tab2 = await openTab(browser, `file://${filePath}`)
 
-  await closeTab(tab1)
-  t.is((await browser.puppeteer.browser.pages()).length, 1)
+      await closeTab(tab1)
+      t.is((await browser.puppeteer.browser.pages()).length, 1)
 
-  await closeTab(tab2)
-  t.is((await browser.puppeteer.browser.pages()).length, 0)
+      await closeTab(tab2)
+      t.is((await browser.puppeteer.browser.pages()).length, 0)
+    }
+  })(browser)
 })

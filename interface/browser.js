@@ -1,5 +1,5 @@
 /* @flow */
-import type PuppeteerBrowser from 'puppeteer/lib/Browser'
+import type { Browser as PuppeteerBrowser } from 'puppeteer'
 import type { WebDriver } from 'selenium-webdriver'
 
 export type BrowserWithPuppeteer = {

@@ -1,14 +1,14 @@
 /* @flow */
-import test from 'ava'
+import ava from 'ava'
 import {
-  withBrowser,
+  withChrome,
   withDirectory,
   writeFile
 } from 'puppet-strings/test/helpers'
 import { openTab, findElement, fillInElement } from 'puppet-strings'
 
-withBrowser({ perTest: false, type: 'chrome' })
-withDirectory()
+withChrome()
+const test = withDirectory(ava)
 
 test('filling in an element', async t => {
   const { browser } = global

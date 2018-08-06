@@ -1,5 +1,5 @@
 /* @flow */
-import test from 'ava'
+import ava from 'ava'
 import * as path from 'path'
 import {
   withDirectory,
@@ -15,7 +15,7 @@ import {
   closeBrowser
 } from 'puppet-strings'
 
-withDirectory()
+const test = withDirectory(ava)
 
 test('opening an Electron application', async t => {
   const { directory } = t.context

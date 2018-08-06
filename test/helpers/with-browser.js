@@ -1,40 +1,60 @@
+/* eslint-disable flowtype/no-weak-types */
 /* @flow */
+import type { TestInterface } from 'ava'
+import type { Browser } from 'puppet-strings'
 import test from 'ava'
 import { openChrome, openFirefox, closeBrowser } from 'puppet-strings'
 
-type Config = {
-  perTest: boolean,
-  type: 'chrome' | 'firefox'
+export function withChrome() {
+  test.before(async t => {
+    global.browser = await openChrome()
+  })
+
+  test.after.always(async t => {
+    if (global.browser) {
+      await closeBrowser(global.browser)
+    }
+  })
 }
 
-export default function({ perTest, type }: Config): void {
-  if (perTest) {
-    test.beforeEach(async t => {
-      t.context.browser = await openBrowser(type)
-    })
+export function withChromePerTest<Context: {}>(
+  test: TestInterface<Context>
+): TestInterface<{ ...$Exact<Context>, browser: Browser }> {
+  const newTest: TestInterface<{
+    ...$Exact<Context>,
+    browser: Browser
+  }> = (test: any)
 
-    test.afterEach.always(async t => {
-      if (t.context.browser) {
-        await closeBrowser(t.context.browser)
-      }
-    })
-  } else {
-    test.before(async t => {
-      global.browser = await openBrowser(type)
-    })
+  newTest.beforeEach(async t => {
+    t.context.browser = await openChrome()
+  })
 
-    test.after.always(async t => {
-      if (global.browser) {
-        await closeBrowser(global.browser)
-      }
-    })
-  }
+  newTest.afterEach.always(async t => {
+    if (t.context.browser) {
+      await closeBrowser(t.context.browser)
+    }
+  })
+
+  return newTest
 }
 
-function openBrowser(type: 'chrome' | 'firefox') {
-  if (type === 'chrome') {
-    return openChrome()
-  } else if (type === 'firefox') {
-    return openFirefox()
-  }
+export function withFirefoxPerTest<Context: {}>(
+  test: TestInterface<Context>
+): TestInterface<{ ...$Exact<Context>, browser: Browser }> {
+  const newTest: TestInterface<{
+    ...$Exact<Context>,
+    browser: Browser
+  }> = (test: any)
+
+  newTest.beforeEach(async t => {
+    t.context.browser = await openFirefox()
+  })
+
+  newTest.afterEach.always(async t => {
+    if (t.context.browser) {
+      await closeBrowser(t.context.browser)
+    }
+  })
+
+  return newTest
 }

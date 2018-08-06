@@ -4,7 +4,9 @@ import { branchOnTab } from 'puppet-strings'
 
 export default branchOnTab({
   async puppeteer(
-    { puppeteer: { page } },
+    {
+      puppeteer: { page }
+    },
     args: Array<any>,
     functionBody: string
   ) {
@@ -16,7 +18,9 @@ export default branchOnTab({
   },
 
   async selenium(
-    { selenium: { webDriver } },
+    {
+      selenium: { webDriver }
+    },
     args: Array<any>,
     functionBody: string
   ) {

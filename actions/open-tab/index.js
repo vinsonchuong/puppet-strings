@@ -9,7 +9,9 @@ type Options = {
 
 export default branchOnBrowser({
   async puppeteer(
-    { puppeteer: { browser } },
+    {
+      puppeteer: { browser }
+    },
     url: string,
     options: Options = {}
   ): Promise<Tab> {

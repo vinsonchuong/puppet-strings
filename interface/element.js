@@ -1,7 +1,9 @@
 /* @flow */
-import type PuppeteerBrowser from 'puppeteer/lib/Browser'
-import type PuppeteerPage from 'puppeteer/lib/Page'
-import type PuppeteerElementHandle from 'puppeteer/lib/ElementHandle'
+import type {
+  Browser as PuppeteerBrowser,
+  Page as PuppeteerPage,
+  ElementHandle as PuppeteerElementHandle
+} from 'puppeteer'
 import type { WebDriver, WebElement } from 'selenium-webdriver'
 
 export type ElementWithPuppeteer = {

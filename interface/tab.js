@@ -1,6 +1,8 @@
 /* @flow */
-import type PuppeteerBrowser from 'puppeteer/lib/Browser'
-import type PuppeteerPage from 'puppeteer/lib/Page'
+import type {
+  Browser as PuppeteerBrowser,
+  Page as PuppeteerPage
+} from 'puppeteer'
 import type { WebDriver } from 'selenium-webdriver'
 
 export type TabWithPuppeteer = {

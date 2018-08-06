@@ -1,13 +1,25 @@
+/* eslint-disable flowtype/no-weak-types */
 /* @flow */
-import test from 'ava'
+import type { TestInterface } from 'ava'
 import { createTemporaryDirectory, deleteFile } from './'
 
-export default function(): void {
-  test.beforeEach(async t => {
+export default function<Context: {}>(
+  test: TestInterface<Context>
+): TestInterface<{ ...$Exact<Context>, directory: string }> {
+  const newTest: TestInterface<{
+    ...$Exact<Context>,
+    directory: string
+  }> = (test: any)
+
+  newTest.beforeEach(async t => {
     t.context.directory = await createTemporaryDirectory()
   })
 
-  test.afterEach.always(async t => {
-    await deleteFile(t.context.directory)
+  newTest.afterEach.always(async t => {
+    if (t.context.directory) {
+      await deleteFile(t.context.directory)
+    }
   })
+
+  return newTest
 }
