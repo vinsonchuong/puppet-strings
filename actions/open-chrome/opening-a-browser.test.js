@@ -1,6 +1,5 @@
 /* @flow */
 import test from 'ava'
-import { waitForProcess } from 'puppet-strings/test/helpers'
 import { openChrome, branchOnBrowser } from 'puppet-strings'
 
 test('starting headless by default', async t => {
@@ -8,9 +7,7 @@ test('starting headless by default', async t => {
 
   await branchOnBrowser({
     async puppeteer({ puppeteer: { browser } }) {
-      const runningProcess = await waitForProcess(browser.process())
-      t.true(runningProcess.cmd.includes('--headless'))
-
+      t.true(browser.process().spawnargs.includes('--headless'))
       await browser.close()
     }
   })(browser)
@@ -32,22 +29,18 @@ test('starting Chrome headlessly', async t => {
 
   await branchOnBrowser({
     async puppeteer({ puppeteer: { browser } }) {
-      const runningProcess = await waitForProcess(browser.process())
-      t.true(runningProcess.cmd.includes('--headless'))
-
+      t.true(browser.process().spawnargs.includes('--headless'))
       await browser.close()
     }
   })(browser)
 })
 
-test('starting Chrome headfully', async t => {
+test.only('starting Chrome headfully', async t => {
   const browser = await openChrome({ headless: false })
 
   await branchOnBrowser({
     async puppeteer({ puppeteer: { browser } }) {
-      const runningProcess = await waitForProcess(browser.process())
-      t.false(runningProcess.cmd.includes('--headless'))
-
+      t.false(browser.process().spawnargs.includes('--headless'))
       await browser.close()
     }
   })(browser)
