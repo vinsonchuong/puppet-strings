@@ -10,21 +10,20 @@ templates:
 
   with_chrome: &with_chrome
     addons:
-      chrome: stable
-    before_install:
-      - export DISPLAY=:99.0
-      - Xvfb :99 -screen 0 1280x800x24 &>/dev/null &
+      chrome: beta
 
 jobs:
   include:
   - stage: test
     <<: *with_docker
     <<: *with_chrome
+    script: xvfb-run yarn test
 
   - stage: test
     <<: *with_docker
     <<: *with_chrome
     node_js: lts/*
+    script: xvfb-run yarn test
 
   - stage: release
     env:
