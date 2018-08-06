@@ -14,7 +14,9 @@ export default function({ perTest, type }: Config): void {
     })
 
     test.afterEach.always(async t => {
-      await closeBrowser(t.context.browser)
+      if (t.context.browser) {
+        await closeBrowser(t.context.browser)
+      }
     })
   } else {
     test.before(async t => {
@@ -22,7 +24,9 @@ export default function({ perTest, type }: Config): void {
     })
 
     test.after.always(async t => {
-      await closeBrowser(global.browser)
+      if (global.browser) {
+        await closeBrowser(global.browser)
+      }
     })
   }
 }
