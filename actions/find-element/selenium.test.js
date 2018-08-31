@@ -29,6 +29,30 @@ test('finding an element', async t => {
   t.is(element.innerText, 'Hello World!')
 })
 
+test('finding an invisible element', async t => {
+  const { directory, browser } = t.context
+
+  const htmlPath = await writeFile(
+    directory,
+    'index.html',
+    `
+    <!doctype html>
+    <meta charset="utf-8">
+    <style>
+      p {
+        display: none;
+      }
+    </style>
+    <p>Hello World!</p>
+  `
+  )
+
+  const [tab] = await getTabs(browser)
+  await navigate(tab, `file://${htmlPath}`)
+  const element = await findElement(tab, 'p')
+  t.true(element !== null)
+})
+
 test('failing to find an element', async t => {
   const { directory, browser } = t.context
 

@@ -13,7 +13,6 @@ export default branchOnTab({
 
     try {
       const elementHandle = await page.waitForXPath(xpath, {
-        visible: true,
         timeout: 5000
       })
       const metadata = await getElementMetadata(tab, elementHandle)
