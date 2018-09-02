@@ -106,6 +106,7 @@ Here are the actions `puppet-strings` provides:
 #### [`Element`](interface#element-object)
 * [`clickElement`](actions/click-element): Click on an element
 * [`fillInElement`](actions/fill-in-element): Type text into an element
+* [`selectFiles`](actions/select-files): Select files for a file input element
 
 ### Extension
 `puppet-strings` is designed to be open for extension but closed for

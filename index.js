@@ -29,3 +29,4 @@ export { default as findElement } from './actions/find-element'
 
 export { default as clickElement } from './actions/click-element'
 export { default as fillInElement } from './actions/fill-in-element'
+export { default as selectFiles } from './actions/select-files'
