@@ -102,7 +102,7 @@ test('failing to navigate due to a connection refused', async t => {
   try {
     await openTab(browser, 'http://127.0.0.1:65500')
   } catch (error) {
-    t.regex(error.message, /Failed to open tab/)
+    t.regex(error.message, /Failed to navigate/)
     t.regex(error.message, /net::ERR_CONNECTION_REFUSED/)
   }
 })
@@ -115,7 +115,7 @@ test('failing to navigate due to the server not responding', async t => {
   try {
     await openTab(browser, 'http://127.0.0.1:10000')
   } catch (error) {
-    t.regex(error.message, /Failed to open tab/)
+    t.regex(error.message, /Failed to navigate/)
     t.regex(error.message, /Navigation Timeout/)
   } finally {
     server.close()

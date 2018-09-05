@@ -1,8 +1,7 @@
-/* eslint-disable flowtype/no-weak-types */
 /* @flow */
 import type { ElementWithPuppeteer, ElementWithSelenium } from 'puppet-strings'
 
-export default function<Inputs: any, Output>(branches: {
+export default function<Inputs: Array<mixed>, Output>(branches: {
   puppeteer?: (ElementWithPuppeteer, ...Inputs) => Output,
   selenium?: (ElementWithSelenium, ...Inputs) => Output
 }): (ElementWithPuppeteer | ElementWithSelenium, ...Inputs) => Output {
