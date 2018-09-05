@@ -51,7 +51,7 @@ test('propagating error messages', async t => {
   )
   const tab = await openTab(browser, `file://${filePath}`)
 
-  await t.throws(
+  await t.throwsAsync(
     evalInTab(tab, [], 'throw new Error("Error Message")'),
     /Error: Error Message/
   )
