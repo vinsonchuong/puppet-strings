@@ -69,7 +69,7 @@ test('passing additional flags to electron', async t => {
 test('opening an Electron application in Docker', async t => {
   await run('yarn build-esm')
   const output = await runInContainer({
-    image: 'splayd/javascript',
+    image: 'vinsonchuong/javascript',
     mount: {
       [path.resolve('dist')]: '/root/puppet-strings'
     },

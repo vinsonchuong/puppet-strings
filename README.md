@@ -72,12 +72,12 @@ Windows and Mac environments have all of these libraries available by default.
 However, because Docker containers are meant be used from command line scripts,
 they will typically not include any of these libraries.
 
-We maintain [`splayd/javascript`](https://hub.docker.com/r/splayd/javascript/),
+We maintain [`vinsonchuong/javascript`](https://hub.docker.com/r/vinsonchuong/javascript/),
 a Docker image that includes the latest `Current` version of Node.js and all of
 the libraries needed to run Chrome.
 
 If you need to maintain a custom Dockerfile for your project, see our 
-[Dockerfile](https://github.com/splayd/docker/blob/master/images/javascript/Dockerfile)
+[Dockerfile](https://github.com/vinsonchuong/docker/blob/master/images/javascript/Dockerfile)
 for clues on how to install the needed GUI libraries.
 
 ### API

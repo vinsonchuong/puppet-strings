@@ -10,7 +10,7 @@ test.before(async () => {
 
 test('starting Chrome in a Docker container with Chrome pre-installed', async t => {
   const output = await runInContainer({
-    image: 'splayd/javascript',
+    image: 'vinsonchuong/javascript',
     mount: {
       [path.resolve('dist')]: '/root/puppet-strings'
     },
