@@ -1,10 +1,10 @@
 # puppet-strings
 ![npm](https://img.shields.io/npm/v/puppet-strings.svg)
-[![Build Status](https://travis-ci.org/splayd/puppet-strings.svg?branch=master)](https://travis-ci.org/splayd/puppet-strings)
+[![Build Status](https://travis-ci.org/vinsonchuong/puppet-strings.svg?branch=master)](https://travis-ci.org/vinsonchuong/puppet-strings)
 [![NSP Status](https://nodesecurity.io/orgs/vinsonchuong/projects/4f857d37-b9cf-4c54-a335-b8a2b1c1157f/badge)](https://nodesecurity.io/orgs/vinsonchuong/projects/4f857d37-b9cf-4c54-a335-b8a2b1c1157f)
-[![dependencies Status](https://david-dm.org/splayd/puppet-strings/status.svg)](https://david-dm.org/splayd/puppet-strings)
-[![devDependencies Status](https://david-dm.org/splayd/puppet-strings/dev-status.svg)](https://david-dm.org/splayd/puppet-strings?type=dev)
-[![Maintainability](https://api.codeclimate.com/v1/badges/7c6c8bbe130e1e1dc161/maintainability)](https://codeclimate.com/github/splayd/puppet-strings/maintainability)
+[![dependencies Status](https://david-dm.org/vinsonchuong/puppet-strings/status.svg)](https://david-dm.org/vinsonchuong/puppet-strings)
+[![devDependencies Status](https://david-dm.org/vinsonchuong/puppet-strings/dev-status.svg)](https://david-dm.org/vinsonchuong/puppet-strings?type=dev)
+[![Maintainability](https://api.codeclimate.com/v1/badges/7c6c8bbe130e1e1dc161/maintainability)](https://codeclimate.com/github/vinsonchuong/puppet-strings/maintainability)
 
 A better interface for common browser automation workflows
 
