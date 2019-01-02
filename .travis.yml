@@ -3,6 +3,10 @@ language: node_js
 node_js: node
 cache: yarn
 
+branches:
+  only:
+    - master
+
 templates:
   with_docker: &with_docker
     services:
