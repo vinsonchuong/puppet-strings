@@ -2,10 +2,10 @@
 import { branchOnTab } from 'puppet-strings'
 
 type Options = {
-  timeout?: number
+  timeout: number
 }
 
-export default branchOnTab({
+export default branchOnTab<[string] | [string, Options], Promise<void>>({
   async puppeteer(
     {
       puppeteer: { page }

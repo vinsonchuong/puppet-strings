@@ -1,5 +1,5 @@
-/* eslint-disable flowtype/no-weak-types */
 /* @flow */
+/* eslint-disable flowtype/no-weak-types */
 import type { TestInterface } from 'ava'
 import type { Browser } from 'puppet-strings'
 import test from 'ava'

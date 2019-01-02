@@ -3,18 +3,26 @@ import type { Tab } from 'puppet-strings'
 import { branchOnBrowser, navigate } from 'puppet-strings'
 import { makeTab } from 'puppet-strings/wrappers'
 
-export default branchOnBrowser({
+type Options = {
+  timeout: number
+}
+
+export default branchOnBrowser<[string] | [string, Options], Promise<Tab>>({
   async puppeteer(
     {
       puppeteer: { browser }
     },
-    url: string,
-    options: *
-  ): Promise<Tab> {
+    url,
+    options
+  ) {
     const page = await browser.newPage()
     const tab = makeTab(browser, page)
 
-    await navigate(tab, url, options)
+    if (options) {
+      await navigate(tab, url, options)
+    } else {
+      await navigate(tab, url)
+    }
 
     return tab
   },

@@ -1,14 +1,14 @@
-/* eslint-disable no-new-func, flowtype/no-weak-types */
 /* @flow */
+/* eslint-disable no-new-func, flowtype/no-weak-types */
 import { branchOnTab } from 'puppet-strings'
 
-export default branchOnTab({
+export default branchOnTab<[Array<any>, string], Promise<any>>({
   async puppeteer(
     {
       puppeteer: { page }
     },
-    args: Array<any>,
-    functionBody: string
+    args,
+    functionBody
   ) {
     try {
       return await page.evaluate(new Function(functionBody), ...args)
@@ -21,8 +21,8 @@ export default branchOnTab({
     {
       selenium: { webDriver }
     },
-    args: Array<any>,
-    functionBody: string
+    args,
+    functionBody
   ) {
     try {
       return await webDriver.executeScript(functionBody, ...args)

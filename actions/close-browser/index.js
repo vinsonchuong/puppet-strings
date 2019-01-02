@@ -1,7 +1,7 @@
 /* @flow */
 import { branchOnBrowser } from 'puppet-strings'
 
-export default branchOnBrowser({
+export default branchOnBrowser<[], Promise<void>>({
   async puppeteer({ puppeteer: { browser } }) {
     await browser.close()
   },

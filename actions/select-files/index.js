@@ -1,12 +1,12 @@
 /* @flow */
 import { branchOnElement } from 'puppet-strings'
 
-export default branchOnElement({
+export default branchOnElement<Array<string>, Promise<void>>({
   async puppeteer(
     {
       puppeteer: { page, elementHandle }
     },
-    ...filePaths: Array<string>
+    ...filePaths
   ) {
     await elementHandle.uploadFile(...filePaths)
   },
@@ -15,7 +15,7 @@ export default branchOnElement({
     {
       selenium: { webDriver, webElement }
     },
-    ...filePaths: Array<string>
+    ...filePaths
   ) {
     for (const filePath of filePaths) {
       await webElement.sendKeys(filePath)

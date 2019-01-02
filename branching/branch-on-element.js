@@ -1,7 +1,7 @@
 /* @flow */
 import type { ElementWithPuppeteer, ElementWithSelenium } from 'puppet-strings'
 
-export default function<Inputs: Array<mixed>, Output>(branches: {
+export default function<Inputs: $ReadOnlyArray<mixed>, Output>(branches: {
   puppeteer?: (ElementWithPuppeteer, ...Inputs) => Output,
   selenium?: (ElementWithSelenium, ...Inputs) => Output
 }): (ElementWithPuppeteer | ElementWithSelenium, ...Inputs) => Output {

@@ -1,7 +1,7 @@
 /* @flow */
 import { branchOnTab } from 'puppet-strings'
 
-export default branchOnTab({
+export default branchOnTab<[], Promise<void>>({
   async puppeteer({ puppeteer: { page } }) {
     await page.close()
   },

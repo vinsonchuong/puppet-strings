@@ -1,12 +1,12 @@
 /* @flow */
 import { branchOnElement } from 'puppet-strings'
 
-export default branchOnElement({
+export default branchOnElement<[string], Promise<void>>({
   async puppeteer(
     {
       puppeteer: { page, elementHandle }
     },
-    text: string
+    text
   ) {
     await elementHandle.type(text)
     await page.evaluate(elementHandle => elementHandle.blur(), elementHandle)
@@ -16,7 +16,7 @@ export default branchOnElement({
     {
       selenium: { webDriver, webElement }
     },
-    text: string
+    text
   ) {
     await webElement.sendKeys(text)
     await webDriver.executeScript('arguments[0].blur()', webElement)

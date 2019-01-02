@@ -4,8 +4,8 @@ import { branchOnTab, evalInTab } from 'puppet-strings'
 import { By, until } from 'selenium-webdriver'
 import cssToXPath from 'css-to-xpath'
 
-export default branchOnTab({
-  async puppeteer(tab, selector: string, text: ?string): Promise<Element> {
+export default branchOnTab<[string] | [string, string], Promise<Element>>({
+  async puppeteer(tab, selector, text) {
     const {
       puppeteer: { browser, page }
     } = tab
@@ -25,7 +25,7 @@ export default branchOnTab({
     }
   },
 
-  async selenium(tab, selector: string, text: ?string): Promise<Element> {
+  async selenium(tab, selector, text) {
     const {
       selenium: { webDriver }
     } = tab

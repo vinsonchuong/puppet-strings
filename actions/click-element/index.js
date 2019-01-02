@@ -1,7 +1,7 @@
 /* @flow */
 import { branchOnElement } from 'puppet-strings'
 
-export default branchOnElement({
+export default branchOnElement<[], Promise<void>>({
   async puppeteer({ puppeteer: { elementHandle } }) {
     await elementHandle.click()
   },
