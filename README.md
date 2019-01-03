@@ -118,3 +118,8 @@ the underlying Puppeteer objects.
 
 If your project needs to modify an action provided by `puppet-strings`, you can
 duplicate that action and maintain your modifications as part of your project.
+
+#### Published Extensions
+* [`openApp`](https://github.com/vinsonchuong/puppet-strings-open-app): An
+  extension to puppet-strings for compiling and opening a web application in
+  Chrome
