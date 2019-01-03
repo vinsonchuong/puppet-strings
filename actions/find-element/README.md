@@ -29,4 +29,7 @@ contains the `text` (if provided). This is accomplished by transforming the
 CSS `selector` and `text` substring into an XPath selector and evaluating it
 directly in the browser.
 
+The object returned will contain as properties the `innerText`, `outerHTML`, and
+`attributes` of the element.
+
 If no matching element is found, an exception will be thrown.

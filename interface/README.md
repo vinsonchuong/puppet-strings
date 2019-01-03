@@ -47,6 +47,9 @@ back to Selenium when necessary.
     * `webDriver` ([WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html))
 
 #### `Element` (Object)
+* `attributes` (Map<string, string>)
+* `innerText` (string)
+* `outerHTML` (string)
 * Either:
   * `puppeteer` (Object)
     * `browser` ([PuppeteerBrowser](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browser))
