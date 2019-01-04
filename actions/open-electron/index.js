@@ -1,5 +1,5 @@
 /* @flow */
-import type { Browser } from 'puppet-strings'
+import type { BrowserWithPuppeteer } from 'puppet-strings'
 import * as path from 'path'
 import * as childProcess from 'child_process'
 import { promisify } from 'util'
@@ -8,7 +8,7 @@ import puppeteer from 'puppeteer'
 export default async function(
   applicationPath: string,
   options: { flags?: Array<string> } = {}
-): Promise<Browser> {
+): Promise<BrowserWithPuppeteer> {
   const needsXvfb =
     process.platform !== 'win32' &&
     process.platform !== 'darwin' &&

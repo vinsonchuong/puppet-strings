@@ -1,5 +1,5 @@
 /* @flow */
-import type { Browser } from 'puppet-strings'
+import type { BrowserWithPuppeteer } from 'puppet-strings'
 import puppeteer from 'puppeteer'
 
 type Options = void | {
@@ -18,7 +18,7 @@ const defaultFlags = [
   '--mute-audio'
 ]
 
-export default async function(options: Options): Promise<Browser> {
+export default async function(options: Options): Promise<BrowserWithPuppeteer> {
   let flags = defaultFlags
   if (options && options.flags) {
     flags = [...flags, ...options.flags]

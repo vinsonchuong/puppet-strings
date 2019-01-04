@@ -1,5 +1,5 @@
 /* @flow */
-import type { Browser } from 'puppet-strings'
+import type { BrowserWithSelenium } from 'puppet-strings'
 import { Builder } from 'selenium-webdriver'
 import { Options as FirefoxOptions } from 'selenium-webdriver/firefox'
 
@@ -7,7 +7,9 @@ type Options = {
   headless?: boolean
 }
 
-export default async function(options: Options = {}): Promise<Browser> {
+export default async function(
+  options: Options = {}
+): Promise<BrowserWithSelenium> {
   const firefoxOptions = new FirefoxOptions()
 
   if (!('headless' in options) || options.headless) {
