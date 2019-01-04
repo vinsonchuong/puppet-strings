@@ -1,10 +1,12 @@
-// @flow
+/* @flow */
 import test from 'ava'
 import carlo from 'carlo'
 import { openCarlo, findElement } from 'puppet-strings'
 
 test('instrumenting a Carlo app', async t => {
-  const app = await carlo.launch()
+  const app = await carlo.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  })
   app.serveOrigin('http://example.com')
   app.load('/')
 
