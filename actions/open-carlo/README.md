@@ -10,7 +10,7 @@ async function run() {
   const app = await carlo.launch()
   app.serveFolder('ui')
 
-  const tab = openCarlo(app)
+  const tab = await openCarlo(app)
   const html = await findElement(tab, 'html')
   console.log(html.outerHTML)
 
