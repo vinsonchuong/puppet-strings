@@ -14,8 +14,8 @@ templates:
 
   with_browsers: &with_browsers
     addons:
-      chrome: beta
-      firefox: latest-beta
+      chrome: stable
+      firefox: latest
 
 jobs:
   include:
