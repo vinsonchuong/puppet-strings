@@ -8,13 +8,7 @@ type Options = {
 }
 
 export default branchOnBrowser<[string] | [string, Options], Promise<Tab>>({
-  async puppeteer(
-    {
-      puppeteer: { browser }
-    },
-    url,
-    options
-  ) {
+  async puppeteer({ puppeteer: { browser } }, url, options) {
     const page = await browser.newPage()
     const tab = makeTab(browser, page)
 

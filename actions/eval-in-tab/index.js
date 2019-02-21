@@ -3,13 +3,7 @@
 import { branchOnTab } from 'puppet-strings'
 
 export default branchOnTab<[Array<any>, string], Promise<any>>({
-  async puppeteer(
-    {
-      puppeteer: { page }
-    },
-    args,
-    functionBody
-  ) {
+  async puppeteer({ puppeteer: { page } }, args, functionBody) {
     try {
       return await page.evaluate(new Function(functionBody), ...args)
     } catch (error) {
@@ -17,13 +11,7 @@ export default branchOnTab<[Array<any>, string], Promise<any>>({
     }
   },
 
-  async selenium(
-    {
-      selenium: { webDriver }
-    },
-    args,
-    functionBody
-  ) {
+  async selenium({ selenium: { webDriver } }, args, functionBody) {
     try {
       return await webDriver.executeScript(functionBody, ...args)
     } catch (error) {
