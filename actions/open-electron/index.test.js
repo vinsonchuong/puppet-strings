@@ -101,7 +101,7 @@ test('opening an Electron application in Docker', async t => {
         run()
         JS
 
-        yarn add ./puppet-strings electron@beta &> /dev/null
+        yarn add ./puppet-strings electron &> /dev/null
         node test.js
         `
     ]
@@ -151,7 +151,7 @@ test('notifying the user that Xvfb is required in Docker', async t => {
         run()
         JS
 
-        yarn add ./puppet-strings electron@beta &> /dev/null
+        yarn add ./puppet-strings electron &> /dev/null
         node test.js
         `
     ]
