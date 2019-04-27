@@ -1,14 +1,21 @@
 /* @flow */
-import type { BrowserWithPuppeteer } from 'puppet-strings'
+import type { Browser } from 'puppet-strings'
 import * as path from 'path'
 import * as childProcess from 'child_process'
 import { promisify } from 'util'
 import puppeteer from 'puppeteer'
 
+const defaultFlags = [
+  // Disabling the process sandbox makes it easier to run in Linux
+  // environments
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+]
+
 export default async function(
   applicationPath: string,
   options: { flags?: Array<string> } = {}
-): Promise<BrowserWithPuppeteer> {
+): Promise<Browser> {
   const needsXvfb =
     process.platform !== 'win32' &&
     process.platform !== 'darwin' &&
@@ -25,7 +32,14 @@ export default async function(
   const browser = await puppeteer.launch({
     executablePath,
     headless: true,
-    args: [...(options.flags || []), applicationPath]
+    ignoreDefaultArgs: [
+      '--enable-features=NetworkService,NetworkServiceInProcess'
+    ],
+    args: [
+      ...(options.flags || []),
+      ...defaultFlags,
+      applicationPath
+    ]
   })
 
   return {
