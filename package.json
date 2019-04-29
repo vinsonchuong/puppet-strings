@@ -16,7 +16,6 @@
     "prepack": "build-esm"
   },
   "dependencies": {
-    "css-to-xpath": "^0.1.0",
     "puppeteer-core": ">=1.15.0"
   },
   "devDependencies": {

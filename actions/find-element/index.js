@@ -1,7 +1,6 @@
 /* @flow */
 import type { Tab, Element } from 'puppet-strings'
 import { evalInTab } from 'puppet-strings'
-import cssToXPath from 'css-to-xpath'
 
 export default async function(
   tab: Tab,
@@ -11,12 +10,20 @@ export default async function(
   const {
     puppeteer: { browser, page }
   } = tab
-  const xpath = buildXPath(selector, text)
 
   try {
-    const elementHandle = await page.waitForXPath(xpath, {
-      timeout: 5000
-    })
+    const elementHandle = text
+      ? await page.waitForFunction(
+          (selector, text) =>
+            Array.from(document.querySelectorAll(selector)).find(e =>
+              e.textContent.includes(text)
+            ),
+          { timeout: 5000 },
+          selector,
+          text
+        )
+      : await page.waitForSelector(selector, { timeout: 5000 })
+
     const metadata = await getElementMetadata(tab, elementHandle)
     return {
       ...metadata,
@@ -25,15 +32,6 @@ export default async function(
   } catch (error) {
     throw new Error('Could not find element')
   }
-}
-
-function buildXPath(selector, text) {
-  return typeof text === 'string'
-    ? cssToXPath
-        .parse(selector)
-        .where(cssToXPath.xPathBuilder.text().contains(text))
-        .toXPath()
-    : cssToXPath(selector)
 }
 
 function getElementMetadata(tab, element) {
