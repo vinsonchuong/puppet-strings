@@ -1,14 +1,6 @@
 /* @flow */
-import { branchOnTab } from 'puppet-strings'
+import type { Tab } from 'puppet-strings'
 
-export default branchOnTab<[], Promise<void>>({
-  async puppeteer({ puppeteer: { page } }) {
-    await page.close()
-  },
-
-  async selenium() {
-    throw new Error(
-      'Selenium only supports controlling one tab at a time. Closing the current tab is not supported.'
-    )
-  }
-})
+export default async function({ puppeteer: { page } }: Tab): Promise<void> {
+  await page.close()
+}

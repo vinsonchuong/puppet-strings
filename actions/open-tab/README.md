@@ -3,10 +3,10 @@ Opens a url in a new tab and waits for it to fully load
 
 ## Example
 ```js
-import { openChrome, openTab } from 'puppet-strings'
+import { openBrowser, openTab } from 'puppet-strings'
 
 async function run() {
-  const browser = await openChrome()
+  const browser = await openBrowser('google-chrome')
 
   const tab = await openTab(browser, 'http://example.com')
 
@@ -35,8 +35,3 @@ run()
 request for `500ms`. Note that WebSocket connections are ignored. By default,
 `openTab` will wait at most 5 seconds and then throw an error. Set a custom
 timeout by passing in the `timeout` option.
-
-Note that browsers controlled using Selenium (Firefox, Electron 1, and
-Electron 2) cannot automate more than one tab at a time. `puppet-strings` does
-not support opening new tabs for these browsers. Use [`getTabs`](../get-tabs)
-instead get a reference to the currently focused tab.

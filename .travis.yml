@@ -15,20 +15,19 @@ templates:
   with_browsers: &with_browsers
     addons:
       chrome: stable
-      firefox: latest
 
 jobs:
   include:
   - stage: test
     <<: *with_docker
     <<: *with_browsers
-    script: xvfb-run yarn test
+    script: yarn test
 
   - stage: test
     <<: *with_docker
     <<: *with_browsers
     node_js: lts/*
-    script: xvfb-run yarn test
+    script: yarn test
 
   - stage: release
     env:

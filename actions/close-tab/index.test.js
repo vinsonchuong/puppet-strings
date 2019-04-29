@@ -5,7 +5,7 @@ import {
   withDirectory,
   writeFile
 } from 'puppet-strings/test/helpers'
-import { branchOnBrowser, openTab, closeTab } from 'puppet-strings'
+import { openTab, closeTab } from 'puppet-strings'
 
 const ava2 = withDirectory(ava)
 const test = withChromePerTest(ava2)
@@ -22,16 +22,12 @@ test('closing tabs', async t => {
     `
   )
 
-  await branchOnBrowser({
-    async puppeteer(browser) {
-      const tab1 = await openTab(browser, `file://${filePath}`)
-      const tab2 = await openTab(browser, `file://${filePath}`)
+  const tab1 = await openTab(browser, `file://${filePath}`)
+  const tab2 = await openTab(browser, `file://${filePath}`)
 
-      await closeTab(tab1)
-      t.is((await browser.puppeteer.browser.pages()).length, 1)
+  await closeTab(tab1)
+  t.is((await browser.puppeteer.browser.pages()).length, 1)
 
-      await closeTab(tab2)
-      t.is((await browser.puppeteer.browser.pages()).length, 0)
-    }
-  })(browser)
+  await closeTab(tab2)
+  t.is((await browser.puppeteer.browser.pages()).length, 0)
 })

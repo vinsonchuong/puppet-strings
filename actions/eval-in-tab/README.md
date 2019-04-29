@@ -3,10 +3,10 @@ Evaluates code within a tab and returns the result
 
 ## Example
 ```js
-import { openChrome, openTab, evalInTab } from 'puppet-strings'
+import { openBrowser, openTab, evalInTab } from 'puppet-strings'
 
 async function run() {
-  const browser = await openChrome()
+  const browser = await openBrowser('google-chrome')
   const tab = await openTab(browser, 'http://example.com')
 
   const title = await evalInTab(tab, [], 'return document.title')

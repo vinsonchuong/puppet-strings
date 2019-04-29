@@ -3,10 +3,10 @@ Click on an element
 
 ## Example
 ```js
-import { openChrome, openTab, findElement, clickElement } from 'puppet-strings'
+import { openBrowser, openTab, findElement, clickElement } from 'puppet-strings'
 
 async function run() {
-  const browser = await openChrome()
+  const browser = await openBrowser('google-chrome')
   const tab = await openTab(browser, 'https://www.npmjs.com/')
 
   const blogLink = await findElement(tab, 'footer a', 'Blog')

@@ -3,10 +3,10 @@ Find a DOM element on the page by CSS selector
 
 ## Example
 ```js
-import { openChrome, openTab, findElement } from 'puppet-strings'
+import { openBrowser, openTab, findElement } from 'puppet-strings'
 
 async function run() {
-  const browser = await openChrome()
+  const browser = await openBrowser('google-chrome')
   const tab = await openTab(browser, 'https://www.npmjs.com/')
 
   const header = await findElement(tab, '#pane-homepage-hero h1')

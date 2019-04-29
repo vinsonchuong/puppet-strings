@@ -3,27 +3,16 @@ import type {
   Browser as PuppeteerBrowser,
   Page as PuppeteerPage,
   ElementHandle as PuppeteerElementHandle
-} from 'puppeteer'
-import type { WebDriver, WebElement } from 'selenium-webdriver'
+} from 'puppeteer-core'
 
-export type ElementWithPuppeteer = {
+export type Element = {
   attributes: { [string]: string },
   innerText: string,
   outerHTML: string,
   puppeteer: {
     browser: PuppeteerBrowser,
     page: PuppeteerPage,
-    elementHandle: PuppeteerElementHandle
+    elementHandle: PuppeteerElementHandle<HTMLElement>
   },
   selenium?: empty
 }
-
-export type ElementWithSelenium = {
-  attributes: { [string]: string },
-  innerText: string,
-  outerHTML: string,
-  puppeteer?: empty,
-  selenium: { webDriver: WebDriver, webElement: WebElement }
-}
-
-export type Element = ElementWithPuppeteer | ElementWithSelenium

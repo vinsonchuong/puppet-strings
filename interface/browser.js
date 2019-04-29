@@ -1,15 +1,6 @@
 /* @flow */
-import type { Browser as PuppeteerBrowser } from 'puppeteer'
-import type { WebDriver } from 'selenium-webdriver'
+import type { Browser as PuppeteerBrowser } from 'puppeteer-core'
 
-export type BrowserWithPuppeteer = {
-  puppeteer: { browser: PuppeteerBrowser },
-  selenium?: empty
+export type Browser = {
+  puppeteer: { browser: PuppeteerBrowser }
 }
-
-export type BrowserWithSelenium = {
-  puppeteer?: empty,
-  selenium: { webDriver: WebDriver }
-}
-
-export type Browser = BrowserWithPuppeteer | BrowserWithSelenium

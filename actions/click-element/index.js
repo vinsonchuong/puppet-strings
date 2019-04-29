@@ -1,12 +1,8 @@
 /* @flow */
-import { branchOnElement } from 'puppet-strings'
+import type { Element } from 'puppet-strings'
 
-export default branchOnElement<[], Promise<void>>({
-  async puppeteer({ puppeteer: { elementHandle } }) {
-    await elementHandle.click()
-  },
-
-  async selenium({ selenium: { webElement } }) {
-    await webElement.click()
-  }
-})
+export default async function({
+  puppeteer: { elementHandle }
+}: Element): Promise<void> {
+  await elementHandle.click()
+}

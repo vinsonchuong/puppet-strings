@@ -10,12 +10,12 @@ A better interface for common browser automation workflows
 ## Example
 ```js
 import {
-  openChrome, closeBrowser, openTab, waitForNavigation,
+  openBrowser, closeBrowser, openTab, waitForNavigation,
   findElement, fillInElement, clickElement, evalInTab
 } from 'puppet-strings'
 
 async function run() {
-  const browser = await openChrome()
+  const browser = await openBrowser('chromium')
   const tab = await openTab(browser, 'https://google.com/ncr')
 
   const searchInput = await findElement(tab, '[name="q"]')
@@ -59,25 +59,14 @@ Or, if [`yarn`](https://yarnpkg.com/en/) is not installed, run
 npm install --save puppet-strings
 ```
 
-During installation, a recent version of Chromium will be downloaded and stored
-locally.
+#### Locally Installed Browsers
+`puppet-strings` works with locally installed recent stable versions of Google
+Chrome, Chromium, and Electron on Linux, Docker, OSX, and Windows.
 
-On Windows and Mac, `puppet-strings` should work out of the box.
-
-#### Running In a Docker Container
-Chrome statically depends on many GUI-related system libraries. So, even if you
-only run it in headless mode, those libraries still need to be installed.
-Windows and Mac environments have all of these libraries available by default.
-However, because Docker containers are meant be used from command line scripts,
-they will typically not include any of these libraries.
-
-We maintain [`vinsonchuong/javascript`](https://hub.docker.com/r/vinsonchuong/javascript/),
-a Docker image that includes the latest `Current` version of Node.js and all of
-the libraries needed to run Chrome.
-
-If you need to maintain a custom Dockerfile for your project, see our 
-[Dockerfile](https://github.com/vinsonchuong/docker/blob/master/images/javascript/Dockerfile)
-for clues on how to install the needed GUI libraries.
+We also maintain
+[`vinsonchuong/javascript`](https://hub.docker.com/r/vinsonchuong/javascript/),
+a Docker image that includes the latest `Current` version of Node.js and Chrome
+(as `google-chrome`)
 
 ### API
 `puppet-strings` provides an [interface](interface) consisting of three nouns
@@ -87,10 +76,7 @@ Each action returns a promise that is resolved when the action is finished.
 Here are the actions `puppet-strings` provides:
 
 #### [`Browser`](interface#browser-object)
-* [`openChrome`](actions/open-chrome): Starts a new instance of Chrome
-* [`openCarlo`](actions/open-carlo): Instruments a running Carlo application
-* [`openElectron`](actions/open-electron): Starts an Electron application
-* [`openFirefox`](actions/open-firefox): Starts a new instance of Firefox
+* [`openBrowser`](actions/open-browser): Open a locally installed browser
 * [`closeBrowser`](actions/close-browser): Closes a browser
 
 #### [`Tab`](interface#tab-object)

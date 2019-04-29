@@ -3,10 +3,10 @@ Navigates a tab to a new URL
 
 ## Example
 ```js
-import { openChrome, openTab, navigate } from 'puppet-strings'
+import { openBrowser, openTab, navigate } from 'puppet-strings'
 
 async function run() {
-  const browser = await openChrome()
+  const browser = await openBrowser('google-chrome')
   const tab = await openTab(browser, 'https://npmjs.com')
 
   await navigate(tab, 'https://google.com')

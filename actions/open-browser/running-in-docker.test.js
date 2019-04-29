@@ -21,9 +21,9 @@ test('starting Chrome in a Docker container with Chrome pre-installed', async t 
         cd /root
 
         cat <<JS > index.js
-        const { openChrome } = require('puppet-strings')
+        const { openBrowser } = require('puppet-strings')
         async function run() {
-          const { puppeteer: { browser } } = await openChrome()
+          const { puppeteer: { browser } } = await openBrowser('google-chrome')
           const page = await browser.newPage()
           await page.goto('http://example.com')
           console.log(await page.title())
@@ -59,9 +59,9 @@ test('starting Chrome in a Debian Docker container without Chrome pre-installed'
         apt-get install -yq google-chrome-stable
 
         cat <<JS > index.js
-        const { openChrome } = require('puppet-strings')
+        const { openBrowser } = require('puppet-strings')
         async function run() {
-          const { puppeteer: { browser } } = await openChrome()
+          const { puppeteer: { browser } } = await openBrowser('google-chrome')
           const page = await browser.newPage()
           await page.goto('http://example.com')
           console.log(await page.title())

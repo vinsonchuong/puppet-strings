@@ -16,19 +16,16 @@
     "prepack": "build-esm"
   },
   "dependencies": {
-    "carlo": "^0.9.45",
     "css-to-xpath": "^0.1.0",
-    "geckodriver": "^1.16.2",
-    "puppeteer": "1.15.0",
-    "selenium-webdriver": "^4.0.0-alpha.1"
+    "puppeteer-core": ">=1.15.0"
   },
   "devDependencies": {
     "ava": "^1.4.1",
     "build-esm": "^4.2.1",
     "dedent": "^0.7.0",
     "dockerode": "^2.5.8",
-    "electron": "^5.0.0",
-    "flow-bin": "^0.97.0",
+    "electron": "4",
+    "flow-bin": "^0.98.0",
     "flow-typed": "^2.5.1",
     "fs-extra": "^7.0.1",
     "overdub": "^2.3.1",

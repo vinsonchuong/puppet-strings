@@ -2,8 +2,7 @@
 import ava from 'ava'
 import { withDirectory, writeFile } from 'puppet-strings/test/helpers'
 import {
-  openChrome,
-  openFirefox,
+  openBrowser,
   closeBrowser,
   openTab,
   getTabs,
@@ -12,9 +11,11 @@ import {
 
 const test = withDirectory(ava)
 
-test('listing the currently open tabs for a Puppeteer browser', async t => {
+const chromeCli = process.env.CI ? 'google-chrome' : 'chromium'
+
+test('listing the currently open tabs', async t => {
   const { directory } = t.context
-  const browser = await openChrome()
+  const browser = await openBrowser(chromeCli)
 
   const onePath = await writeFile(
     directory,
@@ -43,15 +44,6 @@ test('listing the currently open tabs for a Puppeteer browser', async t => {
   t.is(tabs.length, 2)
   t.is((await findElement(tabs[0], 'div')).innerText, 'One')
   t.is((await findElement(tabs[1], 'div')).innerText, 'Two')
-
-  await closeBrowser(browser)
-})
-
-test('listing the current tab for a Selenium browser', async t => {
-  const browser = await openFirefox()
-  const tabs = await getTabs(browser)
-
-  t.is(tabs.length, 1)
 
   await closeBrowser(browser)
 })

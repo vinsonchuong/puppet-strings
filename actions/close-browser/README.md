@@ -3,10 +3,10 @@ Closes a browser
 
 ## Example
 ```js
-import { openChrome, closeBrowser } from 'puppet-strings'
+import { openBrowser, closeBrowser } from 'puppet-strings'
 
 async function run() {
-  const browser = await openChrome()
+  const browser = await openBrowser('google-chrome')
   await closeBrowser(browser)
 }
 

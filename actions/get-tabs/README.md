@@ -3,10 +3,10 @@ Gets the list of currently open tabs
 
 ## Example
 ```js
-import { openChrome, openTab, getTabs } from 'puppet-strings'
+import { openBrowser, openTab, getTabs } from 'puppet-strings'
 
 async function run() {
-  const browser = await openChrome()
+  const browser = await openBrowser('google-chrome')
 
   await openTab(browser, 'http://example.com')
   await openTab(browser, 'http://google.com')
@@ -30,11 +30,7 @@ as Tab objects returned by [`openTab`](../open-tab).
 Note that two Tab objects that refer to the same browser tab will not
 necessarily be `===`.
 
-For browsers controlled using the Chrome DevTools API (Chrome and Electron 3),
-all console messages emitted by the tab are captured in the tab's `console`
+All console messages emitted by the tab are captured in the tab's `console`
 property. Also, all uncaught exceptions are captured in the tab's `error`
 property. Note that console messages and uncaught exceptions are captured moving
 forward. Messages logged before `getTabs` is called are not available.
-
-For browsers controlled using Selenium (Firefox, Electron 1, and Electron 2),
-console and error capturing are not available.

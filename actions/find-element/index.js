@@ -1,51 +1,31 @@
 /* @flow */
-import type { Element } from 'puppet-strings'
-import { branchOnTab, evalInTab } from 'puppet-strings'
-import { By, until } from 'selenium-webdriver'
+import type { Tab, Element } from 'puppet-strings'
+import { evalInTab } from 'puppet-strings'
 import cssToXPath from 'css-to-xpath'
 
-export default branchOnTab<[string] | [string, string], Promise<Element>>({
-  async puppeteer(tab, selector, text) {
-    const {
-      puppeteer: { browser, page }
-    } = tab
-    const xpath = buildXPath(selector, text)
+export default async function(
+  tab: Tab,
+  selector: string,
+  text: ?string
+): Promise<Element> {
+  const {
+    puppeteer: { browser, page }
+  } = tab
+  const xpath = buildXPath(selector, text)
 
-    try {
-      const elementHandle = await page.waitForXPath(xpath, {
-        timeout: 5000
-      })
-      const metadata = await getElementMetadata(tab, elementHandle)
-      return {
-        ...metadata,
-        puppeteer: { browser, page, elementHandle }
-      }
-    } catch (error) {
-      throw new Error('Could not find element')
+  try {
+    const elementHandle = await page.waitForXPath(xpath, {
+      timeout: 5000
+    })
+    const metadata = await getElementMetadata(tab, elementHandle)
+    return {
+      ...metadata,
+      puppeteer: { browser, page, elementHandle }
     }
-  },
-
-  async selenium(tab, selector, text) {
-    const {
-      selenium: { webDriver }
-    } = tab
-    const xpath = buildXPath(selector, text)
-
-    try {
-      const webElement = await webDriver.wait(
-        until.elementLocated(By.xpath(xpath)),
-        5000
-      )
-      const metadata = await getElementMetadata(tab, webElement)
-      return {
-        ...metadata,
-        selenium: { webDriver, webElement }
-      }
-    } catch (error) {
-      throw new Error('Could not find element')
-    }
+  } catch (error) {
+    throw new Error('Could not find element')
   }
-})
+}
 
 function buildXPath(selector, text) {
   return typeof text === 'string'

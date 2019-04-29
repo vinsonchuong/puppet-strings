@@ -3,10 +3,10 @@ Select files for a file input element
 
 ## Example
 ```js
-import { openChrome, openTab, findElement, selectFiles } from 'puppet-strings'
+import { openBrowser, openTab, findElement, selectFiles } from 'puppet-strings'
 
 async function run() {
-  const browser = await openChrome()
+  const browser = await openBrowser('google-chrome')
   const tab = await openTab(browser, 'https://www.npmjs.com/')
 
   const fileInput = await findElement(tab, 'input[type="file"]')
