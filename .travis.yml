@@ -1,4 +1,4 @@
-group: travis_latest
+dist: xenial
 language: node_js
 node_js: node
 cache: yarn
@@ -7,25 +7,22 @@ branches:
   only:
     - master
 
-templates:
-  with_docker: &with_docker
-    services:
-      - docker
-
-  with_browsers: &with_browsers
-    addons:
-      chrome: stable
-
 jobs:
   include:
   - stage: test
-    <<: *with_docker
-    <<: *with_browsers
+    services:
+      - docker
+      - xvfb
+    addons:
+      chrome: stable
     script: yarn test
 
   - stage: test
-    <<: *with_docker
-    <<: *with_browsers
+    services:
+      - docker
+      - xvfb
+    addons:
+      chrome: stable
     node_js: lts/*
     script: yarn test
 
