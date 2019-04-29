@@ -1,7 +1,9 @@
 /* @flow */
 import test from 'ava'
 import * as path from 'path'
-import { run, runInContainer } from 'puppet-strings/test/helpers'
+import { startContainer, removeContainer } from 'sidelifter'
+import getStream from 'get-stream'
+import { run } from 'puppet-strings/test/helpers'
 import dedent from 'dedent'
 
 test.before(async () => {
@@ -9,12 +11,12 @@ test.before(async () => {
 })
 
 test('starting Chrome in a Docker container with Chrome pre-installed', async t => {
-  const output = await runInContainer({
+  const container = await startContainer({
     image: 'vinsonchuong/javascript',
     mount: {
       [path.resolve('dist')]: '/root/puppet-strings'
     },
-    command: [
+    cmd: [
       '/bin/bash',
       '-c',
       dedent`
@@ -38,16 +40,19 @@ test('starting Chrome in a Docker container with Chrome pre-installed', async t 
     ]
   })
 
+  const output = await getStream(container.stdout)
   t.true(output.includes('Example Domain'))
+
+  await removeContainer(container)
 })
 
 test('starting Chrome in a Debian Docker container without Chrome pre-installed', async t => {
-  const output = await runInContainer({
+  const container = await startContainer({
     image: 'node:latest',
     mount: {
       [path.resolve('dist')]: '/root/puppet-strings'
     },
-    command: [
+    cmd: [
       '/bin/bash',
       '-c',
       dedent`
@@ -76,5 +81,8 @@ test('starting Chrome in a Debian Docker container without Chrome pre-installed'
     ]
   })
 
+  const output = await getStream(container.stdout)
   t.true(output.includes('Example Domain'))
+
+  await removeContainer(container)
 })
