@@ -33,4 +33,5 @@ enables each browser tab to be automated concurrently.
 * `puppeteer` (Object)
   * `browser` ([PuppeteerBrowser](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browser))
   * `page` ([PuppeteerPage](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-page))
+  * `frame` ([PuppeteerFrame](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-frame))
   * `elementHandle` ([PuppeteerElementHandle](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-elementhandle))

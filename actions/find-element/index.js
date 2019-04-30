@@ -50,7 +50,7 @@ export default async function(
 
     return {
       ...metadata,
-      puppeteer: { browser, page, elementHandle }
+      puppeteer: { browser, page, frame, elementHandle }
     }
   } catch (error) {
     throw new Error('Could not find element')
