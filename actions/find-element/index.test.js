@@ -223,3 +223,26 @@ test('failing to find an element after 5 seconds', async t => {
   const tab = await openTab(browser, `file://${htmlPath}`)
   await t.throwsAsync(findElement(tab, 'p'), 'Could not find element')
 })
+
+test('waiting a custom amount of time for an element to appear', async t => {
+  const { browser } = global
+  const { directory } = t.context
+
+  const htmlPath = await writeFile(
+    directory,
+    'index.html',
+    `
+    <!doctype html>
+    <meta charset="utf-8">
+    <script>
+      setTimeout(() => {
+        document.body.innerHTML = '<p>Hello World!</p>'
+      }, 7000)
+    </script>
+  `
+  )
+
+  const tab = await openTab(browser, `file://${htmlPath}`)
+  const element = await findElement(tab, 'p', null, { timeout: 7000 })
+  t.is(element.innerText, 'Hello World!')
+})

@@ -1,4 +1,4 @@
-# `findElement(tab, selector, text)`
+# `findElement(tab, selector, text, options)`
 Find a DOM element on the page by CSS selector
 
 ## Example
@@ -19,15 +19,16 @@ run()
 * `tab` ([Tab](../../interface#tab-object))
 * `selector` (string): A CSS selector to search for
 * `text` (string?): Optional text content to search for
+* `options = {}` (object)
+  * `timeout = 5000` (number): How long to search for a match
 
 ## Returns
 * `element` ([Promise<Element>](../../interface#element-object))
 
 ## Details
-`findElement` returns the first element that matches the CSS `selector` and
-contains the `text` (if provided). `iframe`s are searched as well.
+`findElement` searches the page and all its `iframe`s for a default of 5
+seconds, returning the first element that matches the CSS `selector` and
+contains the `text` (if provided) or throwing an exception if none are found.
 
 The object returned will contain as properties the `innerText`, `outerHTML`, and
 `attributes` of the element.
-
-If no matching element is found, an exception will be thrown.

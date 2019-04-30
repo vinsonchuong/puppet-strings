@@ -5,7 +5,8 @@ import type { Tab, Element } from 'puppet-strings'
 export default async function(
   tab: Tab,
   selector: string,
-  text: ?string
+  text: ?string,
+  { timeout = 5000 }: { timeout?: number } = {}
 ): Promise<Element> {
   const {
     puppeteer: { browser, page }
@@ -22,11 +23,11 @@ export default async function(
                 return Array.from(document.querySelectorAll(selector))
                   .find(e => e.textContent.includes(text))
               `),
-              { timeout: 5000 },
+              { timeout },
               selector,
               text
             )
-          : await frame.waitForSelector(selector, { timeout: 5000 })
+          : await frame.waitForSelector(selector, { timeout })
       ])
     )
 
