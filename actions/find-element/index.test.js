@@ -53,6 +53,74 @@ test('finding an invisible element', async t => {
   t.true(element !== null)
 })
 
+test('finding an element in an iframe', async t => {
+  const { browser } = global
+  const { directory } = t.context
+
+  const htmlPath = await writeFile(
+    directory,
+    'index.html',
+    `
+    <!doctype html>
+    <meta charset="utf-8">
+    <iframe src="frame.html"></iframe>
+  `
+  )
+
+  await writeFile(
+    directory,
+    'frame.html',
+    `
+    <!doctype html>
+    <meta charset="utf-8">
+    <p>Hello World!</p>
+  `
+  )
+
+  const tab = await openTab(browser, `file://${htmlPath}`)
+  const element = await findElement(tab, 'p')
+  t.is(element.innerText, 'Hello World!')
+})
+
+test('finding an element in a nested iframe', async t => {
+  const { browser } = global
+  const { directory } = t.context
+
+  const htmlPath = await writeFile(
+    directory,
+    'index.html',
+    `
+    <!doctype html>
+    <meta charset="utf-8">
+    <iframe src="frame1.html"></iframe>
+  `
+  )
+
+  await writeFile(
+    directory,
+    'frame1.html',
+    `
+    <!doctype html>
+    <meta charset="utf-8">
+    <iframe src="frame2.html"></iframe>
+  `
+  )
+
+  await writeFile(
+    directory,
+    'frame2.html',
+    `
+    <!doctype html>
+    <meta charset="utf-8">
+    <p>Hello World!</p>
+  `
+  )
+
+  const tab = await openTab(browser, `file://${htmlPath}`)
+  const element = await findElement(tab, 'p')
+  t.is(element.innerText, 'Hello World!')
+})
+
 test('failing to find an element', async t => {
   const { browser } = global
   const { directory } = t.context

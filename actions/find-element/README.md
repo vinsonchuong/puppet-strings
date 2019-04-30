@@ -25,9 +25,7 @@ run()
 
 ## Details
 `findElement` returns the first element that matches the CSS `selector` and
-contains the `text` (if provided). This is accomplished by transforming the
-CSS `selector` and `text` substring into an XPath selector and evaluating it
-directly in the browser.
+contains the `text` (if provided). `iframe`s are searched as well.
 
 The object returned will contain as properties the `innerText`, `outerHTML`, and
 `attributes` of the element.
