@@ -3,16 +3,23 @@
 import type { TestInterface } from 'ava'
 import type { Browser } from 'puppet-strings'
 import test from 'ava'
+import { findChrome, downloadChrome } from 'puppet-strings-chrome'
 import { openBrowser, closeBrowser } from 'puppet-strings'
 
-const chromeCli = process.env.CI ? 'google-chrome' : 'chromium'
+export function withChromePath() {
+  test.serial.before(async () => {
+    global.chromePath = (await findChrome()) || (await downloadChrome())
+  })
+}
 
 export function withChrome() {
-  test.before(async t => {
-    global.browser = await openBrowser(chromeCli)
+  withChromePath()
+
+  test.serial.before(async () => {
+    global.browser = await openBrowser(global.chromePath)
   })
 
-  test.after.always(async t => {
+  test.after.always(async () => {
     if (global.browser) {
       await closeBrowser(global.browser)
     }
@@ -27,8 +34,10 @@ export function withChromePerTest<Context: {}>(
     browser: Browser
   }> = (test: any)
 
+  withChromePath()
+
   newTest.beforeEach(async t => {
-    t.context.browser = await openBrowser(chromeCli)
+    t.context.browser = await openBrowser(global.chromePath)
   })
 
   newTest.afterEach.always(async t => {

@@ -1,12 +1,16 @@
 /* @flow */
 import test from 'ava'
-import { findProcess, waitForProcess } from 'puppet-strings/test/helpers'
+import {
+  findProcess,
+  waitForProcess,
+  withChromePath
+} from 'puppet-strings/test/helpers'
 import { openBrowser, closeBrowser } from 'puppet-strings'
 
-const chromeCli = process.env.CI ? 'google-chrome' : 'chromium'
+withChromePath()
 
 test('closing a browser', async t => {
-  const browser = await openBrowser(chromeCli)
+  const browser = await openBrowser(global.chromePath)
   const {
     puppeteer: { browser: puppeteerBrowser }
   } = browser

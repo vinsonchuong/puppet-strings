@@ -7037,7 +7037,22 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer-core@>=1.17.0:
+puppet-strings-chrome@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/puppet-strings-chrome/-/puppet-strings-chrome-1.3.0.tgz#aff21471cebba5a53cc23e15a947269f04c92100"
+  integrity sha512-Rv+FR8Cs+Xn+dgbggZxPPDP8SPRN9SZG8ylIbldwQaGMDX6HGTOs8PIg7aE2Q0wap8fFIUzhXQiRCIIGxNNg2Q==
+  dependencies:
+    puppet-strings ">=3.1.1"
+    puppeteer-core ">=1.17.0"
+
+puppet-strings@>=3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/puppet-strings/-/puppet-strings-3.1.1.tgz#55ac11f604e7bb5321cb37612ac66d8af3985888"
+  integrity sha512-YCSokChd1BzWMj9Sb3YHHLW71chztrC/KL7eoXe4iipXiDqKGtd4tPp57hj7I721I2HTJdr7OuI/xn9Q6jsbGg==
+  dependencies:
+    puppeteer-core ">=1.15.0"
+
+puppeteer-core@>=1.15.0, puppeteer-core@>=1.17.0:
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-1.17.0.tgz#c3e58c52cdfc5e03b6946c7a6f48cc21d32a05f0"
   integrity sha512-3Em/zPGO9Y6PVxiIBCEUiCXhKLyNfyuEIDP7OO5ZEG1N/XNaeoDCIGUsJSUqXMe+kdPQITsJjvw0/7pyecjL4w==

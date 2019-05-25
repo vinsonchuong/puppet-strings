@@ -1,6 +1,10 @@
 /* @flow */
 import ava from 'ava'
-import { withDirectory, writeFile } from 'puppet-strings/test/helpers'
+import {
+  withDirectory,
+  writeFile,
+  withChromePath
+} from 'puppet-strings/test/helpers'
 import {
   openBrowser,
   closeBrowser,
@@ -9,13 +13,12 @@ import {
   findElement
 } from 'puppet-strings'
 
+withChromePath()
 const test = withDirectory(ava)
-
-const chromeCli = process.env.CI ? 'google-chrome' : 'chromium'
 
 test('listing the currently open tabs', async t => {
   const { directory } = t.context
-  const browser = await openBrowser(chromeCli)
+  const browser = await openBrowser(global.chromePath)
 
   const onePath = await writeFile(
     directory,
