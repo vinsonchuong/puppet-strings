@@ -36,6 +36,10 @@ run()
 `openBrowser` is known to work with the latest stable version of Chromium or
 Google Chrome, as well as recent versions of Electron.
 
+As an alternative,
+[`openChrome()`](https://github.com/vinsonchuong/puppet-strings-chrome)
+can search for or download a suitable version of Chrome automatically.
+
 ### Headless by Default
 By default, the browser is launched in headless mode, which disables its
 graphical interface. Running headless is useful for eliminating interference
