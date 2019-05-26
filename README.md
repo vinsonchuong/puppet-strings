@@ -38,13 +38,6 @@ run()
 
 ### Installation
 
-#### Supported Versions of Node.js
-`puppet-strings` is only tested against the latest `Current` and `LTS` versions
-of [Node.js](https://nodejs.org/en/).
-
-Please ensure that your Node.js installation is up-to-date, and, if necessary,
-[upgrade your installation](https://nodejs.org/en/download/package-manager/).
-
 #### npm Package
 Install [puppet-strings](https://yarnpkg.com/en/package/puppet-strings)
 by running
