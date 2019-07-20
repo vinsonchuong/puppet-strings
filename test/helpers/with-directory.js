@@ -1,4 +1,4 @@
-/* eslint-disable flowtype/no-weak-types */
+/* eslint-disable flowtype/no-weak-types,ava/no-import-test-files */
 /* @flow */
 import type { TestInterface } from 'ava'
 import { createTemporaryDirectory, deleteFile } from './'
