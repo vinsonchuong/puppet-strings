@@ -15,7 +15,7 @@ run()
 ```
 
 ## Parameters
-* `tab` ([Promise<Tab>](../../interface#tab-object))
+* `tab` ([Tab](../../interface#tab-object))
 
 ## Returns
 * `promise` (Promise<void>)
