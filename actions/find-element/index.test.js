@@ -135,7 +135,10 @@ test('failing to find an element', async t => {
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)
-  await t.throwsAsync(findElement(tab, 'p'), 'Could not find element')
+  await t.throwsAsync(
+    findElement(tab, 'p'),
+    'Could not find element with selector "p"'
+  )
 })
 
 test('finding an element containing text', async t => {
@@ -175,7 +178,7 @@ test('failing to find an element containing text', async t => {
   const tab = await openTab(browser, `file://${htmlPath}`)
   await t.throwsAsync(
     findElement(tab, 'p', 'Other Stuff'),
-    'Could not find element'
+    'Could not find element with selector "p" and text "Other Stuff"'
   )
 })
 
@@ -221,7 +224,10 @@ test('failing to find an element after 5 seconds', async t => {
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)
-  await t.throwsAsync(findElement(tab, 'p'), 'Could not find element')
+  await t.throwsAsync(
+    findElement(tab, 'p'),
+    'Could not find element with selector "p"'
+  )
 })
 
 test('waiting a custom amount of time for an element to appear', async t => {

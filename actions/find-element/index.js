@@ -53,6 +53,10 @@ export default async function(
       puppeteer: { browser, page, frame, elementHandle }
     }
   } catch (error) {
-    throw new Error('Could not find element')
+    throw new Error(
+      `Could not find element with selector "${selector}"${
+        text ? ` and text "${text}"` : ''
+      }`
+    )
   }
 }
