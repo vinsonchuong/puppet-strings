@@ -16,22 +16,22 @@
     "prepack": "build-esm"
   },
   "dependencies": {
-    "puppeteer-core": ">=1.19.0"
+    "puppeteer-core": ">=2.0.0"
   },
   "devDependencies": {
-    "ava": "^2.3.0",
+    "ava": "^2.4.0",
     "build-esm": "^4.2.2",
     "dedent": "^0.7.0",
-    "flow-bin": "^0.106.3",
-    "flow-typed": "^2.6.1",
+    "flow-bin": "^0.115.0",
+    "flow-typed": "^2.6.2",
     "fs-extra": "^8.1.0",
     "get-stream": "^5.1.0",
-    "overdub": "^2.5.1",
+    "overdub": "^2.5.2",
     "ps-list": "^6.3.0",
     "puppet-strings-chrome": "^1.3.0",
-    "semantic-release": "^15.13.24",
+    "semantic-release": "^16.0.1",
     "sidelifter": "^1.3.0",
-    "standard-esnext": "^5.3.3",
+    "standard-esnext": "^5.3.5",
     "tempy": "^0.3.0"
   },
   "ava": {

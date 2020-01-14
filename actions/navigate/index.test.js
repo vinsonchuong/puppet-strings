@@ -26,8 +26,7 @@ test('allowing the navigation timeout to be set', async t => {
   try {
     await navigate(tab, 'http://127.0.0.1:10101', { timeout: 1000 })
   } catch (error) {
-    t.regex(error.message, /Navigation Timeout/)
-    t.regex(error.message, /1000ms/)
+    t.regex(error.message, /Navigation timeout of 1000 ms/)
   } finally {
     server.close()
   }

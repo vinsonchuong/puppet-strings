@@ -40,8 +40,7 @@ test('allowing the navigation timeout to be set', async t => {
   try {
     await openTab(browser, 'http://127.0.0.1:10001', { timeout: 1000 })
   } catch (error) {
-    t.regex(error.message, /Navigation Timeout/)
-    t.regex(error.message, /1000ms/)
+    t.regex(error.message, /Navigation timeout of 1000 ms/)
   } finally {
     server.close()
   }
@@ -112,7 +111,7 @@ test('failing to navigate due to the server not responding', async t => {
     await openTab(browser, 'http://127.0.0.1:10000')
   } catch (error) {
     t.regex(error.message, /Failed to navigate/)
-    t.regex(error.message, /Navigation Timeout/)
+    t.regex(error.message, /Navigation timeout/)
   } finally {
     server.close()
   }
