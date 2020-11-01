@@ -14,11 +14,8 @@ jobs:
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-yarn-
-    - run: Xvfb :99 -screen 0 1600x900 &>/dev/null &
     - run: yarn
-    - run: yarn test
-      env:
-        DISPLAY: :99.0
+    - run: xvfb-run yarn test
     - if: github.ref == 'refs/heads/master'
       run: yarn release
       env:
