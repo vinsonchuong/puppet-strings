@@ -1,17 +1,16 @@
-/* @flow */
-import ava from 'ava'
+import test from 'ava'
 import {
   withChromePerTest,
   withDirectory,
   writeFile
-} from 'puppet-strings/test/helpers'
-import { openTab, closeTab } from 'puppet-strings'
+} from '../../test/helpers/index.js'
+import {openTab, closeTab} from '../../index.js'
 
-const ava2 = withDirectory(ava)
-const test = withChromePerTest(ava2)
+withDirectory(test)
+withChromePerTest(test)
 
-test('closing tabs', async t => {
-  const { browser, directory } = t.context
+test('closing tabs', async (t) => {
+  const {browser, directory} = t.context
 
   const filePath = await writeFile(
     directory,

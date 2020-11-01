@@ -1,25 +1,11 @@
-/* @flow */
-import type { Browser, Tab } from 'puppet-strings'
-import { navigate } from 'puppet-strings'
-import { makeTab } from 'puppet-strings/wrappers'
+import {navigate} from '../../index.js'
+import {makeTab} from '../../wrappers/index.js'
 
-type Options = {
-  timeout: number
-}
-
-export default async function(
-  { puppeteer: { browser } }: Browser,
-  url: string,
-  options: ?Options
-): Promise<Tab> {
+export default async function ({puppeteer: {browser}}, url, options) {
   const page = await browser.newPage()
   const tab = makeTab(browser, page)
 
-  if (options) {
-    await navigate(tab, url, options)
-  } else {
-    await navigate(tab, url)
-  }
+  await (options ? navigate(tab, url, options) : navigate(tab, url))
 
   return tab
 }

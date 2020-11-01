@@ -1,24 +1,19 @@
-/* @flow */
-import ava from 'ava'
-import {
-  withChrome,
-  withDirectory,
-  writeFile
-} from 'puppet-strings/test/helpers'
+import test from 'ava'
+import {withChrome, withDirectory, writeFile} from '../../test/helpers/index.js'
 import {
   openTab,
   findElement,
   clickElement,
   evalInTab,
   waitForNavigation
-} from 'puppet-strings'
+} from '../../index.js'
 
-withChrome()
-const test = withDirectory(ava)
+withChrome(test)
+withDirectory(test)
 
-test('waiting for a page load to complete', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('waiting for a page load to complete', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const indexPath = await writeFile(
     directory,

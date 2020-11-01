@@ -1,10 +1,6 @@
-/* @flow */
-import type { Browser, Page } from 'puppeteer-core'
-import type { Tab } from 'puppet-strings'
-
-export default function(browser: Browser, page: Page): Tab {
+export default function (browser, page) {
   const consoleMessages = []
-  page.on('console', consoleMessage => {
+  page.on('console', (consoleMessage) => {
     consoleMessages.push({
       type: consoleMessage.type(),
       message: consoleMessage.text()
@@ -12,12 +8,12 @@ export default function(browser: Browser, page: Page): Tab {
   })
 
   const errors = []
-  page.on('pageerror', error => {
+  page.on('pageerror', (error) => {
     errors.push(error.message)
   })
 
   return {
-    puppeteer: { browser, page },
+    puppeteer: {browser, page},
     console: consoleMessages,
     errors
   }

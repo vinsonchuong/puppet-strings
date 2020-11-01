@@ -1,6 +1,5 @@
-/* @flow */
-export * from './with-browser'
-export { default as withDirectory } from './with-directory'
+export * from './with-browser.js'
+export {default as withDirectory} from './with-directory.js'
 
-export { createTemporaryDirectory, deleteFile, writeFile } from './file-system'
-export { run, findProcess, waitForProcess } from './processes'
+export {createTemporaryDirectory, deleteFile, writeFile} from './file-system.js'
+export {findProcess, waitForProcess} from './processes.js'

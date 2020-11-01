@@ -1,10 +1,6 @@
-/* @flow */
-import type { Browser, Tab } from 'puppet-strings'
-import { makeTab } from 'puppet-strings/wrappers'
+import {makeTab} from '../../wrappers/index.js'
 
-export default async function({
-  puppeteer: { browser }
-}: Browser): Promise<Array<Tab>> {
+export default async function ({puppeteer: {browser}}) {
   const pages = await browser.pages()
-  return pages.map(page => makeTab(browser, page))
+  return pages.map((page) => makeTab(browser, page))
 }

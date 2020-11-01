@@ -1,15 +1,4 @@
-/* @flow */
-import type { Tab } from 'puppet-strings'
-
-type Options = {
-  timeout: number
-}
-
-export default async function(
-  { puppeteer: { page } }: Tab,
-  url: string,
-  options: Options = {}
-): Promise<void> {
+export default async function ({puppeteer: {page}}, url, options = {}) {
   try {
     await page.goto(url, {
       waitUntil: ['load', 'domcontentloaded', 'networkidle0'],

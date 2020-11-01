@@ -1,18 +1,17 @@
-/* @flow */
 import test from 'ava'
 import {
   findProcess,
   waitForProcess,
   withChromePath
-} from 'puppet-strings/test/helpers'
-import { openBrowser, closeBrowser } from 'puppet-strings'
+} from '../../test/helpers/index.js'
+import {openBrowser, closeBrowser} from '../../index.js'
 
-withChromePath()
+withChromePath(test)
 
-test('closing a browser', async t => {
+test('closing a browser', async (t) => {
   const browser = await openBrowser(global.chromePath)
   const {
-    puppeteer: { browser: puppeteerBrowser }
+    puppeteer: {browser: puppeteerBrowser}
   } = browser
 
   t.truthy(await waitForProcess(puppeteerBrowser.process()))

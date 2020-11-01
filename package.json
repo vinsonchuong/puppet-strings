@@ -1,6 +1,6 @@
 {
   "name": "puppet-strings",
-  "version": "0.0.5",
+  "version": "0.0.0",
   "description": "A better interface for common browser automation workflows",
   "keywords": [],
   "homepage": "https://github.com/vinsonchuong/puppet-strings",
@@ -8,41 +8,42 @@
   "license": "MIT",
   "author": "Vinson Chuong <vinsonchuong@gmail.com>",
   "main": "./index.js",
+  "type": "module",
   "repository": "vinsonchuong/puppet-strings",
   "scripts": {
-    "prepare": "flow-typed update --skip",
-    "test": "standard -v --fix && flow && ava -v",
-    "release": "semantic-release",
-    "prepack": "build-esm"
+    "test": "xo && ava",
+    "release": "semantic-release"
   },
   "dependencies": {
-    "puppeteer-core": ">=2.0.0"
+    "puppeteer-core": ">=5.4.1"
   },
   "devDependencies": {
-    "ava": "^2.4.0",
-    "build-esm": "^4.2.2",
+    "ava": "^3.13.0",
     "dedent": "^0.7.0",
-    "flow-bin": "^0.115.0",
-    "flow-typed": "^2.6.2",
-    "fs-extra": "^8.1.0",
-    "get-stream": "^5.1.0",
-    "overdub": "^2.5.2",
-    "ps-list": "^6.3.0",
+    "fs-extra": "^9.0.1",
+    "get-stream": "^6.0.0",
+    "ps-list": "^7.2.0",
     "puppet-strings-chrome": "^1.3.0",
-    "semantic-release": "^16.0.1",
-    "sidelifter": "^1.3.0",
-    "standard-esnext": "^5.3.5",
-    "tempy": "^0.3.0"
+    "semantic-release": "^17.2.2",
+    "sidelifter": "^2.0.0",
+    "tempy": "^1.0.0",
+    "xo": "^0.34.1"
   },
   "ava": {
-    "helpers": [
-      "test/helpers/**/*"
-    ],
-    "require": "overdub/register",
-    "babel": {
-      "testOptions": {
-        "extends": "overdub/babel"
-      }
+    "verbose": true,
+    "timeout": "10m"
+  },
+  "xo": {
+    "prettier": true,
+    "space": 2,
+    "semicolon": false,
+    "rules": {
+      "ava/no-import-test-files": "off",
+      "import/extensions": "off",
+      "import/no-anonymous-default-export": "off",
+      "import/no-useless-path-segments": "off",
+      "unicorn/import-index": "off",
+      "unicorn/prefer-text-content": "off"
     }
   }
 }

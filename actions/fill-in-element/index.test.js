@@ -1,18 +1,13 @@
-/* @flow */
-import ava from 'ava'
-import {
-  withChrome,
-  withDirectory,
-  writeFile
-} from 'puppet-strings/test/helpers'
-import { openTab, findElement, fillInElement } from 'puppet-strings'
+import test from 'ava'
+import {withChrome, withDirectory, writeFile} from '../../test/helpers/index.js'
+import {openTab, findElement, fillInElement} from '../../index.js'
 
-withChrome()
-const test = withDirectory(ava)
+withChrome(test)
+withDirectory(test)
 
-test('filling in an element', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('filling in an element', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -32,9 +27,9 @@ test('filling in an element', async t => {
   t.is((await findElement(tab, 'span')).innerText, 'Hello')
 })
 
-test('filling in an element in an iframe', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('filling in an element in an iframe', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,

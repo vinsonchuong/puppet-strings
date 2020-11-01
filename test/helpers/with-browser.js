@@ -1,19 +1,15 @@
-/* @flow */
-/* eslint-disable flowtype/no-weak-types */
-import type { TestInterface } from 'ava'
-import type { Browser } from 'puppet-strings'
-import test from 'ava'
-import { findChrome, downloadChrome } from 'puppet-strings-chrome'
-import { openBrowser, closeBrowser } from 'puppet-strings'
+import chrome from 'puppet-strings-chrome'
+import {openBrowser, closeBrowser} from '../../index.js'
 
-export function withChromePath() {
+export function withChromePath(test) {
   test.serial.before(async () => {
-    global.chromePath = (await findChrome()) || (await downloadChrome())
+    global.chromePath =
+      (await chrome.findChrome()) || (await chrome.downloadChrome())
   })
 }
 
-export function withChrome() {
-  withChromePath()
+export function withChrome(test) {
+  withChromePath(test)
 
   test.serial.before(async () => {
     global.browser = await openBrowser(global.chromePath)
@@ -26,25 +22,16 @@ export function withChrome() {
   })
 }
 
-export function withChromePerTest<Context: {}>(
-  test: TestInterface<Context>
-): TestInterface<{ ...$Exact<Context>, browser: Browser }> {
-  const newTest: TestInterface<{
-    ...$Exact<Context>,
-    browser: Browser
-  }> = (test: any)
+export function withChromePerTest(test) {
+  withChromePath(test)
 
-  withChromePath()
-
-  newTest.beforeEach(async t => {
+  test.beforeEach(async (t) => {
     t.context.browser = await openBrowser(global.chromePath)
   })
 
-  newTest.afterEach.always(async t => {
+  test.afterEach.always(async (t) => {
     if (t.context.browser) {
       await closeBrowser(t.context.browser)
     }
   })
-
-  return newTest
 }

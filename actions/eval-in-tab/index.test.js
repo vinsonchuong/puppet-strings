@@ -1,18 +1,13 @@
-/* @flow */
-import ava from 'ava'
-import {
-  withChrome,
-  withDirectory,
-  writeFile
-} from 'puppet-strings/test/helpers'
-import { openTab, evalInTab } from 'puppet-strings'
+import test from 'ava'
+import {withChrome, withDirectory, writeFile} from '../../test/helpers/index.js'
+import {openTab, evalInTab} from '../../index.js'
 
-withChrome()
-const test = withDirectory(ava)
+withChrome(test)
+withDirectory(test)
 
-test('executing code within the browser', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('executing code within the browser', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const filePath = await writeFile(
     directory,
@@ -36,9 +31,9 @@ test('executing code within the browser', async t => {
   t.is(text, 'Hello World!')
 })
 
-test('propagating error messages', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('propagating error messages', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const filePath = await writeFile(
     directory,
@@ -51,8 +46,7 @@ test('propagating error messages', async t => {
   )
   const tab = await openTab(browser, `file://${filePath}`)
 
-  await t.throwsAsync(
-    evalInTab(tab, [], 'throw new Error("Error Message")'),
-    /Error: Error Message/
-  )
+  await t.throwsAsync(evalInTab(tab, [], 'throw new Error("Error Message")'), {
+    message: /Error: Error Message/
+  })
 })

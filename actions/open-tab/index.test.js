@@ -1,18 +1,17 @@
-/* @flow */
-import ava from 'ava'
+import test from 'ava'
 import {
   withChromePerTest,
   withDirectory,
   writeFile
-} from 'puppet-strings/test/helpers'
+} from '../../test/helpers/index.js'
 import * as http from 'http'
-import { openTab } from 'puppet-strings'
+import {openTab} from '../../index.js'
 
-const ava2 = withDirectory(ava)
-const test = withChromePerTest(ava2)
+withDirectory(test)
+withChromePerTest(test)
 
-test('opening tabs', async t => {
-  const { browser, directory } = t.context
+test('opening tabs', async (t) => {
+  const {browser, directory} = t.context
 
   const filePath = await writeFile(
     directory,
@@ -32,13 +31,13 @@ test('opening tabs', async t => {
   t.is((await browser.puppeteer.browser.pages()).length, 2)
 })
 
-test('allowing the navigation timeout to be set', async t => {
-  const { browser } = t.context
-  const server = http.createServer((request, response) => {})
+test('allowing the navigation timeout to be set', async (t) => {
+  const {browser} = t.context
+  const server = http.createServer(() => {})
   server.listen(10001)
 
   try {
-    await openTab(browser, 'http://127.0.0.1:10001', { timeout: 1000 })
+    await openTab(browser, 'http://127.0.0.1:10001', {timeout: 1000})
   } catch (error) {
     t.regex(error.message, /Navigation timeout of 1000 ms/)
   } finally {
@@ -46,8 +45,8 @@ test('allowing the navigation timeout to be set', async t => {
   }
 })
 
-test('collecting console messages', async t => {
-  const { browser, directory } = t.context
+test('collecting console messages', async (t) => {
+  const {browser, directory} = t.context
 
   const filePath = await writeFile(
     directory,
@@ -65,13 +64,13 @@ test('collecting console messages', async t => {
   const tab = await openTab(browser, `file://${filePath}`)
 
   t.deepEqual(tab.console, [
-    { type: 'log', message: 'Hello' },
-    { type: 'error', message: 'There' }
+    {type: 'log', message: 'Hello'},
+    {type: 'error', message: 'There'}
   ])
 })
 
-test('collecting uncaught exceptions', async t => {
-  const { browser, directory } = t.context
+test('collecting uncaught exceptions', async (t) => {
+  const {browser, directory} = t.context
 
   const filePath = await writeFile(
     directory,
@@ -91,8 +90,8 @@ test('collecting uncaught exceptions', async t => {
   t.regex(tab.errors[0], /Error: Hello/)
 })
 
-test('failing to navigate due to a connection refused', async t => {
-  const { browser } = t.context
+test('failing to navigate due to a connection refused', async (t) => {
+  const {browser} = t.context
 
   try {
     await openTab(browser, 'http://127.0.0.1:65500')
@@ -102,9 +101,9 @@ test('failing to navigate due to a connection refused', async t => {
   }
 })
 
-test('failing to navigate due to the server not responding', async t => {
-  const { browser } = t.context
-  const server = http.createServer((request, response) => {})
+test('failing to navigate due to the server not responding', async (t) => {
+  const {browser} = t.context
+  const server = http.createServer(() => {})
   server.listen(10000)
 
   try {

@@ -1,20 +1,13 @@
-/* @flow */
 import test from 'ava'
-import * as path from 'path'
-import { startContainer, removeContainer } from 'sidelifter'
+import {startContainer, removeContainer} from 'sidelifter'
 import getStream from 'get-stream'
-import { run } from 'puppet-strings/test/helpers'
 import dedent from 'dedent'
 
-test.before(async () => {
-  await run('yarn build-esm')
-})
-
-test('starting Chrome in a Docker container with Chrome pre-installed', async t => {
+test('starting Chrome in a Docker container with Chrome pre-installed', async (t) => {
   const container = await startContainer({
     image: 'vinsonchuong/javascript:latest',
     mount: {
-      [path.resolve('dist')]: '/root/puppet-strings'
+      [process.cwd()]: '/root/puppet-strings'
     },
     cmd: [
       '/bin/bash',
@@ -22,8 +15,8 @@ test('starting Chrome in a Docker container with Chrome pre-installed', async t 
       dedent`
         cd /root
 
-        cat <<JS > index.js
-        const { openBrowser } = require('puppet-strings')
+        cat <<JS > index.mjs
+        import {openBrowser} from 'puppet-strings'
         async function run() {
           const { puppeteer: { browser } } = await openBrowser('google-chrome')
           const page = await browser.newPage()
@@ -34,23 +27,24 @@ test('starting Chrome in a Docker container with Chrome pre-installed', async t 
         run()
         JS
 
-        yarn add --dev ./puppet-strings &> /dev/null
-        node index.js
+        yarn add --dev link:./puppet-strings &>/dev/null
+        node index.mjs
         `
     ]
+  })
+  t.teardown(async () => {
+    await removeContainer(container)
   })
 
   const output = await getStream(container.stdout)
   t.true(output.includes('Example Domain'))
-
-  await removeContainer(container)
 })
 
-test('starting Chrome in a Debian Docker container without Chrome pre-installed', async t => {
+test('starting Chrome in a Debian Docker container without Chrome pre-installed', async (t) => {
   const container = await startContainer({
     image: 'node:latest',
     mount: {
-      [path.resolve('dist')]: '/root/puppet-strings'
+      [process.cwd()]: '/root/puppet-strings'
     },
     cmd: [
       '/bin/bash',
@@ -63,8 +57,8 @@ test('starting Chrome in a Debian Docker container without Chrome pre-installed'
         apt-get update -yq
         apt-get install -yq google-chrome-stable
 
-        cat <<JS > index.js
-        const { openBrowser } = require('puppet-strings')
+        cat <<JS > index.mjs
+        import { openBrowser } from 'puppet-strings'
         async function run() {
           const { puppeteer: { browser } } = await openBrowser('google-chrome')
           const page = await browser.newPage()
@@ -75,14 +69,15 @@ test('starting Chrome in a Debian Docker container without Chrome pre-installed'
         run()
         JS
 
-        yarn add --dev ./puppet-strings &> /dev/null
-        node index.js
+        yarn add --dev link:./puppet-strings &> /dev/null
+        node index.mjs
         `
     ]
+  })
+  t.teardown(async () => {
+    await removeContainer(container)
   })
 
   const output = await getStream(container.stdout)
   t.true(output.includes('Example Domain'))
-
-  await removeContainer(container)
 })

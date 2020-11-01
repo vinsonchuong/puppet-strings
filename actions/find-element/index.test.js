@@ -1,18 +1,13 @@
-/* @flow */
-import ava from 'ava'
-import {
-  withChrome,
-  withDirectory,
-  writeFile
-} from 'puppet-strings/test/helpers'
-import { openTab, findElement } from 'puppet-strings'
+import test from 'ava'
+import {withChrome, withDirectory, writeFile} from '../../test/helpers/index.js'
+import {openTab, findElement} from '../../index.js'
 
-withChrome()
-const test = withDirectory(ava)
+withChrome(test)
+withDirectory(test)
 
-test('finding an element', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('finding an element', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -29,9 +24,9 @@ test('finding an element', async t => {
   t.is(element.innerText, 'Hello World!')
 })
 
-test('finding an invisible element', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('finding an invisible element', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -53,9 +48,9 @@ test('finding an invisible element', async t => {
   t.true(element !== null)
 })
 
-test('finding an element in an iframe', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('finding an element in an iframe', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -82,9 +77,9 @@ test('finding an element in an iframe', async t => {
   t.is(element.innerText, 'Hello World!')
 })
 
-test('finding an element in a nested iframe', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('finding an element in a nested iframe', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -121,9 +116,9 @@ test('finding an element in a nested iframe', async t => {
   t.is(element.innerText, 'Hello World!')
 })
 
-test('failing to find an element', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('failing to find an element', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -135,15 +130,14 @@ test('failing to find an element', async t => {
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)
-  await t.throwsAsync(
-    findElement(tab, 'p'),
-    'Could not find element with selector "p"'
-  )
+  await t.throwsAsync(findElement(tab, 'p'), {
+    message: 'Could not find element with selector "p"'
+  })
 })
 
-test('finding an element containing text', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('finding an element containing text', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -161,9 +155,9 @@ test('finding an element containing text', async t => {
   t.is(element.innerText, 'Other Stuff')
 })
 
-test('failing to find an element containing text', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('failing to find an element containing text', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -176,15 +170,14 @@ test('failing to find an element containing text', async t => {
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)
-  await t.throwsAsync(
-    findElement(tab, 'p', 'Other Stuff'),
-    'Could not find element with selector "p" and text "Other Stuff"'
-  )
+  await t.throwsAsync(findElement(tab, 'p', 'Other Stuff'), {
+    message: 'Could not find element with selector "p" and text "Other Stuff"'
+  })
 })
 
-test('waiting for an element to appear', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('waiting for an element to appear', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -205,9 +198,9 @@ test('waiting for an element to appear', async t => {
   t.is(element.innerText, 'Hello World!')
 })
 
-test('failing to find an element after 5 seconds', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('failing to find an element after 5 seconds', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -224,15 +217,14 @@ test('failing to find an element after 5 seconds', async t => {
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)
-  await t.throwsAsync(
-    findElement(tab, 'p'),
-    'Could not find element with selector "p"'
-  )
+  await t.throwsAsync(findElement(tab, 'p'), {
+    message: 'Could not find element with selector "p"'
+  })
 })
 
-test('waiting a custom amount of time for an element to appear', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('waiting a custom amount of time for an element to appear', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,
@@ -249,6 +241,6 @@ test('waiting a custom amount of time for an element to appear', async t => {
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)
-  const element = await findElement(tab, 'p', null, { timeout: 7000 })
+  const element = await findElement(tab, 'p', null, {timeout: 7000})
   t.is(element.innerText, 'Hello World!')
 })

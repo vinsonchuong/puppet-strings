@@ -1,18 +1,13 @@
-/* @flow */
-import ava from 'ava'
-import {
-  withChrome,
-  withDirectory,
-  writeFile
-} from 'puppet-strings/test/helpers'
-import { openTab, findElement, clickElement } from 'puppet-strings'
+import test from 'ava'
+import {withChrome, withDirectory, writeFile} from '../../test/helpers/index.js'
+import {openTab, findElement, clickElement} from '../../index.js'
 
-withChrome()
-const test = withDirectory(ava)
+withChrome(test)
+withDirectory(test)
 
-test('clicking an element', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('clicking an element', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const htmlPath = await writeFile(
     directory,

@@ -1,15 +1,6 @@
-/* @flow */
-import type { Browser } from 'puppet-strings'
-// $FlowFixMe
 import puppeteer from 'puppeteer-core'
 
-export default async function(
-  executablePath: string,
-  options: {
-    flags?: Array<string>,
-    headless?: boolean
-  } = {}
-): Promise<Browser> {
+export default async function (executablePath, options = {}) {
   const browser = await puppeteer.launch({
     executablePath,
     headless: 'headless' in options ? options.headless : true,
@@ -26,5 +17,5 @@ export default async function(
   const pages = await browser.pages()
   await pages[0].close()
 
-  return { puppeteer: { browser } }
+  return {puppeteer: {browser}}
 }

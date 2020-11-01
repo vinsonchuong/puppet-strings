@@ -1,6 +1,3 @@
-/* @flow */
-import type { Tab } from 'puppet-strings'
-
-export default async function({ puppeteer: { page } }: Tab): Promise<void> {
+export default async function ({puppeteer: {page}}) {
   await page.close()
 }

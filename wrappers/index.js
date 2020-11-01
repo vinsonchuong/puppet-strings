@@ -1,2 +1,1 @@
-/* @flow */
-export { default as makeTab } from './make-tab'
+export {default as makeTab} from './make-tab.js'

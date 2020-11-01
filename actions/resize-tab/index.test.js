@@ -1,18 +1,13 @@
-/* @flow */
-import ava from 'ava'
-import {
-  withChrome,
-  withDirectory,
-  writeFile
-} from 'puppet-strings/test/helpers'
-import { openTab, resizeTab, evalInTab } from 'puppet-strings'
+import test from 'ava'
+import {withChrome, withDirectory, writeFile} from '../../test/helpers/index.js'
+import {openTab, resizeTab, evalInTab} from '../../index.js'
 
-withChrome()
-const test = withDirectory(ava)
+withChrome(test)
+withDirectory(test)
 
-test('resizing the viewport of a tab', async t => {
-  const { browser } = global
-  const { directory } = t.context
+test('resizing the viewport of a tab', async (t) => {
+  const {browser} = global
+  const {directory} = t.context
 
   const filePath = await writeFile(
     directory,

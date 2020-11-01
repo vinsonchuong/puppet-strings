@@ -1,13 +1,7 @@
-/* @flow */
-/* eslint-disable no-new-func */
-import type { Element } from 'puppet-strings'
-
-export default async function(
-  { puppeteer: { frame, elementHandle } }: Element,
-  text: string
-): Promise<void> {
+export default async function ({puppeteer: {frame, elementHandle}}, text) {
   await elementHandle.type(text)
   await frame.evaluate(
+    // eslint-disable-next-line no-new-func
     new Function(`
       const [element] = arguments
       element.blur()

@@ -1,8 +1,3 @@
-/* @flow */
-import type { Element } from 'puppet-strings'
-
-export default async function({
-  puppeteer: { elementHandle }
-}: Element): Promise<void> {
+export default async function ({puppeteer: {elementHandle}}) {
   await elementHandle.click()
 }

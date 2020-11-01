@@ -1,23 +1,22 @@
-/* @flow */
-import ava from 'ava'
+import test from 'ava'
 import {
   withDirectory,
   writeFile,
   withChromePath
-} from 'puppet-strings/test/helpers'
+} from '../../test/helpers/index.js'
 import {
   openBrowser,
   closeBrowser,
   openTab,
   getTabs,
   findElement
-} from 'puppet-strings'
+} from '../../index.js'
 
-withChromePath()
-const test = withDirectory(ava)
+withChromePath(test)
+withDirectory(test)
 
-test('listing the currently open tabs', async t => {
-  const { directory } = t.context
+test('listing the currently open tabs', async (t) => {
+  const {directory} = t.context
   const browser = await openBrowser(global.chromePath)
 
   const onePath = await writeFile(
