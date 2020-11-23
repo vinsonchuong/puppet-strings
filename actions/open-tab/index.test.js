@@ -97,7 +97,6 @@ test('failing to navigate due to a connection refused', async (t) => {
     await openTab(browser, 'http://127.0.0.1:65500')
   } catch (error) {
     t.regex(error.message, /Failed to navigate/)
-    t.regex(error.message, /net::ERR_CONNECTION_REFUSED/)
   }
 })
 
