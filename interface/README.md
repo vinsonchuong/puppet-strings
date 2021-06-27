@@ -29,6 +29,7 @@ enables each browser tab to be automated concurrently.
 #### `Element` (Object)
 * `attributes` (Map<string, string>)
 * `innerText` (string)
+* `textContent` (string)
 * `outerHTML` (string)
 * `puppeteer` (Object)
   * `browser` ([PuppeteerBrowser](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#class-browser))
