@@ -44,8 +44,8 @@ test('listing the currently open tabs', async (t) => {
 
   const tabs = await getTabs(browser)
   t.is(tabs.length, 2)
-  t.is((await findElement(tabs[0], 'div')).innerText, 'One')
-  t.is((await findElement(tabs[1], 'div')).innerText, 'Two')
+  t.is((await findElement(tabs[0], 'div')).textContent, 'One')
+  t.is((await findElement(tabs[1], 'div')).textContent, 'Two')
 
   await closeBrowser(browser)
 })

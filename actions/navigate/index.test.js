@@ -1,5 +1,5 @@
+import * as http from 'node:http'
 import test from 'ava'
-import * as http from 'http'
 import {withChrome} from '../../test/helpers/index.js'
 import {openTab, navigate, findElement} from '../../index.js'
 
@@ -20,7 +20,7 @@ test('allowing the navigation timeout to be set', async (t) => {
   const tab = await openTab(browser, 'http://example.com')
 
   const server = http.createServer(() => {})
-  server.listen(10101)
+  server.listen(10_101)
 
   try {
     await navigate(tab, 'http://127.0.0.1:10101', {timeout: 1000})

@@ -1,10 +1,10 @@
+import * as http from 'node:http'
 import test from 'ava'
 import {
   withChromePerTest,
   withDirectory,
   writeFile
 } from '../../test/helpers/index.js'
-import * as http from 'http'
 import {openTab} from '../../index.js'
 
 withDirectory(test)
@@ -34,7 +34,7 @@ test('opening tabs', async (t) => {
 test('allowing the navigation timeout to be set', async (t) => {
   const {browser} = t.context
   const server = http.createServer(() => {})
-  server.listen(10001)
+  server.listen(10_001)
 
   try {
     await openTab(browser, 'http://127.0.0.1:10001', {timeout: 1000})
@@ -103,7 +103,7 @@ test('failing to navigate due to a connection refused', async (t) => {
 test('failing to navigate due to the server not responding', async (t) => {
   const {browser} = t.context
   const server = http.createServer(() => {})
-  server.listen(10000)
+  server.listen(10_000)
 
   try {
     await openTab(browser, 'http://127.0.0.1:10000')

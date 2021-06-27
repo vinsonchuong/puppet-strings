@@ -24,7 +24,7 @@ test('filling in an element', async (t) => {
   const element = await findElement(tab, 'input')
   await fillInElement(element, 'Hello')
 
-  t.is((await findElement(tab, 'span')).innerText, 'Hello')
+  t.is((await findElement(tab, 'span')).textContent, 'Hello')
 })
 
 test('filling in an element in an iframe', async (t) => {
@@ -56,5 +56,5 @@ test('filling in an element in an iframe', async (t) => {
   const element = await findElement(tab, 'input')
   await fillInElement(element, 'Hello')
 
-  t.is((await findElement(tab, 'span')).innerText, 'Hello')
+  t.is((await findElement(tab, 'span')).textContent, 'Hello')
 })

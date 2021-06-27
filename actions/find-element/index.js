@@ -34,6 +34,7 @@ export default async function (tab, selector, text, {timeout = 5000} = {}) {
             {}
           ),
           innerText: element.innerText,
+          textContent: element.textContent,
           outerHTML: element.outerHTML
         }
       `),

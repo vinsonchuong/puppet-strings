@@ -1,5 +1,5 @@
+import path from 'node:path'
 import test from 'ava'
-import path from 'path'
 import {withChrome, withDirectory, writeFile} from '../../test/helpers/index.js'
 import {openTab, findElement, selectFiles} from '../../index.js'
 
@@ -35,5 +35,5 @@ test('selecting files for a file input element', async (t) => {
   await selectFiles(fileInput, htmlPath, path.resolve('package.json'))
 
   const statusText = await findElement(tab, '#statusText')
-  t.is(statusText.innerText, 'index.html, package.json')
+  t.is(statusText.textContent, 'index.html, package.json')
 })

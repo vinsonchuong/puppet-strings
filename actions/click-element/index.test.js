@@ -24,5 +24,5 @@ test('clicking an element', async (t) => {
   const element = await findElement(tab, 'button')
   await clickElement(element)
 
-  t.is((await findElement(tab, 'span')).innerText, 'Clicked')
+  t.is((await findElement(tab, 'span')).textContent, 'Clicked')
 })

@@ -1,10 +1,9 @@
-import chrome from 'puppet-strings-chrome'
+import {findChrome, downloadChrome} from 'puppet-strings-chrome'
 import {openBrowser, closeBrowser} from '../../index.js'
 
 export function withChromePath(test) {
   test.serial.before(async () => {
-    global.chromePath =
-      (await chrome.findChrome()) || (await chrome.downloadChrome())
+    global.chromePath = (await findChrome()) || (await downloadChrome())
   })
 }
 

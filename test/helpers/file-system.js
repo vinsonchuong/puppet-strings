@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'node:path'
 import tempy from 'tempy'
 import fse from 'fs-extra'
 

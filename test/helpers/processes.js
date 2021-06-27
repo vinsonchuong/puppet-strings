@@ -1,4 +1,4 @@
-import {promisify} from 'util'
+import {promisify} from 'node:util'
 import psList from 'ps-list'
 
 const sleep = promisify(setTimeout)

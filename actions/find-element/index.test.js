@@ -21,7 +21,7 @@ test('finding an element', async (t) => {
 
   const tab = await openTab(browser, `file://${htmlPath}`)
   const element = await findElement(tab, 'p')
-  t.is(element.innerText, 'Hello World!')
+  t.is(element.textContent, 'Hello World!')
 })
 
 test('finding an invisible element', async (t) => {
@@ -74,7 +74,7 @@ test('finding an element in an iframe', async (t) => {
 
   const tab = await openTab(browser, `file://${htmlPath}`)
   const element = await findElement(tab, 'p')
-  t.is(element.innerText, 'Hello World!')
+  t.is(element.textContent, 'Hello World!')
 })
 
 test('finding an element in a nested iframe', async (t) => {
@@ -113,7 +113,7 @@ test('finding an element in a nested iframe', async (t) => {
 
   const tab = await openTab(browser, `file://${htmlPath}`)
   const element = await findElement(tab, 'p')
-  t.is(element.innerText, 'Hello World!')
+  t.is(element.textContent, 'Hello World!')
 })
 
 test('failing to find an element', async (t) => {
@@ -152,7 +152,7 @@ test('finding an element containing text', async (t) => {
 
   const tab = await openTab(browser, `file://${htmlPath}`)
   const element = await findElement(tab, 'p', 'Other Stuff')
-  t.is(element.innerText, 'Other Stuff')
+  t.is(element.textContent, 'Other Stuff')
 })
 
 test('failing to find an element containing text', async (t) => {
@@ -195,7 +195,7 @@ test('waiting for an element to appear', async (t) => {
 
   const tab = await openTab(browser, `file://${htmlPath}`)
   const element = await findElement(tab, 'p')
-  t.is(element.innerText, 'Hello World!')
+  t.is(element.textContent, 'Hello World!')
 })
 
 test('failing to find an element after 5 seconds', async (t) => {
@@ -242,5 +242,5 @@ test('waiting a custom amount of time for an element to appear', async (t) => {
 
   const tab = await openTab(browser, `file://${htmlPath}`)
   const element = await findElement(tab, 'p', null, {timeout: 7000})
-  t.is(element.innerText, 'Hello World!')
+  t.is(element.textContent, 'Hello World!')
 })
