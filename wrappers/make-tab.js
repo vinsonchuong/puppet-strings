@@ -3,7 +3,7 @@ export default function (browser, page) {
   page.on('console', (consoleMessage) => {
     consoleMessages.push({
       type: consoleMessage.type(),
-      message: consoleMessage.text()
+      message: consoleMessage.text(),
     })
   })
 
@@ -15,6 +15,6 @@ export default function (browser, page) {
   return {
     puppeteer: {browser, page},
     console: consoleMessages,
-    errors
+    errors,
   }
 }

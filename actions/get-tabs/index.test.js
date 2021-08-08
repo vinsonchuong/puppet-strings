@@ -2,14 +2,14 @@ import test from 'ava'
 import {
   withDirectory,
   writeFile,
-  withChromePath
+  withChromePath,
 } from '../../test/helpers/index.js'
 import {
   openBrowser,
   closeBrowser,
   openTab,
   getTabs,
-  findElement
+  findElement,
 } from '../../index.js'
 
 withChromePath(test)
@@ -26,7 +26,7 @@ test('listing the currently open tabs', async (t) => {
     <!doctype html>
     <meta charset="utf-8">
     <div>One</div>
-    `
+    `,
   )
 
   const twoPath = await writeFile(
@@ -36,7 +36,7 @@ test('listing the currently open tabs', async (t) => {
     <!doctype html>
     <meta charset="utf-8">
     <div>Two</div>
-    `
+    `,
   )
 
   await openTab(browser, `file://${onePath}`)

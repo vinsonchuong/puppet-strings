@@ -15,7 +15,7 @@ test('resizing the viewport of a tab', async (t) => {
     `
     <!doctype html>
     <meta charset="utf-8">
-    `
+    `,
   )
 
   const tab = await openTab(browser, `file://${filePath}`)
@@ -23,12 +23,12 @@ test('resizing the viewport of a tab', async (t) => {
   await resizeTab(tab, 700, 800)
   t.deepEqual(
     await evalInTab(tab, [], 'return [window.innerWidth, window.innerHeight]'),
-    [700, 800]
+    [700, 800],
   )
 
   await resizeTab(tab, 900, 700)
   t.deepEqual(
     await evalInTab(tab, [], 'return [window.innerWidth, window.innerHeight]'),
-    [900, 700]
+    [900, 700],
   )
 })

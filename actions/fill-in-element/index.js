@@ -6,6 +6,6 @@ export default async function ({puppeteer: {frame, elementHandle}}, text) {
       const [element] = arguments
       element.blur()
     `),
-    elementHandle
+    elementHandle,
   )
 }

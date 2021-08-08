@@ -1,3 +1,4 @@
+import process from 'node:process'
 import test from 'ava'
 import {startContainer, removeContainer} from 'sidelifter'
 import getStream from 'get-stream'
@@ -7,7 +8,7 @@ test('starting Chrome in a Docker container with Chrome pre-installed', async (t
   const container = await startContainer({
     image: 'vinsonchuong/javascript:latest',
     mount: {
-      [process.cwd()]: '/root/puppet-strings'
+      [process.cwd()]: '/root/puppet-strings',
     },
     cmd: [
       '/bin/bash',
@@ -29,8 +30,8 @@ test('starting Chrome in a Docker container with Chrome pre-installed', async (t
 
         yarn add --dev link:./puppet-strings &>/dev/null
         node index.mjs
-        `
-    ]
+        `,
+    ],
   })
   t.teardown(async () => {
     await removeContainer(container)
@@ -44,7 +45,7 @@ test('starting Chrome in a Debian Docker container without Chrome pre-installed'
   const container = await startContainer({
     image: 'node:latest',
     mount: {
-      [process.cwd()]: '/root/puppet-strings'
+      [process.cwd()]: '/root/puppet-strings',
     },
     cmd: [
       '/bin/bash',
@@ -71,8 +72,8 @@ test('starting Chrome in a Debian Docker container without Chrome pre-installed'
 
         yarn add --dev link:./puppet-strings &> /dev/null
         node index.mjs
-        `
-    ]
+        `,
+    ],
   })
   t.teardown(async () => {
     await removeContainer(container)

@@ -17,7 +17,7 @@ test('clicking an element', async (t) => {
     <meta charset="utf-8">
     <span id="statusText"></span>
     <button onClick="statusText.textContent = 'Clicked'">Click Here</button>
-  `
+  `,
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)

@@ -17,7 +17,7 @@ test('filling in an element', async (t) => {
     <meta charset="utf-8">
     <span id="statusText"></span>
     <input onChange="statusText.textContent = this.value">
-  `
+  `,
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)
@@ -38,7 +38,7 @@ test('filling in an element in an iframe', async (t) => {
     <!doctype html>
     <meta charset="utf-8">
     <iframe src="frame.html"></iframe>
-  `
+  `,
   )
 
   await writeFile(
@@ -49,7 +49,7 @@ test('filling in an element in an iframe', async (t) => {
     <meta charset="utf-8">
     <span id="statusText"></span>
     <input onChange="statusText.textContent = this.value">
-  `
+  `,
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)

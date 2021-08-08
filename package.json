@@ -15,7 +15,7 @@
     "release": "semantic-release"
   },
   "dependencies": {
-    "puppeteer-core": ">=10.0.0"
+    "puppeteer-core": ">=10.2.0"
   },
   "devDependencies": {
     "ava": "^3.15.0",
@@ -23,11 +23,11 @@
     "fs-extra": "^10.0.0",
     "get-stream": "^6.0.1",
     "ps-list": "^7.2.0",
-    "puppet-strings-chrome": "^2.0.2",
+    "puppet-strings-chrome": "^2.0.3",
     "semantic-release": "^17.4.4",
-    "sidelifter": "^2.0.0",
+    "sidelifter": "^2.0.1",
     "tempy": "^1.0.1",
-    "xo": "^0.40.3"
+    "xo": "^0.44.0"
   },
   "ava": {
     "verbose": true,

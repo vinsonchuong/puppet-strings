@@ -16,7 +16,7 @@ test('executing code within the browser', async (t) => {
     <!doctype html>
     <meta charset="utf-8">
     <div id="root">Hello World!</div>
-    `
+    `,
   )
   const tab = await openTab(browser, `file://${filePath}`)
 
@@ -26,7 +26,7 @@ test('executing code within the browser', async (t) => {
     `
     const [selector] = arguments
     return document.querySelector(selector).textContent
-    `
+    `,
   )
   t.is(text, 'Hello World!')
 })
@@ -42,11 +42,11 @@ test('propagating error messages', async (t) => {
     <!doctype html>
     <meta charset="utf-8">
     <div id="root">Hello World!</div>
-    `
+    `,
   )
   const tab = await openTab(browser, `file://${filePath}`)
 
   await t.throwsAsync(evalInTab(tab, [], 'throw new Error("Error Message")'), {
-    message: /Error: Error Message/
+    message: /Error: Error Message/,
   })
 })

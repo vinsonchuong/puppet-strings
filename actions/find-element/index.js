@@ -1,6 +1,6 @@
 export default async function (tab, selector, text, {timeout = 5000} = {}) {
   const {
-    puppeteer: {browser, page}
+    puppeteer: {browser, page},
   } = tab
 
   try {
@@ -17,10 +17,10 @@ export default async function (tab, selector, text, {timeout = 5000} = {}) {
               `),
               {timeout},
               selector,
-              text
+              text,
             )
-          : await frame.waitForSelector(selector, {timeout})
-      ])
+          : await frame.waitForSelector(selector, {timeout}),
+      ]),
     )
 
     const metadata = await frame.evaluate(
@@ -38,18 +38,18 @@ export default async function (tab, selector, text, {timeout = 5000} = {}) {
           outerHTML: element.outerHTML
         }
       `),
-      elementHandle
+      elementHandle,
     )
 
     return {
       ...metadata,
-      puppeteer: {browser, page, frame, elementHandle}
+      puppeteer: {browser, page, frame, elementHandle},
     }
   } catch {
     throw new Error(
       `Could not find element with selector "${selector}"${
         text ? ` and text "${text}"` : ''
-      }`
+      }`,
     )
   }
 }

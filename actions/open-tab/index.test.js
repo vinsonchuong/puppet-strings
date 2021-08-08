@@ -3,7 +3,7 @@ import test from 'ava'
 import {
   withChromePerTest,
   withDirectory,
-  writeFile
+  writeFile,
 } from '../../test/helpers/index.js'
 import {openTab} from '../../index.js'
 
@@ -19,7 +19,7 @@ test('opening tabs', async (t) => {
     `
     <!doctype html>
     <meta charset="utf-8">
-    `
+    `,
   )
 
   t.is((await browser.puppeteer.browser.pages()).length, 0)
@@ -58,14 +58,14 @@ test('collecting console messages', async (t) => {
       console.log('Hello')
       console.error('There')
     </script>
-    `
+    `,
   )
 
   const tab = await openTab(browser, `file://${filePath}`)
 
   t.deepEqual(tab.console, [
     {type: 'log', message: 'Hello'},
-    {type: 'error', message: 'There'}
+    {type: 'error', message: 'There'},
   ])
 })
 
@@ -81,7 +81,7 @@ test('collecting uncaught exceptions', async (t) => {
     <script>
       throw new Error('Hello')
     </script>
-    `
+    `,
   )
 
   const tab = await openTab(browser, `file://${filePath}`)

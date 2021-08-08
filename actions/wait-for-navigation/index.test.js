@@ -5,7 +5,7 @@ import {
   findElement,
   clickElement,
   evalInTab,
-  waitForNavigation
+  waitForNavigation,
 } from '../../index.js'
 
 withChrome(test)
@@ -23,7 +23,7 @@ test('waiting for a page load to complete', async (t) => {
     <meta charset="utf-8">
     <title>index.html</title>
     <a href="other.html">other.html</a>
-    `
+    `,
   )
 
   await writeFile(
@@ -33,7 +33,7 @@ test('waiting for a page load to complete', async (t) => {
     <!doctype html>
     <meta charset="utf-8">
     <title>other.html</title>
-    `
+    `,
   )
 
   const tab = await openTab(browser, `file://${indexPath}`)

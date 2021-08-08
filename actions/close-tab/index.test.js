@@ -2,7 +2,7 @@ import test from 'ava'
 import {
   withChromePerTest,
   withDirectory,
-  writeFile
+  writeFile,
 } from '../../test/helpers/index.js'
 import {openTab, closeTab} from '../../index.js'
 
@@ -18,7 +18,7 @@ test('closing tabs', async (t) => {
     `
     <!doctype html>
     <meta charset="utf-8">
-    `
+    `,
   )
 
   const tab1 = await openTab(browser, `file://${filePath}`)

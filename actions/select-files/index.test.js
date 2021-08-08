@@ -26,7 +26,7 @@ test('selecting files for a file input element', async (t) => {
     </script>
     <span id="statusText"></span>
     <input id="fileInput" type="file" multiple onChange="updateStatus()">
-  `
+  `,
   )
 
   const tab = await openTab(browser, `file://${htmlPath}`)

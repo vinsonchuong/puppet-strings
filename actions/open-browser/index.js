@@ -9,8 +9,8 @@ export default async function (executablePath, options = {}) {
       // environments
       '--no-sandbox',
       '--disable-setuid-sandbox',
-      ...(options.flags || [])
-    ]
+      ...(options.flags || []),
+    ],
   })
 
   // Chrome defaults to opening a single blank tab
