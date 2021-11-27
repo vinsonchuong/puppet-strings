@@ -30,7 +30,7 @@ test('starting Chrome in a Docker container with Chrome pre-installed', async (t
 
         yarn add --dev link:./puppet-strings &>/dev/null
         node index.mjs
-        `,
+      `,
     ],
   })
   t.teardown(async () => {
@@ -52,7 +52,7 @@ test('starting Chrome in a Debian Docker container without Chrome pre-installed'
       '-c',
       dedent`
         cd /root
-        
+
         wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
         echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
         apt-get update -yq
@@ -72,7 +72,7 @@ test('starting Chrome in a Debian Docker container without Chrome pre-installed'
 
         yarn add --dev link:./puppet-strings &> /dev/null
         node index.mjs
-        `,
+      `,
     ],
   })
   t.teardown(async () => {
