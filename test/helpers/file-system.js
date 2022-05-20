@@ -1,9 +1,9 @@
 import path from 'node:path'
-import tempy from 'tempy'
+import {temporaryDirectory} from 'tempy'
 import fse from 'fs-extra'
 
 export async function createTemporaryDirectory() {
-  const directoryPath = tempy.directory()
+  const directoryPath = temporaryDirectory()
   await fse.ensureDir(directoryPath)
   return directoryPath
 }
