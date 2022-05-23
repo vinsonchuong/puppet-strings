@@ -45,6 +45,15 @@ test('allowing the navigation timeout to be set', async (t) => {
   }
 })
 
+test('opening empty tabs', async (t) => {
+  const {browser} = t.context
+
+  const tab = await openTab(browser)
+  t.is((await browser.puppeteer.browser.pages()).length, 1)
+
+  t.is(tab.puppeteer.page.url(), 'about:blank')
+})
+
 test('collecting console messages', async (t) => {
   const {browser, directory} = t.context
 
