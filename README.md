@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/vinsonchuong/puppet-strings.svg?branch=master)](https://travis-ci.org/vinsonchuong/puppet-strings)
 [![dependencies Status](https://david-dm.org/vinsonchuong/puppet-strings/status.svg)](https://david-dm.org/vinsonchuong/puppet-strings)
 [![devDependencies Status](https://david-dm.org/vinsonchuong/puppet-strings/dev-status.svg)](https://david-dm.org/vinsonchuong/puppet-strings?type=dev)
-[![Maintainability](https://api.codeclimate.com/v1/badges/7c6c8bbe130e1e1dc161/maintainability)](https://codeclimate.com/github/vinsonchuong/puppet-strings/maintainability)
 
 A better interface for common browser automation workflows
 

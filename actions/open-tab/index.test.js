@@ -1,4 +1,5 @@
-import * as http from 'node:http'
+import http from 'node:http'
+import {setTimeout} from 'node:timers/promises'
 import test from 'ava'
 import {
   withChromePerTest,
@@ -22,18 +23,22 @@ test('opening tabs', async (t) => {
     `,
   )
 
-  t.is((await browser.puppeteer.browser.pages()).length, 0)
+  const startingCount = (await browser.puppeteer.browser.pages()).length
 
   await openTab(browser, `file://${filePath}`)
-  t.is((await browser.puppeteer.browser.pages()).length, 1)
+  t.is((await browser.puppeteer.browser.pages()).length, startingCount + 1)
 
   await openTab(browser, `file://${filePath}`)
-  t.is((await browser.puppeteer.browser.pages()).length, 2)
+  t.is((await browser.puppeteer.browser.pages()).length, startingCount + 2)
 })
 
 test('allowing the navigation timeout to be set', async (t) => {
   const {browser} = t.context
-  const server = http.createServer(() => {})
+  const server = http.createServer(async (request, response) => {
+    response.writeHead(200, {})
+    await setTimeout(1200)
+    response.end('<!doctype html>')
+  })
   server.listen(10_001)
 
   try {
@@ -47,9 +52,10 @@ test('allowing the navigation timeout to be set', async (t) => {
 
 test('opening empty tabs', async (t) => {
   const {browser} = t.context
+  const startingCount = (await browser.puppeteer.browser.pages()).length
 
   const tab = await openTab(browser)
-  t.is((await browser.puppeteer.browser.pages()).length, 1)
+  t.is((await browser.puppeteer.browser.pages()).length, startingCount + 1)
 
   t.is(tab.puppeteer.page.url(), 'about:blank')
 })
@@ -96,7 +102,7 @@ test('collecting uncaught exceptions', async (t) => {
   const tab = await openTab(browser, `file://${filePath}`)
 
   t.is(tab.errors.length, 1)
-  t.regex(tab.errors[0], /Error: Hello/)
+  t.regex(tab.errors[0], /Hello/)
 })
 
 test('failing to navigate due to a connection refused', async (t) => {

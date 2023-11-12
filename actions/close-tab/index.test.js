@@ -4,7 +4,7 @@ import {
   withDirectory,
   writeFile,
 } from '../../test/helpers/index.js'
-import {openTab, closeTab} from '../../index.js'
+import {openTab, closeTab, getTabs} from '../../index.js'
 
 withDirectory(test)
 withChromePerTest(test)
@@ -25,8 +25,8 @@ test('closing tabs', async (t) => {
   const tab2 = await openTab(browser, `file://${filePath}`)
 
   await closeTab(tab1)
-  t.is((await browser.puppeteer.browser.pages()).length, 1)
+  t.is((await getTabs(browser)).length, 1)
 
   await closeTab(tab2)
-  t.is((await browser.puppeteer.browser.pages()).length, 0)
+  t.is((await getTabs(browser)).length, 0)
 })

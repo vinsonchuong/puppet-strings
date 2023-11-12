@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer-core'
 export default async function (executablePath, options = {}) {
   const browser = await puppeteer.launch({
     executablePath,
-    headless: 'headless' in options ? options.headless : true,
+    headless: options.headless === false ? false : 'new',
     args: [
       // Disabling the process sandbox makes it easier to run in Linux
       // environments
@@ -14,8 +14,10 @@ export default async function (executablePath, options = {}) {
   })
 
   // Chrome defaults to opening a single blank tab
-  const pages = await browser.pages()
-  await pages[0].close()
+  // Cannot close without closing browser:
+  // https://github.com/puppeteer/puppeteer/issues/11066
+  // const pages = await browser.pages()
+  // await pages[0].close()
 
   return {puppeteer: {browser}}
 }
