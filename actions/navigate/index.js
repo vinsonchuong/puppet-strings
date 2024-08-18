@@ -1,4 +1,4 @@
-export default async function ({puppeteer: {page}}, url, options = {}) {
+export default async function navigate({puppeteer: {page}}, url, options = {}) {
   try {
     await page.goto(url, {
       waitUntil: [

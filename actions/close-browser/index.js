@@ -1,3 +1,3 @@
-export default async function ({puppeteer: {browser}}) {
+export default async function closeBrowser({puppeteer: {browser}}) {
   await browser.close()
 }

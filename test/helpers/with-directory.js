@@ -1,6 +1,6 @@
 import {createTemporaryDirectory, deleteFile} from './index.js'
 
-export default function (test) {
+export default function withDirectory(test) {
   test.beforeEach(async (t) => {
     t.context.directory = await createTemporaryDirectory()
   })

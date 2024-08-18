@@ -1,7 +1,7 @@
 import {navigate} from '../../index.js'
 import {makeTab} from '../../wrappers/index.js'
 
-export default async function ({puppeteer: {browser}}, url, options) {
+export default async function openTab({puppeteer: {browser}}, url, options) {
   const page = await browser.newPage()
   const tab = makeTab(browser, page)
 

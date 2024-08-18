@@ -1,4 +1,4 @@
-export default function (browser, page) {
+export default function makeTab(browser, page) {
   const consoleMessages = []
   page.on('console', (consoleMessage) => {
     consoleMessages.push({

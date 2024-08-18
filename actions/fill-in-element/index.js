@@ -1,4 +1,7 @@
-export default async function ({puppeteer: {frame, elementHandle}}, text) {
+export default async function fillInElement(
+  {puppeteer: {frame, elementHandle}},
+  text,
+) {
   await elementHandle.type(text)
   await frame.evaluate(
     // eslint-disable-next-line no-new-func

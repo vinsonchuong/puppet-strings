@@ -3,15 +3,15 @@ import psList from 'ps-list'
 
 const sleep = promisify(setTimeout)
 
-export async function findProcess(arg) {
-  const pid = typeof arg === 'number' ? arg : arg.pid
+export async function findProcess(argument) {
+  const pid = typeof argument === 'number' ? argument : argument.pid
 
   const runningProcesses = await psList()
   return runningProcesses.find((runningProcess) => pid === runningProcess.pid)
 }
 
-export async function waitForProcess(arg, timeout) {
-  const foundProcess = await findProcess(arg)
+export async function waitForProcess(argument, timeout) {
+  const foundProcess = await findProcess(argument)
   if (foundProcess) {
     return foundProcess
   }
@@ -20,6 +20,6 @@ export async function waitForProcess(arg, timeout) {
     throw new Error('Timed out waiting for process')
   } else {
     await sleep(500)
-    return waitForProcess(arg, timeout - 500)
+    return waitForProcess(argument, timeout - 500)
   }
 }

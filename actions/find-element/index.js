@@ -1,4 +1,9 @@
-export default async function (tab, selector, text, {timeout = 5000} = {}) {
+export default async function findElement(
+  tab,
+  selector,
+  text,
+  {timeout = 5000} = {},
+) {
   const {
     puppeteer: {browser, page},
   } = tab

@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer-core'
 
-export default async function (executablePath, options = {}) {
+export default async function openBrowser(executablePath, options = {}) {
   const browser = await puppeteer.launch({
     executablePath,
     headless: options.headless === false ? false : 'new',

@@ -1,3 +1,3 @@
-export default async function ({puppeteer: {page}}) {
+export default async function closeTab({puppeteer: {page}}) {
   await page.close()
 }

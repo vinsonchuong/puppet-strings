@@ -1,6 +1,6 @@
 import {makeTab} from '../../wrappers/index.js'
 
-export default async function ({puppeteer: {browser}}) {
+export default async function getTabs({puppeteer: {browser}}) {
   const pages = await browser.pages()
 
   // Chrome defaults to opening a single blank tab
