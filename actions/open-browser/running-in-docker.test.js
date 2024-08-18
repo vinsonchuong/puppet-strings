@@ -24,7 +24,7 @@ test('starting Chrome in a Debian Docker container without Chrome pre-installed'
         cat <<JS > index.mjs
         import { openBrowser } from 'puppet-strings'
         async function run() {
-          const { puppeteer: { browser } } = await openBrowser('google-chrome')
+          const { puppeteer: { browser } } = await openBrowser('/opt/google/chrome/chrome')
           const page = await browser.newPage()
           await page.goto('http://example.com')
           console.log(await page.title())
@@ -42,6 +42,13 @@ test('starting Chrome in a Debian Docker container without Chrome pre-installed'
     await removeContainer(container)
   })
 
-  const output = await getStream(container.stdout)
-  t.true(output.includes('Example Domain'))
+  const stdout = await getStream(container.stdout)
+  t.log(stdout)
+
+  t.log('===')
+
+  const stderr = await getStream(container.stderr)
+  t.log(stderr)
+
+  t.true(stdout.includes('Example Domain'))
 })
